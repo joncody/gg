@@ -1,0 +1,89 @@
+gg
+==
+
+An ECMASCRIPT 5 compliant JavaScript utility library.
+
+##API
+
+- gg.typeOf
+- gg.noop
+- gg.arrSlice
+- gg.isBoolean
+- gg.isNumber
+- gg.isString
+- gg.isArray
+- gg.isObject
+- gg.isFunction
+- gg.isNull
+- gg.isUndefined
+- gg.isArrayLike
+- gg.isTypedArray
+- gg.isBuffer
+- gg.isNode
+- gg.isEmpty
+- gg.toArray
+- gg.toUint8
+- gg.toBuffer
+- gg.inArray
+- gg.toCamelCase
+- gg.undoCamelCase
+- gg.getCodesFromString
+- gg.getStringFromCodes
+- gg.uuid
+- gg.supplant
+- gg.inherits
+- gg.each
+- gg.extend
+- gg.cloneNodeDeeper
+- gg.getById
+- gg.select
+- gg.selectAll
+- gg.keyboardHandler
+- gg.mouseHandler
+- gg.xhrReq
+- gg.readFiles
+- gg.create
+
+##Instance API
+- gobject.get
+- gobject.getLength
+- gobject.each
+- gobject.add
+- gobject.subtract
+- gobject.data
+- gobject.remData
+- gobject.attr
+- gobject.remAttr
+- gobject.prop
+- gobject.css
+- gobject.style
+- gobject.remProp
+- gobject.remCss
+- gobject.remStyle
+- gobject.text
+- gobject.remText
+- gobject.html
+- gobject.remHtml
+- gobject.classes
+- gobject.addClass
+- gobject.remClass
+- gobject.togClass
+- gobject.hasClass
+- gobject.insert
+- gobject.prepend
+- gobject.prependTo
+- gobject.append
+- gobject.appendTo
+- gobject.after
+- gobject.before
+- gobject.remove
+- gobject.parents
+- gobject.children
+- gobject.select
+- gobject.selectAll
+- gobject.clone
+- gobject.hide
+- gobject.show
+- gobject.on
+- gobject.off
+- gobject.once
