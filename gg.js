@@ -429,10 +429,17 @@
             if (!isNumber(index) || index < 0 || index > store.length) {
                 return store;
             }
+            return gg(store[index]);
+        };
+
+        gobject.getRaw = function (index) {
+            if (!isNumber(index) || index < 0 || index > store.length) {
+                return store;
+            }
             return store[index];
         };
 
-        gobject.getLength = function () {
+        gobject.length = function () {
             return store.length;
         };
 
