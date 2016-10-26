@@ -129,6 +129,8 @@
             'video'
         ];
 
+    global.listeners = listeners;
+
     function typeOf(value) {
         var type = typeof value;
 
@@ -350,13 +352,8 @@
     }
 
     function closure(func, node, arg) {
-        var params = {
-                node: node,
-                arg: arg
-            };
-
         return function (e) {
-            return func.call(node, e, params);
+            return func.call(null, e, gg(node), arg);
         };
     }
 
@@ -365,8 +362,8 @@
             cloneid,
             clone;
 
-        if (isObject(node) && node.gg === true && node.getLength() === 1) {
-            node = node.get();
+        if (isObject(node) && node.gg === true && node.length() === 1) {
+            node = node.getRaw();
         }
         if (isNode(node)) {
             nodeid = global.parseInt(node.getAttribute('data-gg-id'), 10);
@@ -943,7 +940,7 @@
                     var nodeid = global.parseInt(node.getAttribute('data-gg-id'), 10);
 
                     if (isNumber(nodeid) && listeners.hasOwnProperty(nodeid) && listeners[nodeid].hasOwnProperty(type)) {
-                        if (isUndefined(funcid)) {
+                        if (funcid === false) {
                             each(listeners[nodeid][type], function (funcarray, funcid, list) {
                                 node.removeEventListener(type, funcarray[1], bub);
                                 delete list[funcid];
@@ -961,13 +958,8 @@
 
         gobject.once = function (type, func, bub, arg) {
             function handler(node, arg) {
-                var params = {
-                        node: node,
-                        arg: arg
-                    };
-
                 return function onetime(e) {
-                    func.call(node, e, params);
+                    func.call(null, e, gg(node), arg);
                     node.removeEventListener(type, onetime, bub);
                 };
             }
