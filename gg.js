@@ -377,9 +377,9 @@
                 listeners[cloneid][type] = {};
                 each(list, function (funcarray, funcid) {
                     var func = funcarray[0],
-                        bub = funcarray[2],
-                        arg = funcarray[3],
-                        newFunc = closure(func, clone, arg);
+                    bub = funcarray[2],
+                    arg = funcarray[3],
+                    newFunc = closure(func, clone, arg);
 
                     listeners[cloneid][type][funcid] = [func, newFunc, bub, arg];
                     clone.addEventListener(type, newFunc, bub);
@@ -403,10 +403,10 @@
 
     function gg(selector) {
         var items = [],
-            gobject = {
-                gg: true
-            },
-            store = [];
+        gobject = {
+            gg: true
+        },
+        store = [];
 
         if (selector && isString(selector)) {
             items = selectAll(selector);
@@ -424,7 +424,7 @@
 
         gobject.get = function (index) {
             if (!isNumber(index) || index < 0 || index > store.length) {
-                return store;
+                return gg(store);
             }
             return gg(store[index]);
         };
@@ -464,7 +464,7 @@
 
         gobject.data = function (name, value) {
             var dataname,
-                values;
+            values;
 
             if (name && isString(name)) {
                 dataname = name.length < 4 || name.slice(0, 4) !== 'data' ? undoCamelCase('data-' + name) : undoCamelCase(name);
@@ -512,7 +512,7 @@
 
         gobject.attr = function (name, value) {
             var attrname,
-                values;
+            values;
 
             if (name && isString(name)) {
                 attrname = toCamelCase(name);
@@ -560,7 +560,7 @@
 
         gobject.prop = function (name, value) {
             var propname,
-                values;
+            values;
 
             if (name && isString(name)) {
                 propname = toCamelCase(name);
@@ -901,7 +901,7 @@
 
         gobject.on = function (type, func, bub, arg) {
             var funcid,
-                newFunc;
+            newFunc;
 
             if (type && isString(type) && isFunction(func)) {
                 bub = isBoolean(bub) ? bub : false;
@@ -940,7 +940,7 @@
                     var nodeid = global.parseInt(node.getAttribute('data-gg-id'), 10);
 
                     if (isNumber(nodeid) && listeners.hasOwnProperty(nodeid) && listeners[nodeid].hasOwnProperty(type)) {
-                        if (funcid === false) {
+                        if (!isNumber(funcid)) {
                             each(listeners[nodeid][type], function (funcarray, funcid, list) {
                                 node.removeEventListener(type, funcarray[1], bub);
                                 delete list[funcid];
