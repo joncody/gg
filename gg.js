@@ -473,7 +473,11 @@
                     gobject.each(function (node) {
                         values.push(node.getAttribute(dataname));
                     });
-                    return values.length === 1 ? values[0] : values;
+                    if (values.length === 0) {
+                        return '';
+                    } else {
+                        return values.length === 1 ? values[0] : values;
+                    }
                 }
                 gobject.each(function (node) {
                     node.setAttribute(dataname, value);
@@ -521,7 +525,11 @@
                     gobject.each(function (node) {
                         values.push(node[attrname]);
                     });
-                    return values.length === 1 ? values[0] : values;
+                    if (values.length === 0) {
+                        return '';
+                    } else {
+                        return values.length === 1 ? values[0] : values;
+                    }
                 }
                 gobject.each(function (node) {
                     node[attrname] = value;
@@ -569,7 +577,11 @@
                     gobject.each(function (node) {
                         values.push(node.style[propname] || global.getComputedStyle(node, null).getPropertyValue(propname));
                     });
-                    return values.length === 1 ? values[0] : values;
+                    if (values.length === 0) {
+                        return '';
+                    } else {
+                        return values.length === 1 ? values[0] : values;
+                    }
                 }
                 gobject.each(function (node) {
                     if (isNumber(value)) {
@@ -620,7 +632,11 @@
                 gobject.each(function (node) {
                     values.push(node.textContent);
                 });
-                return values.length === 1 ? values[0] : values;
+                if (values.length === 0) {
+                    return '';
+                } else {
+                    return values.length === 1 ? values[0] : values;
+                }
             }
             gobject.each(function (node) {
                 if (isString(string)) {
@@ -642,7 +658,11 @@
                 gobject.each(function (node) {
                     values.push(node.innerHTML);
                 });
-                return values.length === 1 ? values[0] : values;
+                if (values.length === 0) {
+                    return '';
+                } else {
+                    return values.length === 1 ? values[0] : values;
+                }
             }
             return gobject.each(function (node) {
                 if (isString(string)) {
@@ -664,7 +684,11 @@
                 gobject.each(function (node) {
                     values.push(node.className);
                 });
-                return values.length === 1 ? values[0] : values;
+                if (values.length === 0) {
+                    return '';
+                } else {
+                    return values.length === 1 ? values[0] : values;
+                }
             }
             return gobject.each(function (node) {
                 if (isString(string)) {
@@ -730,7 +754,11 @@
                     }));
                 });
             }
-            return values.length === 1 ? values[0] : values;
+            if (values.length === 0) {
+                return '';
+            } else {
+                return values.length === 1 ? values[0] : values;
+            }
         };
 
         gobject.insert = (function () {
