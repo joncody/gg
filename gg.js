@@ -474,7 +474,7 @@
                         values.push(node.getAttribute(dataname));
                     });
                     if (values.length === 0) {
-                        return '';
+                        return;
                     } else {
                         return values.length === 1 ? values[0] : values;
                     }
@@ -516,7 +516,7 @@
 
         gobject.attr = function (name, value) {
             var attrname,
-            values;
+                values;
 
             if (name && isString(name)) {
                 attrname = toCamelCase(name);
@@ -526,7 +526,7 @@
                         values.push(node[attrname]);
                     });
                     if (values.length === 0) {
-                        return '';
+                        return;
                     } else {
                         return values.length === 1 ? values[0] : values;
                     }
@@ -578,7 +578,7 @@
                         values.push(node.style[propname] || global.getComputedStyle(node, null).getPropertyValue(propname));
                     });
                     if (values.length === 0) {
-                        return '';
+                        return;
                     } else {
                         return values.length === 1 ? values[0] : values;
                     }
@@ -633,7 +633,7 @@
                     values.push(node.textContent);
                 });
                 if (values.length === 0) {
-                    return '';
+                    return;
                 } else {
                     return values.length === 1 ? values[0] : values;
                 }
@@ -659,7 +659,7 @@
                     values.push(node.innerHTML);
                 });
                 if (values.length === 0) {
-                    return '';
+                    return;
                 } else {
                     return values.length === 1 ? values[0] : values;
                 }
@@ -685,7 +685,7 @@
                     values.push(node.className);
                 });
                 if (values.length === 0) {
-                    return '';
+                    return;
                 } else {
                     return values.length === 1 ? values[0] : values;
                 }
@@ -755,7 +755,7 @@
                 });
             }
             if (values.length === 0) {
-                return '';
+                return;
             } else {
                 return values.length === 1 ? values[0] : values;
             }
