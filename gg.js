@@ -129,8 +129,6 @@
             'video'
         ];
 
-    global.listeners = listeners;
-
     function typeOf(value) {
         var type = typeof value;
 
