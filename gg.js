@@ -18,7 +18,7 @@
     'use strict';
 
     var xhrReq,
-        readFiles,
+        readFiles = !!global.FileReader,
         mouseHandler,
         keyboardHandler,
         listeners = {},
@@ -1205,7 +1205,7 @@
 //     [on]error: function,
 //     [on]abort: function
 // };
-    readFiles = (function () {
+    readFiles = readFiles ? (function () {
         var binary_support = !!global.FileReader.prototype.readAsBinaryString,
             readers = [],
             typeMap = {
@@ -1259,7 +1259,7 @@
                 options.element.addEventListener('change', onFileSelect(options), false);
             }
         };
-    }());
+    }()) : noop;
 
     function create(tag) {
         var element;
