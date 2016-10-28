@@ -206,7 +206,7 @@
     }
 
     function isBuffer(buffer) {
-        return buffer instanceof ArrayBuffer;
+        return !!global.ArrayBuffer && buffer instanceof ArrayBuffer;
     }
 
     function isNode(node) {
