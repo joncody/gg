@@ -636,7 +636,7 @@
                     return values.length === 1 ? values[0] : values;
                 }
             }
-            gobject.each(function (node) {
+            return gobject.each(function (node) {
                 if (isString(string)) {
                     node.textContent = string;
                 }
