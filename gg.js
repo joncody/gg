@@ -1129,7 +1129,7 @@
                             xhr.responseHeaders = xhr.getAllResponseHeaders();
                         } else if (xhr.readyState === 4 && (xhr.status >= 200 && xhr.status < 300)) {
                             options.success(e, xhr, xhr.response);
-                        } else if (xhr.readyState === 4 && (xhr.status >= 300)) {
+                        } else if (xhr.readyState === 4 && xhr.status >= 300) {
                             options.failure(e, xhr);
                         }
                     } else if (type === 'abort' || type === 'error' || type === 'timeout') {
