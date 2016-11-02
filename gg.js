@@ -636,7 +636,7 @@
                     return values.length === 1 ? values[0] : values;
                 }
             }
-            return gobject.each(function (node) {
+            gobject.each(function (node) {
                 if (isString(string)) {
                     node.textContent = string;
                 }
@@ -1129,6 +1129,8 @@
                             xhr.responseHeaders = xhr.getAllResponseHeaders();
                         } else if (xhr.readyState === 4 && (xhr.status >= 200 && xhr.status < 300)) {
                             options.success(e, xhr, xhr.response);
+                        } else if (xhr.readyState === 4 && (xhr.status >= 300)) {
+                            options.failure(e, xhr);
                         }
                     } else if (type === 'abort' || type === 'error' || type === 'timeout') {
                         options.failure(e, xhr);
@@ -1159,11 +1161,8 @@
             xhr = new XMLHttpRequest();
             xhr.open(options.method, options.url, options.async, options.username, options.password);
             each(options.headers, function (value, key) {
-                var lowerCaseKey = key.toLowerCase(),
-                    lowerCaseValue = value.toLowerCase();
-
-                if (!inArray(lowerCaseKey, forbiddenHeaders)) {
-                    xhr.setRequestHeader(lowerCaseKey, lowerCaseValue);
+                if (!inArray(key.toLowerCase(), forbiddenHeaders)) {
+                    xhr.setRequestHeader(key, value);
                 }
             });
             if (options.crossOrigin && options.username && options.password) {
