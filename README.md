@@ -82,6 +82,7 @@ An ECMASCRIPT 5 compliant JavaScript utility library.
 - gobject.select
 - gobject.selectAll
 - gobject.clone
+- gobject.create
 - gobject.hide
 - gobject.show
 - gobject.on
