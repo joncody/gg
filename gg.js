@@ -925,6 +925,16 @@
             });
         };
 
+        gobject.create = function (tag) {
+            var element;
+
+            if (inArray(tag, taglist)) {
+                element = document.createElement(tag);
+                gobject.append(element);
+            }
+            return element === undefined ? gobject : gg(element);
+        };
+
         gobject.on = function (type, func, bub, arg) {
             var funcid,
                 newFunc;
