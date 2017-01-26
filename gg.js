@@ -387,34 +387,37 @@
         return clone;
     }
 
-    function getById(id) {
-        return isString(id) && id && document.getElementById(id);
+    function getById(id, object) {
+        id = supplant(id, object);
+        return document.getElementById(id);
     }
 
-    function select(selector) {
-        return isString(selector) && selector && document.querySelector(selector);
+    function select(selector, object, node) {
+        selector = supplant(selector, object);
+        return isNode(node) ? node.querySelector(selector) : document.querySelector(selector);
     }
 
-    function selectAll(selector) {
-        return isString(selector) && selector && document.querySelectorAll(selector);
+    function selectAll(selector, object, node) {
+        selector = supplant(selector, object);
+        return isNode(node) ? node.querySelectorAll(selector) : document.querySelectorAll(selector);
     }
 
-    function gg(selector) {
-        var items = [],
-            gobject = {
+    function gg(selector, object) {
+        var gobject = {
                 gg: true
             },
+            prestore = [],
             store = [];
 
         if (selector && isString(selector)) {
-            items = selectAll(selector);
+            prestore = selectAll(selector, object);
         } else if (isNode(selector) || isArray(selector) || isArrayLike(selector) || isObject(selector)) {
             if (selector.gg === true) {
                 return selector;
             }
-            items = selector;
+            prestore = selector;
         }
-        each(items, function (node, index) {
+        each(prestore, function (node, index) {
             if (isNode(node) && node.nodeType < 9) {
                 store.push(node);
             }
@@ -637,7 +640,7 @@
                 }
             }
             gobject.each(function (node) {
-                if (isString(string)) {
+                if (isString(string) || isNumber(string)) {
                     node.textContent = string;
                 }
             });
@@ -663,7 +666,7 @@
                 }
             }
             return gobject.each(function (node) {
-                if (isString(string)) {
+                if (isString(string) || isNumber(string)) {
                     node.innerHTML = string;
                 }
             });
@@ -882,20 +885,21 @@
             return gg(nodes);
         };
 
-        gobject.select = function select(selector) {
+
+        gobject.select = function (selector, object) {
             var nodes = [];
 
             gobject.each(function (node) {
-                nodes = nodes.concat(toArray(node.querySelector(selector)));
+                nodes = nodes.concat(toArray(select(selector, object, node)));
             });
             return gg(nodes);
         };
 
-        gobject.selectAll = function (selector) {
+        gobject.selectAll = function (selector, object) {
             var nodes = [];
 
             gobject.each(function (node) {
-                nodes = nodes.concat(toArray(node.querySelectorAll(selector)));
+                nodes = nodes.concat(toArray(selectAll(selector, object, node)));
             });
             return gg(nodes);
         };
