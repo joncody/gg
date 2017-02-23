@@ -290,12 +290,12 @@
     }
 
     function supplant(string, object) {
-        function subplant(a, b) {
+        function replace(a, b) {
             var value = object[b];
 
             return !isUndefined(value) ? value : a;
         }
-        return isString(string) && isObject(object) ? string.replace(/\{([^{}]*)\}/g, subplant) : string;
+        return isString(string) && isObject(object) ? string.replace(/\{([^{}]*)\}/g, replace) : string;
     }
 
     function inherits(ctor, superCtor) {
