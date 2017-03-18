@@ -376,7 +376,7 @@
                 each(list, function (funcarray, funcid) {
                     var func = funcarray[0],
                         bub = funcarray[2],
-                        arg = funcarray[3];
+                        arg = funcarray[3],
                         newFunc = closure(func, clone, arg);
 
                     listeners[cloneid][type][funcid] = [func, newFunc, bub, arg];
