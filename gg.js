@@ -917,15 +917,13 @@
 
         gobject.hide = function () {
             return gobject.each(function (node) {
-                node.setAttribute('data-default-display-value', node.style.display);
                 node.style.display = 'none';
             });
         };
 
         gobject.show = function () {
             return gobject.each(function (node) {
-                node.style.display = node.getAttribute('data-default-display-value') || 'initial';
-                node.removeAttribute('data-default-display-value');
+                node.style.display = '';
             });
         };
 
