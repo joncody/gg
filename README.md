@@ -44,9 +44,10 @@ An ECMASCRIPT 5 compliant JavaScript utility library.
 - gg.readFiles
 - gg.create
 
-##Instance API
+## Instance API
 - gobject.get
-- gobject.getLength
+- gobject.getRaw
+- gobject.length
 - gobject.each
 - gobject.add
 - gobject.subtract
