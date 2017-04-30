@@ -3,7 +3,7 @@ gg
 
 An ECMASCRIPT 5 compliant JavaScript utility library.
 
-##API
+## API
 
 - gg.typeOf
 - gg.noop
