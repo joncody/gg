@@ -45,7 +45,8 @@ An ECMASCRIPT 5 compliant JavaScript utility library.
 - gg.create(_string_)
 
 ## Instance API
-Like the supplant method.
+Like the supplant method and jQuery.
+
 gobject = gg(_string_[, _object_])
 - gobject.get([_number_])
 - gobject.getRaw([_number_])
