@@ -17,117 +17,118 @@
 (function (global) {
     "use strict";
 
-    var xhrReq,
-        readFiles = !!global.FileReader,
-        mouseHandler,
-        keyboardHandler,
-        listeners = {},
-        ggId = (function () {
-            var id = 0,
-                maxint = Math.pow(2, 53) - 1;
+    var listeners = {};
+    var ggId = (function () {
+        var id = 0;
+        var maxint = Math.pow(2, 53) - 1;
 
-            return function () {
-                return id < maxint ? id += 1 : id = 1;
-            };
-        }()),
-        taglist = [
-            "a",
-            "abbr",
-            "address",
-            "area",
-            "article",
-            "aside",
-            "audio",
-            "b",
-            "base",
-            "bdo",
-            "blockquote",
-            "body",
-            "br",
-            "button",
-            "canvas",
-            "caption",
-            "cite",
-            "code",
-            "col",
-            "colgroup",
-            "dd",
-            "del",
-            "dfn",
-            "div",
-            "dl",
-            "dt",
-            "em",
-            "embed",
-            "fieldset",
-            "figcaption",
-            "figure",
-            "footer",
-            "form",
-            "h1",
-            "h2",
-            "h3",
-            "h4",
-            "h5",
-            "h6",
-            "head",
-            "header",
-            "hr",
-            "i",
-            "iframe",
-            "img",
-            "input",
-            "ins",
-            "kbd",
-            "label",
-            "legend",
-            "li",
-            "link",
-            "map",
-            "mark",
-            "meta",
-            "nav",
-            "noscript",
-            "object",
-            "ol",
-            "optgroup",
-            "option",
-            "p",
-            "param",
-            "pre",
-            "progress",
-            "q",
-            "rp",
-            "rt",
-            "ruby",
-            "s",
-            "samp",
-            "script",
-            "section",
-            "select",
-            "small",
-            "source",
-            "span",
-            "strong",
-            "style",
-            "sub",
-            "sup",
-            "table",
-            "tbody",
-            "td",
-            "textarea",
-            "tfoot",
-            "th",
-            "thead",
-            "time",
-            "title",
-            "tr",
-            "track",
-            "u",
-            "ul",
-            "var",
-            "video"
-        ];
+        return function () {
+            if (id < maxint) {
+                id = id + 1;
+            } else {
+                id = 1;
+            }
+            return id;
+        };
+    }());
+    var taglist = [
+        "a",
+        "abbr",
+        "address",
+        "area",
+        "article",
+        "aside",
+        "audio",
+        "b",
+        "base",
+        "bdo",
+        "blockquote",
+        "body",
+        "br",
+        "button",
+        "canvas",
+        "caption",
+        "cite",
+        "code",
+        "col",
+        "colgroup",
+        "dd",
+        "del",
+        "dfn",
+        "div",
+        "dl",
+        "dt",
+        "em",
+        "embed",
+        "fieldset",
+        "figcaption",
+        "figure",
+        "footer",
+        "form",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "head",
+        "header",
+        "hr",
+        "i",
+        "iframe",
+        "img",
+        "input",
+        "ins",
+        "kbd",
+        "label",
+        "legend",
+        "li",
+        "link",
+        "map",
+        "mark",
+        "meta",
+        "nav",
+        "noscript",
+        "object",
+        "ol",
+        "optgroup",
+        "option",
+        "p",
+        "param",
+        "pre",
+        "progress",
+        "q",
+        "rp",
+        "rt",
+        "ruby",
+        "s",
+        "samp",
+        "script",
+        "section",
+        "select",
+        "small",
+        "source",
+        "span",
+        "strong",
+        "style",
+        "sub",
+        "sup",
+        "table",
+        "tbody",
+        "td",
+        "textarea",
+        "tfoot",
+        "th",
+        "thead",
+        "time",
+        "title",
+        "tr",
+        "track",
+        "u",
+        "ul",
+        "var",
+        "video"
+    ];
 
     function typeOf(value) {
         var type = typeof value;
@@ -190,17 +191,17 @@
 
     function isTypedArray(array) {
         var types = [
-                "Int8Array",
-                "Uint8Array",
-                "Uint8ClampedArray",
-                "Int16Array",
-                "Uint16Array",
-                "Int32Array",
-                "Uint32Array",
-                "Float32Array",
-                "Float64Array"
-            ],
-            type = Object.prototype.toString.call(array).replace(/\[object\s(\w+)\]/, "$1");
+            "Int8Array",
+            "Uint8Array",
+            "Uint8ClampedArray",
+            "Int16Array",
+            "Uint16Array",
+            "Int32Array",
+            "Uint32Array",
+            "Float32Array",
+            "Float64Array"
+        ];
+        var type = Object.prototype.toString.call(array).replace(/\[object\s(\w+)\]/, "$1");
 
         return types.indexOf(type) > -1;
     }
@@ -229,6 +230,24 @@
             array = [value];
         }
         return array;
+    }
+
+    function getCodesFromString(string) {
+        var codes = [];
+
+        toArray(string).forEach(function (char) {
+            codes.push(char.charCodeAt(0));
+        });
+        return codes;
+    }
+
+    function getStringFromCodes(codes) {
+        var string = "";
+
+        toArray(codes).forEach(function (char) {
+            string += String.fromCharCode(char);
+        });
+        return string;
     }
 
     function toUint8(value) {
@@ -262,28 +281,10 @@
         });
     }
 
-    function getCodesFromString(string) {
-        var codes = [];
-
-        toArray(string).forEach(function (char) {
-            codes.push(char.charCodeAt(0));
-        });
-        return codes;
-    }
-
-    function getStringFromCodes(codes) {
-        var string = "";
-
-        toArray(codes).forEach(function (char) {
-            string += String.fromCharCode(char);
-        });
-        return string;
-    }
-
     function uuid() {
         return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (a) {
-            var rand = Math.random() * 16 | 0,
-                value = a === "x" ? rand : rand & 0x3 | 0x8;
+            var rand = Math.random() * 16 | 0;
+            var value = a === "x" ? rand : rand & 0x3 | 0x8;
 
             return value.toString(16);
         });
@@ -295,7 +296,7 @@
 
             return !isUndefined(value) ? value : a;
         }
-        return isString(string) && isObject(object) ? string.replace(/\{([^{}]*)\}/g, replace) : string;
+        return (isString(string) && isObject(object)) ? string.replace(/\{([^{}]*)\}/g, replace) : string;
     }
 
     function inherits(ctor, superCtor) {
@@ -349,44 +350,6 @@
         return object;
     }
 
-    function closure(func, node, arg) {
-        return function (e) {
-            return func.call(null, e, gg(node), arg);
-        };
-    }
-
-    function cloneNodeDeeper(node) {
-        var nodeid,
-            cloneid,
-            clone;
-
-        if (isObject(node) && node.gg === true && node.length() === 1) {
-            node = node.getRaw();
-        }
-        if (isNode(node)) {
-            nodeid = global.parseInt(node.getAttribute("data-gg-id"), 10);
-        }
-        clone = node.cloneNode(true);
-        cloneid = ggId();
-        clone.setAttribute("data-gg-id", cloneid);
-        if (isNumber(nodeid) && listeners.hasOwnProperty(nodeid)) {
-            listeners[cloneid] = {};
-            each(listeners[nodeid], function (list, type) {
-                listeners[cloneid][type] = {};
-                each(list, function (funcarray, funcid) {
-                    var func = funcarray[0],
-                        bub = funcarray[2],
-                        arg = funcarray[3],
-                        newFunc = closure(func, clone, arg);
-
-                    listeners[cloneid][type][funcid] = [func, newFunc, bub, arg];
-                    clone.addEventListener(type, newFunc, bub);
-                });
-            });
-        }
-        return clone;
-    }
-
     function getById(id, object) {
         id = supplant(id, object);
         return document.getElementById(id);
@@ -404,10 +367,48 @@
 
     function gg(selector, object) {
         var gobject = {
-                gg: true
-            },
-            prestore = [],
-            store = [];
+            gg: true
+        };
+        var prestore = [];
+        var store = [];
+
+        function closure(func, node, arg) {
+            return function (e) {
+                return func.call(null, e, gg(node), arg);
+            };
+        }
+
+        function cloneNodeDeeper(node) {
+            var nodeid;
+            var cloneid;
+            var clone;
+
+            if (isObject(node) && node.gg === true && node.length() === 1) {
+                node = node.getRaw();
+            }
+            if (isNode(node)) {
+                nodeid = global.parseInt(node.getAttribute("data-gg-id"), 10);
+            }
+            clone = node.cloneNode(true);
+            cloneid = ggId();
+            clone.setAttribute("data-gg-id", cloneid);
+            if (isNumber(nodeid) && listeners.hasOwnProperty(nodeid)) {
+                listeners[cloneid] = {};
+                each(listeners[nodeid], function (list, type) {
+                    listeners[cloneid][type] = {};
+                    each(list, function (funcarray, funcid) {
+                        var func = funcarray[0];
+                        var bub = funcarray[2];
+                        var arg = funcarray[3];
+                        var newFunc = closure(func, clone, arg);
+
+                        listeners[cloneid][type][funcid] = [func, newFunc, bub, arg];
+                        clone.addEventListener(type, newFunc, bub);
+                    });
+                });
+            }
+            return clone;
+        }
 
         if (selector && isString(selector)) {
             prestore = selectAll(selector, object);
@@ -417,7 +418,7 @@
             }
             prestore = selector;
         }
-        each(prestore, function (node, index) {
+        each(prestore, function (node) {
             if (isNode(node) && node.nodeType < 9) {
                 store.push(node);
             }
@@ -464,11 +465,11 @@
         };
 
         gobject.data = function (name, value) {
-            var dataname,
-                values;
+            var dataname;
+            var values;
 
             if (name && isString(name)) {
-                dataname = name.length < 4 || name.slice(0, 4) !== "data" ? undoCamelCase("data-" + name) : undoCamelCase(name);
+                dataname = (name.length < 4 || name.slice(0, 4) !== "data") ? undoCamelCase("data-" + name) : undoCamelCase(name);
                 if (isUndefined(value)) {
                     values = [];
                     gobject.each(function (node) {
@@ -503,7 +504,7 @@
             var dataname;
 
             if (name && isString(name)) {
-                dataname = name.length < 4 || name.slice(0, 4) !== "data" ? undoCamelCase("data-" + name) : undoCamelCase(name);
+                dataname = (name.length < 4 || name.slice(0, 4) !== "data") ? undoCamelCase("data-" + name) : undoCamelCase(name);
                 gobject.each(function (node) {
                     node.removeAttribute(dataname);
                 });
@@ -516,8 +517,8 @@
         };
 
         gobject.attr = function (name, value) {
-            var attrname,
-                values;
+            var attrname;
+            var values;
 
             if (name && isString(name)) {
                 attrname = toCamelCase(name);
@@ -568,8 +569,8 @@
         };
 
         gobject.prop = function (name, value) {
-            var propname,
-                values;
+            var propname;
+            var values;
 
             if (name && isString(name)) {
                 propname = toCamelCase(name);
@@ -938,8 +939,8 @@
         };
 
         gobject.on = function (type, func, bub, arg) {
-            var funcid,
-                newFunc;
+            var funcid;
+            var newFunc;
 
             if (type && isString(type) && isFunction(func)) {
                 bub = isBoolean(bub) ? bub : false;
@@ -1016,7 +1017,7 @@
 // options = {
 //     keyCode: function
 // };
-    keyboardHandler = (function () {
+    var keyboardHandler = (function () {
         function keyDown(options, handlers) {
             return function (e) {
                 var keycode = e.keyCode;
@@ -1047,7 +1048,7 @@
 // options = {
 //     keyCode: function
 // };
-    mouseHandler = (function () {
+    var mouseHandler = (function () {
         function mouseDown(options, handlers) {
             return function (e) {
                 var keycode = e.button;
@@ -1097,58 +1098,58 @@
 //     [on]error: function,
 //     [on]abort: function
 // };
-    xhrReq = (function () {
+    var xhrReq = (function () {
         var responseTypes = [
-                "",
-                "arraybuffer",
-                "blob",
-                "document",
-                "json",
-                "text"
-            ],
-            forbiddenHeaders = [
-                "accept-charset",
-                "accept-encoding",
-                "access-control-request-headers",
-                "access-control-request-method",
-                "connection",
-                "content-length",
-                "cookie",
-                "cookie2",
-                "date",
-                "dnt",
-                "expect",
-                "host",
-                "keep-alive",
-                "origin",
-                "referer",
-                "te",
-                "trailer",
-                "transfer-encoding",
-                "upgrade",
-                "user-agent",
-                "via"
-            ],
-            callback = function (options, xhr, type) {
-                return function (e) {
-                    if (isFunction(options[type])) {
-                        options[type](e, xhr);
-                    } else if (isFunction(options["on" + type])) {
-                        options["on" + type](e, xhr);
-                    }
-                    if (type === "readystatechange") {
-                        if (xhr.readyState === 2) {
-                            xhr.responseHeaders = xhr.getAllResponseHeaders();
-                        } else if (xhr.readyState === 4 && (xhr.status >= 200 && xhr.status < 300)) {
-                            options.success(e, xhr, xhr.response);
-                        } else if (xhr.readyState === 4 && xhr.status >= 300) {
-                            options.failure(e, xhr);
-                        }
-                    } else if (type === "abort" || type === "error" || type === "timeout") {
+            "",
+            "arraybuffer",
+            "blob",
+            "document",
+            "json",
+            "text"
+        ];
+        var forbiddenHeaders = [
+            "accept-charset",
+            "accept-encoding",
+            "access-control-request-headers",
+            "access-control-request-method",
+            "connection",
+            "content-length",
+            "cookie",
+            "cookie2",
+            "date",
+            "dnt",
+            "expect",
+            "host",
+            "keep-alive",
+            "origin",
+            "referer",
+            "te",
+            "trailer",
+            "transfer-encoding",
+            "upgrade",
+            "user-agent",
+            "via"
+        ];
+        var callback = function (options, xhr, type) {
+            return function (e) {
+                if (isFunction(options[type])) {
+                    options[type](e, xhr);
+                } else if (isFunction(options["on" + type])) {
+                    options["on" + type](e, xhr);
+                }
+                if (type === "readystatechange") {
+                    if (xhr.readyState === 2) {
+                        xhr.responseHeaders = xhr.getAllResponseHeaders();
+                    } else if (xhr.readyState === 4 && (xhr.status >= 200 && xhr.status < 300)) {
+                        options.success(e, xhr, xhr.response);
+                    } else if (xhr.readyState === 4 && xhr.status >= 300) {
                         options.failure(e, xhr);
                     }
-                };
+                } else if (type === "abort" || type === "error" || type === "timeout") {
+                    options.failure(e, xhr);
+                }
             };
+        };
 
         return function (options) {
             var xhr;
@@ -1216,53 +1217,52 @@
 //     [on]error: function,
 //     [on]abort: function
 // };
-    readFiles = readFiles ? (function () {
-        var binary_support = !!global.FileReader.prototype.readAsBinaryString,
-            readers = [],
-            typeMap = {
-                arraybuffer: "readAsArrayBuffer",
-                binary: binary_support ? "readAsBinaryString" : "readAsArrayBuffer",
-                blob: "readAsArrayBuffer",
-                dataurl: "readAsDataURL",
-                text: "readAsText"
-            },
-            callback = function (options, filereader, file, type) {
-                return function (e) {
-                    if (isFunction(options[type])) {
-                        options[type](e, filereader, file);
-                    } else if (isFunction(options["on" + type])) {
-                        options["on" + type](e, filereader, file);
-                    }
-                    if (type === "error" || type === "abort") {
-                        options.failure(e, filereader, file);
-                    } else if (type === "loadend" && (e.target.readyState === 2 || filereader.readyState === 2)) {
-                        options.success(e, filereader, file, e.target.result || filereader.result);
-                    }
-                };
-            },
-            onFileSelect = function (options) {
-                return function (e) {
-                    each(e.target.files || options.element.files, function (file) {
-                        var filereader;
-
-                        if (file.type.match(options.mimeType)) {
-                            filereader = new FileReader();
-                            filereader.onloadstart = callback(options, filereader, file, "loadstart");
-                            filereader.onprogress = callback(options, filereader, file, "progress");
-                            filereader.onload = callback(options, filereader, file, "load");
-                            filereader.onloadend = callback(options, filereader, file, "loadend");
-                            filereader.onerror = callback(options, filereader, file, "error");
-                            filereader.onabort = callback(options, filereader, file, "abort");
-                            filereader[options.readAs](file);
-                        }
-                    });
-                };
+    var readFiles = !!global.FileReader ? (function () {
+        var binary_support = !!global.FileReader.prototype.readAsBinaryString;
+        var typeMap = {
+            arraybuffer: "readAsArrayBuffer",
+            binary: binary_support ? "readAsBinaryString" : "readAsArrayBuffer",
+            blob: "readAsArrayBuffer",
+            dataurl: "readAsDataURL",
+            text: "readAsText"
+        };
+        var callback = function (options, filereader, file, type) {
+            return function (e) {
+                if (isFunction(options[type])) {
+                    options[type](e, filereader, file);
+                } else if (isFunction(options["on" + type])) {
+                    options["on" + type](e, filereader, file);
+                }
+                if (type === "error" || type === "abort") {
+                    options.failure(e, filereader, file);
+                } else if (type === "loadend" && (e.target.readyState === 2 || filereader.readyState === 2)) {
+                    options.success(e, filereader, file, e.target.result || filereader.result);
+                }
             };
+        };
+        var onFileSelect = function (options) {
+            return function (e) {
+                each(e.target.files || options.element.files, function (file) {
+                    var filereader;
+
+                    if (file.type.match(options.mimeType)) {
+                        filereader = new FileReader();
+                        filereader.onloadstart = callback(options, filereader, file, "loadstart");
+                        filereader.onprogress = callback(options, filereader, file, "progress");
+                        filereader.onload = callback(options, filereader, file, "load");
+                        filereader.onloadend = callback(options, filereader, file, "loadend");
+                        filereader.onerror = callback(options, filereader, file, "error");
+                        filereader.onabort = callback(options, filereader, file, "abort");
+                        filereader[options.readAs](file);
+                    }
+                });
+            };
+        };
 
         return function (options) {
             options = isObject(options) ? options : {};
             options.element = isNode(options.element) ? options.element : null;
-            options.readAs = isString(options.readAs) && typeMap.hasOwnProperty(options.readAs.toLowerCase()) ? typeMap[options.readAs.toLowerCase()] : typeMap.blob;
+            options.readAs = (isString(options.readAs) && typeMap.hasOwnProperty(options.readAs.toLowerCase())) ? typeMap[options.readAs.toLowerCase()] : typeMap.blob;
             options.mimeType = isString(options.mimeType) ? options.mimeType : ".*";
             options.success = isFunction(options.success) ? options.success : noop;
             options.failure = isFunction(options.failure) ? options.failure : noop;
@@ -1310,7 +1310,6 @@
     gg.inherits = inherits;
     gg.each = each;
     gg.extend = extend;
-    gg.cloneNodeDeeper = cloneNodeDeeper;
     gg.getById = getById;
     gg.select = select;
     gg.selectAll = selectAll;
