@@ -284,7 +284,9 @@
     function uuid() {
         return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (a) {
             var rand = Math.random() * 16 | 0;
-            var value = a === "x" ? rand : rand & 0x3 | 0x8;
+            var value = a === "x"
+                ? rand
+                : rand & 0x3 | 0x8;
 
             return value.toString(16);
         });
@@ -294,9 +296,13 @@
         function replace(a, b) {
             var value = object[b];
 
-            return !isUndefined(value) ? value : a;
+            return !isUndefined(value)
+                ? value
+                : a;
         }
-        return (isString(string) && isObject(object)) ? string.replace(/\{([^{}]*)\}/g, replace) : string;
+        return (isString(string) && isObject(object))
+            ? string.replace(/\{([^{}]*)\}/g, replace)
+            : string;
     }
 
     function inherits(ctor, superCtor) {
@@ -339,7 +345,9 @@
     }
 
     function extend(object, add, overwrite) {
-        overwrite = isBoolean(overwrite) ? overwrite : true;
+        overwrite = isBoolean(overwrite)
+            ? overwrite
+            : true;
         if (isObject(object) && isObject(add)) {
             each(add, function (value, key) {
                 if (overwrite || !object.hasOwnProperty(key)) {
@@ -357,12 +365,16 @@
 
     function select(selector, object, node) {
         selector = supplant(selector, object);
-        return isNode(node) ? node.querySelector(selector) : document.querySelector(selector);
+        return isNode(node)
+            ? node.querySelector(selector)
+            : document.querySelector(selector);
     }
 
     function selectAll(selector, object, node) {
         selector = supplant(selector, object);
-        return isNode(node) ? node.querySelectorAll(selector) : document.querySelectorAll(selector);
+        return isNode(node)
+            ? node.querySelectorAll(selector)
+            : document.querySelectorAll(selector);
     }
 
     function gg(selector, object) {
@@ -469,7 +481,9 @@
             var values;
 
             if (name && isString(name)) {
-                dataname = (name.length < 4 || name.slice(0, 4) !== "data") ? undoCamelCase("data-" + name) : undoCamelCase(name);
+                dataname = (name.length < 4 || name.slice(0, 4) !== "data")
+                    ? undoCamelCase("data-" + name)
+                    : undoCamelCase(name);
                 if (isUndefined(value)) {
                     values = [];
                     gobject.each(function (node) {
@@ -478,7 +492,9 @@
                     if (values.length === 0) {
                         return;
                     } else {
-                        return values.length === 1 ? values[0] : values;
+                        return values.length === 1
+                            ? values[0]
+                            : values;
                     }
                 }
                 gobject.each(function (node) {
@@ -504,7 +520,9 @@
             var dataname;
 
             if (name && isString(name)) {
-                dataname = (name.length < 4 || name.slice(0, 4) !== "data") ? undoCamelCase("data-" + name) : undoCamelCase(name);
+                dataname = (name.length < 4 || name.slice(0, 4) !== "data")
+                    ? undoCamelCase("data-" + name)
+                    : undoCamelCase(name);
                 gobject.each(function (node) {
                     node.removeAttribute(dataname);
                 });
@@ -530,7 +548,9 @@
                     if (values.length === 0) {
                         return;
                     } else {
-                        return values.length === 1 ? values[0] : values;
+                        return values.length === 1
+                            ? values[0]
+                            : values;
                     }
                 }
                 gobject.each(function (node) {
@@ -582,7 +602,9 @@
                     if (values.length === 0) {
                         return;
                     } else {
-                        return values.length === 1 ? values[0] : values;
+                        return values.length === 1
+                            ? values[0]
+                            : values;
                     }
                 }
                 gobject.each(function (node) {
@@ -637,7 +659,9 @@
                 if (values.length === 0) {
                     return;
                 } else {
-                    return values.length === 1 ? values[0] : values;
+                    return values.length === 1
+                        ? values[0]
+                        : values;
                 }
             }
             gobject.each(function (node) {
@@ -663,7 +687,9 @@
                 if (values.length === 0) {
                     return;
                 } else {
-                    return values.length === 1 ? values[0] : values;
+                    return values.length === 1
+                        ? values[0]
+                        : values;
                 }
             }
             return gobject.each(function (node) {
@@ -689,7 +715,9 @@
                 if (values.length === 0) {
                     return;
                 } else {
-                    return values.length === 1 ? values[0] : values;
+                    return values.length === 1
+                        ? values[0]
+                        : values;
                 }
             }
             return gobject.each(function (node) {
@@ -706,7 +734,9 @@
                         var regex = new RegExp("(?:^|\\s)" + cls + "(?:$|\\s)", "g");
 
                         if (!regex.test(node.className)) {
-                            node.className = node.className ? node.className + " " + cls : cls;
+                            node.className = node.className
+                                ? node.className + " " + cls
+                                : cls;
                         }
                     });
                 });
@@ -734,7 +764,9 @@
                         var regex = new RegExp("(?:^|\\s)" + cls + "(?:$|\\s)", "g");
 
                         if (!regex.test(node.className)) {
-                            node.className = node.className ? node.className + " " + cls : cls;
+                            node.className = node.className
+                                ? node.className + " " + cls
+                                : cls;
                         } else {
                             node.className = node.className.replace(regex, " ").trim();
                         }
@@ -759,7 +791,9 @@
             if (values.length === 0) {
                 return;
             } else {
-                return values.length === 1 ? values[0] : values;
+                return values.length === 1
+                    ? values[0]
+                    : values;
             }
         };
 
@@ -785,7 +819,9 @@
             return gobject.each(function (node) {
                 each(item, function (child) {
                     if (isNode(child)) {
-                        node.insertBefore(copy ? cloneNodeDeeper(child) : child, node.firstChild);
+                        node.insertBefore(copy
+                            ? cloneNodeDeeper(child)
+                            : child, node.firstChild);
                     }
                 });
             });
@@ -797,7 +833,9 @@
             return gobject.each(function (node) {
                 each(parent, function (par) {
                     if (isNode(par)) {
-                        par.insertBefore(copy ? cloneNodeDeeper(node) : node, par.firstChild);
+                        par.insertBefore(copy
+                            ? cloneNodeDeeper(node)
+                            : node, par.firstChild);
                     }
                 });
             });
@@ -809,7 +847,9 @@
             return gobject.each(function (node) {
                 each(item, function (child) {
                     if (isNode(child)) {
-                        node.appendChild(copy ? cloneNodeDeeper(child) : child);
+                        node.appendChild(copy
+                            ? cloneNodeDeeper(child)
+                            : child);
                     }
                 });
             });
@@ -821,7 +861,9 @@
             return gobject.each(function (node) {
                 each(parent, function (par) {
                     if (isNode(par)) {
-                        par.appendChild(copy ? cloneNodeDeeper(node) : node);
+                        par.appendChild(copy
+                            ? cloneNodeDeeper(node)
+                            : node);
                     }
                 });
             });
@@ -833,7 +875,9 @@
             return gobject.each(function (node) {
                 each(item, function (sibling) {
                     if (isNode(sibling)) {
-                        node.parentNode.insertBefore(copy ? cloneNodeDeeper(sibling) : sibling, node.nextSibling);
+                        node.parentNode.insertBefore(copy
+                            ? cloneNodeDeeper(sibling)
+                            : sibling, node.nextSibling);
                     }
                 });
             });
@@ -845,7 +889,9 @@
             return gobject.each(function (node) {
                 each(item, function (sibling) {
                     if (isNode(sibling)) {
-                        node.parentNode.insertBefore(copy ? cloneNodeDeeper(sibling) : sibling, node);
+                        node.parentNode.insertBefore(copy
+                            ? cloneNodeDeeper(sibling)
+                            : sibling, node);
                     }
                 });
             });
@@ -908,10 +954,16 @@
         gobject.clone = function (deep, deeper) {
             var nodes = [];
 
-            deep = isBoolean(deep) ? deep : false;
-            deeper = isBoolean(deeper) ? deeper : false;
+            deep = isBoolean(deep)
+                ? deep
+                : false;
+            deeper = isBoolean(deeper)
+                ? deeper
+                : false;
             gobject.each(function (node) {
-                nodes.push(deeper ? cloneNodeDeeper(node) : node.cloneNode(deep));
+                nodes.push(deeper
+                    ? cloneNodeDeeper(node)
+                    : node.cloneNode(deep));
             });
             return gg(nodes);
         };
@@ -935,7 +987,9 @@
                 element = document.createElement(tag);
                 gobject.append(element);
             }
-            return element === undefined ? gobject : gg(element);
+            return element === undefined
+                ? gobject
+                : gg(element);
         };
 
         gobject.on = function (type, func, bub, arg) {
@@ -943,7 +997,9 @@
             var newFunc;
 
             if (type && isString(type) && isFunction(func)) {
-                bub = isBoolean(bub) ? bub : false;
+                bub = isBoolean(bub)
+                    ? bub
+                    : false;
                 funcid = func.ggid;
                 if (!isNumber(funcid)) {
                     funcid = ggId();
@@ -974,7 +1030,9 @@
             var funcid = isFunction(func) && func.ggid;
 
             if (type && isString(type)) {
-                bub = isBoolean(bub) ? bub : false;
+                bub = isBoolean(bub)
+                    ? bub
+                    : false;
                 gobject.each(function (node) {
                     var nodeid = global.parseInt(node.getAttribute("data-gg-id"), 10);
 
@@ -1003,7 +1061,9 @@
                 };
             }
             if (type && isString(type) && isFunction(func)) {
-                bub = isBoolean(bub) ? bub : false;
+                bub = isBoolean(bub)
+                    ? bub
+                    : false;
                 gobject.each(function (node) {
                     node.addEventListener(type, handler(node, arg), bub);
                 });
@@ -1033,7 +1093,9 @@
         return function (options) {
             var handlers = {};
 
-            options = isObject(options) ? options : {};
+            options = isObject(options)
+                ? options
+                : {};
             each(options, function (handler, key) {
                 var keycode = parseInt(key, 10);
 
@@ -1064,7 +1126,9 @@
         return function (options) {
             var handlers = {};
 
-            options = isObject(options) ? options : {};
+            options = isObject(options)
+                ? options
+                : {};
             each(options, function (handler, key) {
                 var keycode = parseInt(key, 10);
 
@@ -1154,19 +1218,43 @@
         return function (options) {
             var xhr;
 
-            options = isObject(options) ? options : {};
+            options = isObject(options)
+                ? options
+                : {};
             options.data = options.data || "";
-            options.method = isString(options.method) ? options.method : "GET";
-            options.url = isString(options.url) ? options.url : global.location.href;
-            options.async = isBoolean(options.async) ? options.async : true;
-            options.username = isString(options.username) ? options.username : null;
-            options.password = isString(options.password) ? options.password : null;
-            options.mimeType = isString(options.mimeType) ? options.mimeType : null;
-            options.responseType = isString(options.responseType) ? options.responseType : "";
-            options.headers = isObject(options.headers) ? options.headers : {};
-            options.timeout = isNumber(options.timeout) ? options.timeout : 0;
-            options.success = isFunction(options.success) ? options.success : noop;
-            options.failure = isFunction(options.failure) ? options.failure : noop;
+            options.method = isString(options.method)
+                ? options.method
+                : "GET";
+            options.url = isString(options.url)
+                ? options.url
+                : global.location.href;
+            options.async = isBoolean(options.async)
+                ? options.async
+                : true;
+            options.username = isString(options.username)
+                ? options.username
+                : null;
+            options.password = isString(options.password)
+                ? options.password
+                : null;
+            options.mimeType = isString(options.mimeType)
+                ? options.mimeType
+                : null;
+            options.responseType = isString(options.responseType)
+                ? options.responseType
+                : "";
+            options.headers = isObject(options.headers)
+                ? options.headers
+                : {};
+            options.timeout = isNumber(options.timeout)
+                ? options.timeout
+                : 0;
+            options.success = isFunction(options.success)
+                ? options.success
+                : noop;
+            options.failure = isFunction(options.failure)
+                ? options.failure
+                : noop;
             options.crossOrigin = !new RegExp(global.location.hostname).test(options.url);
             if (!options.crossOrigin && !options.headers["X-Requested-With"]) {
                 options.headers["X-Requested-With"] = "XMLHttpRequest";
@@ -1217,60 +1305,76 @@
 //     [on]error: function,
 //     [on]abort: function
 // };
-    var readFiles = !!global.FileReader ? (function () {
-        var binary_support = !!global.FileReader.prototype.readAsBinaryString;
-        var typeMap = {
-            arraybuffer: "readAsArrayBuffer",
-            binary: binary_support ? "readAsBinaryString" : "readAsArrayBuffer",
-            blob: "readAsArrayBuffer",
-            dataurl: "readAsDataURL",
-            text: "readAsText"
-        };
-        var callback = function (options, filereader, file, type) {
-            return function (e) {
-                if (isFunction(options[type])) {
-                    options[type](e, filereader, file);
-                } else if (isFunction(options["on" + type])) {
-                    options["on" + type](e, filereader, file);
-                }
-                if (type === "error" || type === "abort") {
-                    options.failure(e, filereader, file);
-                } else if (type === "loadend" && (e.target.readyState === 2 || filereader.readyState === 2)) {
-                    options.success(e, filereader, file, e.target.result || filereader.result);
-                }
+    var readFiles = !!global.FileReader
+        ? (function () {
+            var binary_support = !!global.FileReader.prototype.readAsBinaryString;
+            var typeMap = {
+                arraybuffer: "readAsArrayBuffer",
+                binary: binary_support
+                    ? "readAsBinaryString"
+                    : "readAsArrayBuffer",
+                blob: "readAsArrayBuffer",
+                dataurl: "readAsDataURL",
+                text: "readAsText"
             };
-        };
-        var onFileSelect = function (options) {
-            return function (e) {
-                each(e.target.files || options.element.files, function (file) {
-                    var filereader;
-
-                    if (file.type.match(options.mimeType)) {
-                        filereader = new FileReader();
-                        filereader.onloadstart = callback(options, filereader, file, "loadstart");
-                        filereader.onprogress = callback(options, filereader, file, "progress");
-                        filereader.onload = callback(options, filereader, file, "load");
-                        filereader.onloadend = callback(options, filereader, file, "loadend");
-                        filereader.onerror = callback(options, filereader, file, "error");
-                        filereader.onabort = callback(options, filereader, file, "abort");
-                        filereader[options.readAs](file);
+            var callback = function (options, filereader, file, type) {
+                return function (e) {
+                    if (isFunction(options[type])) {
+                        options[type](e, filereader, file);
+                    } else if (isFunction(options["on" + type])) {
+                        options["on" + type](e, filereader, file);
                     }
-                });
+                    if (type === "error" || type === "abort") {
+                        options.failure(e, filereader, file);
+                    } else if (type === "loadend" && (e.target.readyState === 2 || filereader.readyState === 2)) {
+                        options.success(e, filereader, file, e.target.result || filereader.result);
+                    }
+                };
             };
-        };
+            var onFileSelect = function (options) {
+                return function (e) {
+                    each(e.target.files || options.element.files, function (file) {
+                        var filereader;
 
-        return function (options) {
-            options = isObject(options) ? options : {};
-            options.element = isNode(options.element) ? options.element : null;
-            options.readAs = (isString(options.readAs) && typeMap.hasOwnProperty(options.readAs.toLowerCase())) ? typeMap[options.readAs.toLowerCase()] : typeMap.blob;
-            options.mimeType = isString(options.mimeType) ? options.mimeType : ".*";
-            options.success = isFunction(options.success) ? options.success : noop;
-            options.failure = isFunction(options.failure) ? options.failure : noop;
-            if (options.element && options.element.nodeName === "INPUT" && options.element.type === "file") {
-                options.element.addEventListener("change", onFileSelect(options), false);
-            }
-        };
-    }()) : noop;
+                        if (file.type.match(options.mimeType)) {
+                            filereader = new FileReader();
+                            filereader.onloadstart = callback(options, filereader, file, "loadstart");
+                            filereader.onprogress = callback(options, filereader, file, "progress");
+                            filereader.onload = callback(options, filereader, file, "load");
+                            filereader.onloadend = callback(options, filereader, file, "loadend");
+                            filereader.onerror = callback(options, filereader, file, "error");
+                            filereader.onabort = callback(options, filereader, file, "abort");
+                            filereader[options.readAs](file);
+                        }
+                    });
+                };
+            };
+
+            return function (options) {
+                options = isObject(options)
+                    ? options
+                    : {};
+                options.element = isNode(options.element)
+                    ? options.element
+                    : null;
+                options.readAs = (isString(options.readAs) && typeMap.hasOwnProperty(options.readAs.toLowerCase()))
+                    ? typeMap[options.readAs.toLowerCase()]
+                    : typeMap.blob;
+                options.mimeType = isString(options.mimeType)
+                    ? options.mimeType
+                    : ".*";
+                options.success = isFunction(options.success)
+                    ? options.success
+                    : noop;
+                options.failure = isFunction(options.failure)
+                    ? options.failure
+                    : noop;
+                if (options.element && options.element.nodeName === "INPUT" && options.element.type === "file") {
+                    options.element.addEventListener("change", onFileSelect(options), false);
+                }
+            };
+        }())
+        : noop;
 
     function create(tag) {
         var element;
