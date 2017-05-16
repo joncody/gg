@@ -15,7 +15,7 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (function (global) {
-    'use strict';
+    "use strict";
 
     var xhrReq,
         readFiles = !!global.FileReader,
@@ -31,112 +31,112 @@
             };
         }()),
         taglist = [
-            'a',
-            'abbr',
-            'address',
-            'area',
-            'article',
-            'aside',
-            'audio',
-            'b',
-            'base',
-            'bdo',
-            'blockquote',
-            'body',
-            'br',
-            'button',
-            'canvas',
-            'caption',
-            'cite',
-            'code',
-            'col',
-            'colgroup',
-            'dd',
-            'del',
-            'dfn',
-            'div',
-            'dl',
-            'dt',
-            'em',
-            'embed',
-            'fieldset',
-            'figcaption',
-            'figure',
-            'footer',
-            'form',
-            'h1',
-            'h2',
-            'h3',
-            'h4',
-            'h5',
-            'h6',
-            'head',
-            'header',
-            'hr',
-            'i',
-            'iframe',
-            'img',
-            'input',
-            'ins',
-            'kbd',
-            'label',
-            'legend',
-            'li',
-            'link',
-            'map',
-            'mark',
-            'meta',
-            'nav',
-            'noscript',
-            'object',
-            'ol',
-            'optgroup',
-            'option',
-            'p',
-            'param',
-            'pre',
-            'progress',
-            'q',
-            'rp',
-            'rt',
-            'ruby',
-            's',
-            'samp',
-            'script',
-            'section',
-            'select',
-            'small',
-            'source',
-            'span',
-            'strong',
-            'style',
-            'sub',
-            'sup',
-            'table',
-            'tbody',
-            'td',
-            'textarea',
-            'tfoot',
-            'th',
-            'thead',
-            'time',
-            'title',
-            'tr',
-            'track',
-            'u',
-            'ul',
-            'var',
-            'video'
+            "a",
+            "abbr",
+            "address",
+            "area",
+            "article",
+            "aside",
+            "audio",
+            "b",
+            "base",
+            "bdo",
+            "blockquote",
+            "body",
+            "br",
+            "button",
+            "canvas",
+            "caption",
+            "cite",
+            "code",
+            "col",
+            "colgroup",
+            "dd",
+            "del",
+            "dfn",
+            "div",
+            "dl",
+            "dt",
+            "em",
+            "embed",
+            "fieldset",
+            "figcaption",
+            "figure",
+            "footer",
+            "form",
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "head",
+            "header",
+            "hr",
+            "i",
+            "iframe",
+            "img",
+            "input",
+            "ins",
+            "kbd",
+            "label",
+            "legend",
+            "li",
+            "link",
+            "map",
+            "mark",
+            "meta",
+            "nav",
+            "noscript",
+            "object",
+            "ol",
+            "optgroup",
+            "option",
+            "p",
+            "param",
+            "pre",
+            "progress",
+            "q",
+            "rp",
+            "rt",
+            "ruby",
+            "s",
+            "samp",
+            "script",
+            "section",
+            "select",
+            "small",
+            "source",
+            "span",
+            "strong",
+            "style",
+            "sub",
+            "sup",
+            "table",
+            "tbody",
+            "td",
+            "textarea",
+            "tfoot",
+            "th",
+            "thead",
+            "time",
+            "title",
+            "tr",
+            "track",
+            "u",
+            "ul",
+            "var",
+            "video"
         ];
 
     function typeOf(value) {
         var type = typeof value;
 
-        if (type === 'object') {
+        if (type === "object") {
             if (Array.isArray(value)) {
-                type = 'array';
+                type = "array";
             } else if (!value) {
-                type = 'null';
+                type = "null";
             }
         }
         return type;
@@ -151,56 +151,56 @@
     }
 
     function isBoolean(boolean) {
-        return typeOf(boolean) === 'boolean';
+        return typeOf(boolean) === "boolean";
     }
 
     function isNumber(number) {
-        return typeOf(number) === 'number' && !global.isNaN(number);
+        return typeOf(number) === "number" && !global.isNaN(number);
     }
 
     function isString(string) {
-        return typeOf(string) === 'string';
+        return typeOf(string) === "string";
     }
 
     function isArray(array) {
-        return typeOf(array) === 'array';
+        return typeOf(array) === "array";
     }
 
     function isObject(object) {
-        return typeOf(object) === 'object';
+        return typeOf(object) === "object";
     }
 
     function isFunction(func) {
-        return typeOf(func) === 'function';
+        return typeOf(func) === "function";
     }
 
     function isNull(nul) {
-        return typeOf(nul) === 'null';
+        return typeOf(nul) === "null";
     }
 
     function isUndefined(undef) {
-        return typeOf(undef) === 'undefined';
+        return typeOf(undef) === "undefined";
     }
 
     function isArrayLike(object) {
         return isObject(object) && !isUndefined(object.length) && Object.keys(object).every(function (key) {
-            return key === 'length' || isNumber(global.parseInt(key, 10));
+            return key === "length" || isNumber(global.parseInt(key, 10));
         });
     }
 
     function isTypedArray(array) {
         var types = [
-                'Int8Array',
-                'Uint8Array',
-                'Uint8ClampedArray',
-                'Int16Array',
-                'Uint16Array',
-                'Int32Array',
-                'Uint32Array',
-                'Float32Array',
-                'Float64Array'
+                "Int8Array",
+                "Uint8Array",
+                "Uint8ClampedArray",
+                "Int16Array",
+                "Uint16Array",
+                "Int32Array",
+                "Uint32Array",
+                "Float32Array",
+                "Float64Array"
             ],
-            type = Object.prototype.toString.call(array).replace(/\[object\s(\w+)\]/, '$1');
+            type = Object.prototype.toString.call(array).replace(/\[object\s(\w+)\]/, "$1");
 
         return types.indexOf(type) > -1;
     }
@@ -258,7 +258,7 @@
 
     function undoCamelCase(string) {
         return isString(string) && string.replace(/([A-Z])/g, function (a) {
-            return '-' + a.toLowerCase();
+            return "-" + a.toLowerCase();
         });
     }
 
@@ -272,7 +272,7 @@
     }
 
     function getStringFromCodes(codes) {
-        var string = '';
+        var string = "";
 
         toArray(codes).forEach(function (char) {
             string += String.fromCharCode(char);
@@ -281,9 +281,9 @@
     }
 
     function uuid() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (a) {
+        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (a) {
             var rand = Math.random() * 16 | 0,
-                value = a === 'x' ? rand : rand & 0x3 | 0x8;
+                value = a === "x" ? rand : rand & 0x3 | 0x8;
 
             return value.toString(16);
         });
@@ -364,11 +364,11 @@
             node = node.getRaw();
         }
         if (isNode(node)) {
-            nodeid = global.parseInt(node.getAttribute('data-gg-id'), 10);
+            nodeid = global.parseInt(node.getAttribute("data-gg-id"), 10);
         }
         clone = node.cloneNode(true);
         cloneid = ggId();
-        clone.setAttribute('data-gg-id', cloneid);
+        clone.setAttribute("data-gg-id", cloneid);
         if (isNumber(nodeid) && listeners.hasOwnProperty(nodeid)) {
             listeners[cloneid] = {};
             each(listeners[nodeid], function (list, type) {
@@ -468,7 +468,7 @@
                 values;
 
             if (name && isString(name)) {
-                dataname = name.length < 4 || name.slice(0, 4) !== 'data' ? undoCamelCase('data-' + name) : undoCamelCase(name);
+                dataname = name.length < 4 || name.slice(0, 4) !== "data" ? undoCamelCase("data-" + name) : undoCamelCase(name);
                 if (isUndefined(value)) {
                     values = [];
                     gobject.each(function (node) {
@@ -503,7 +503,7 @@
             var dataname;
 
             if (name && isString(name)) {
-                dataname = name.length < 4 || name.slice(0, 4) !== 'data' ? undoCamelCase('data-' + name) : undoCamelCase(name);
+                dataname = name.length < 4 || name.slice(0, 4) !== "data" ? undoCamelCase("data-" + name) : undoCamelCase(name);
                 gobject.each(function (node) {
                     node.removeAttribute(dataname);
                 });
@@ -586,7 +586,7 @@
                 }
                 gobject.each(function (node) {
                     if (isNumber(value)) {
-                        value = value + 'px';
+                        value = value + "px";
                     }
                     node.style[propname] = value;
                 });
@@ -648,7 +648,7 @@
 
         gobject.remText = function remText() {
             return gobject.each(function (node) {
-                node.textContent = '';
+                node.textContent = "";
             });
         };
 
@@ -674,7 +674,7 @@
 
         gobject.remHtml = function () {
             return gobject.each(function (node) {
-                node.innerHTML = '';
+                node.innerHTML = "";
             });
         };
 
@@ -702,10 +702,10 @@
             if (string && isString(string)) {
                 gobject.each(function (node) {
                     string.split(/\s/).forEach(function (cls) {
-                        var regex = new RegExp('(?:^|\\s)' + cls + '(?:$|\\s)', 'g');
+                        var regex = new RegExp("(?:^|\\s)" + cls + "(?:$|\\s)", "g");
 
                         if (!regex.test(node.className)) {
-                            node.className = node.className ? node.className + ' ' + cls : cls;
+                            node.className = node.className ? node.className + " " + cls : cls;
                         }
                     });
                 });
@@ -717,9 +717,9 @@
             if (string && isString(string)) {
                 gobject.each(function (node) {
                     string.split(/\s/).forEach(function (cls) {
-                        var regex = new RegExp('(?:^|\\s)' + cls + '(?:$|\\s)', 'g');
+                        var regex = new RegExp("(?:^|\\s)" + cls + "(?:$|\\s)", "g");
 
-                        node.className = node.className.replace(regex, ' ').trim();
+                        node.className = node.className.replace(regex, " ").trim();
                     });
                 });
             }
@@ -730,12 +730,12 @@
             if (string && isString(string)) {
                 gobject.each(function (node) {
                     string.split(/\s/).forEach(function (cls) {
-                        var regex = new RegExp('(?:^|\\s)' + cls + '(?:$|\\s)', 'g');
+                        var regex = new RegExp("(?:^|\\s)" + cls + "(?:$|\\s)", "g");
 
                         if (!regex.test(node.className)) {
-                            node.className = node.className ? node.className + ' ' + cls : cls;
+                            node.className = node.className ? node.className + " " + cls : cls;
                         } else {
-                            node.className = node.className.replace(regex, ' ').trim();
+                            node.className = node.className.replace(regex, " ").trim();
                         }
                     });
                 });
@@ -749,7 +749,7 @@
             if (string && isString(string)) {
                 gobject.each(function (node) {
                     values.push(string.split(/\s/).every(function (cls) {
-                        var regex = new RegExp('(?:^|\\s)' + cls + '(?:$|\\s)', 'g');
+                        var regex = new RegExp("(?:^|\\s)" + cls + "(?:$|\\s)", "g");
 
                         return regex.test(node.className);
                     }));
@@ -763,12 +763,12 @@
         };
 
         gobject.insert = (function () {
-            var positions = ['beforebegin', 'afterbegin', 'beforeend', 'afterend'];
+            var positions = ["beforebegin", "afterbegin", "beforeend", "afterend"];
 
             return function (pos, item) {
                 if (item && isString(item)) {
                     if (!inArray(pos, positions)) {
-                        pos = 'beforeend';
+                        pos = "beforeend";
                     }
                     gobject.each(function (node) {
                         node.insertAdjacentHTML(pos, item);
@@ -917,13 +917,13 @@
 
         gobject.hide = function () {
             return gobject.each(function (node) {
-                node.style.display = 'none';
+                node.style.display = "none";
             });
         };
 
         gobject.show = function () {
             return gobject.each(function (node) {
-                node.style.display = '';
+                node.style.display = "";
             });
         };
 
@@ -949,11 +949,11 @@
                     func.ggid = funcid;
                 }
                 gobject.each(function (node) {
-                    var nodeid = global.parseInt(node.getAttribute('data-gg-id'), 10);
+                    var nodeid = global.parseInt(node.getAttribute("data-gg-id"), 10);
 
                     if (!isNumber(nodeid)) {
                         nodeid = ggId();
-                        node.setAttribute('data-gg-id', nodeid);
+                        node.setAttribute("data-gg-id", nodeid);
                     }
                     if (!listeners.hasOwnProperty(nodeid)) {
                         listeners[nodeid] = {};
@@ -975,7 +975,7 @@
             if (type && isString(type)) {
                 bub = isBoolean(bub) ? bub : false;
                 gobject.each(function (node) {
-                    var nodeid = global.parseInt(node.getAttribute('data-gg-id'), 10);
+                    var nodeid = global.parseInt(node.getAttribute("data-gg-id"), 10);
 
                     if (isNumber(nodeid) && listeners.hasOwnProperty(nodeid) && listeners[nodeid].hasOwnProperty(type)) {
                         if (!isNumber(funcid)) {
@@ -1040,7 +1040,7 @@
                     handlers[keycode] = handler;
                 }
             });
-            gg(document.body).on('keydown', keyDown(options, handlers), false);
+            gg(document.body).on("keydown", keyDown(options, handlers), false);
         };
     }());
 
@@ -1071,7 +1071,7 @@
                     handlers[keycode] = handler;
                 }
             });
-            gg(document.body).on('mousedown', mouseDown(options, handlers), false);
+            gg(document.body).on("mousedown", mouseDown(options, handlers), false);
         };
     }());
 
@@ -1099,44 +1099,44 @@
 // };
     xhrReq = (function () {
         var responseTypes = [
-                '',
-                'arraybuffer',
-                'blob',
-                'document',
-                'json',
-                'text'
+                "",
+                "arraybuffer",
+                "blob",
+                "document",
+                "json",
+                "text"
             ],
             forbiddenHeaders = [
-                'accept-charset',
-                'accept-encoding',
-                'access-control-request-headers',
-                'access-control-request-method',
-                'connection',
-                'content-length',
-                'cookie',
-                'cookie2',
-                'date',
-                'dnt',
-                'expect',
-                'host',
-                'keep-alive',
-                'origin',
-                'referer',
-                'te',
-                'trailer',
-                'transfer-encoding',
-                'upgrade',
-                'user-agent',
-                'via'
+                "accept-charset",
+                "accept-encoding",
+                "access-control-request-headers",
+                "access-control-request-method",
+                "connection",
+                "content-length",
+                "cookie",
+                "cookie2",
+                "date",
+                "dnt",
+                "expect",
+                "host",
+                "keep-alive",
+                "origin",
+                "referer",
+                "te",
+                "trailer",
+                "transfer-encoding",
+                "upgrade",
+                "user-agent",
+                "via"
             ],
             callback = function (options, xhr, type) {
                 return function (e) {
                     if (isFunction(options[type])) {
                         options[type](e, xhr);
-                    } else if (isFunction(options['on' + type])) {
-                        options['on' + type](e, xhr);
+                    } else if (isFunction(options["on" + type])) {
+                        options["on" + type](e, xhr);
                     }
-                    if (type === 'readystatechange') {
+                    if (type === "readystatechange") {
                         if (xhr.readyState === 2) {
                             xhr.responseHeaders = xhr.getAllResponseHeaders();
                         } else if (xhr.readyState === 4 && (xhr.status >= 200 && xhr.status < 300)) {
@@ -1144,7 +1144,7 @@
                         } else if (xhr.readyState === 4 && xhr.status >= 300) {
                             options.failure(e, xhr);
                         }
-                    } else if (type === 'abort' || type === 'error' || type === 'timeout') {
+                    } else if (type === "abort" || type === "error" || type === "timeout") {
                         options.failure(e, xhr);
                     }
                 };
@@ -1154,21 +1154,21 @@
             var xhr;
 
             options = isObject(options) ? options : {};
-            options.data = options.data || '';
-            options.method = isString(options.method) ? options.method : 'GET';
+            options.data = options.data || "";
+            options.method = isString(options.method) ? options.method : "GET";
             options.url = isString(options.url) ? options.url : global.location.href;
             options.async = isBoolean(options.async) ? options.async : true;
             options.username = isString(options.username) ? options.username : null;
             options.password = isString(options.password) ? options.password : null;
             options.mimeType = isString(options.mimeType) ? options.mimeType : null;
-            options.responseType = isString(options.responseType) ? options.responseType : '';
+            options.responseType = isString(options.responseType) ? options.responseType : "";
             options.headers = isObject(options.headers) ? options.headers : {};
             options.timeout = isNumber(options.timeout) ? options.timeout : 0;
             options.success = isFunction(options.success) ? options.success : noop;
             options.failure = isFunction(options.failure) ? options.failure : noop;
             options.crossOrigin = !new RegExp(global.location.hostname).test(options.url);
-            if (!options.crossOrigin && !options.headers['X-Requested-With']) {
-                options.headers['X-Requested-With'] = 'XMLHttpRequest';
+            if (!options.crossOrigin && !options.headers["X-Requested-With"]) {
+                options.headers["X-Requested-With"] = "XMLHttpRequest";
             }
             xhr = new XMLHttpRequest();
             xhr.open(options.method, options.url, options.async, options.username, options.password);
@@ -1187,18 +1187,18 @@
                 xhr.responseType = options.responseType;
             }
             xhr.timeout = options.timeout;
-            xhr.onreadystatechange = callback(options, xhr, 'readystatechange');
-            xhr.onloadstart = callback(options, xhr, 'loadstart');
-            if (options.method.toUpperCase() === 'POST') {
-                xhr.upload.onprogress = callback(options, xhr, 'progress');
+            xhr.onreadystatechange = callback(options, xhr, "readystatechange");
+            xhr.onloadstart = callback(options, xhr, "loadstart");
+            if (options.method.toUpperCase() === "POST") {
+                xhr.upload.onprogress = callback(options, xhr, "progress");
             } else {
-                xhr.onprogress = callback(options, xhr, 'progress');
+                xhr.onprogress = callback(options, xhr, "progress");
             }
-            xhr.onload = callback(options, xhr, 'load');
-            xhr.onloadend = callback(options, xhr, 'loadend');
-            xhr.onerror = callback(options, xhr, 'error');
-            xhr.onabort = callback(options, xhr, 'abort');
-            xhr.ontimeout = callback(options, xhr, 'timeout');
+            xhr.onload = callback(options, xhr, "load");
+            xhr.onloadend = callback(options, xhr, "loadend");
+            xhr.onerror = callback(options, xhr, "error");
+            xhr.onabort = callback(options, xhr, "abort");
+            xhr.ontimeout = callback(options, xhr, "timeout");
             xhr.send(options.data);
         };
     }());
@@ -1220,22 +1220,22 @@
         var binary_support = !!global.FileReader.prototype.readAsBinaryString,
             readers = [],
             typeMap = {
-                arraybuffer: 'readAsArrayBuffer',
-                binary: binary_support ? 'readAsBinaryString' : 'readAsArrayBuffer',
-                blob: 'readAsArrayBuffer',
-                dataurl: 'readAsDataURL',
-                text: 'readAsText'
+                arraybuffer: "readAsArrayBuffer",
+                binary: binary_support ? "readAsBinaryString" : "readAsArrayBuffer",
+                blob: "readAsArrayBuffer",
+                dataurl: "readAsDataURL",
+                text: "readAsText"
             },
             callback = function (options, filereader, file, type) {
                 return function (e) {
                     if (isFunction(options[type])) {
                         options[type](e, filereader, file);
-                    } else if (isFunction(options['on' + type])) {
-                        options['on' + type](e, filereader, file);
+                    } else if (isFunction(options["on" + type])) {
+                        options["on" + type](e, filereader, file);
                     }
-                    if (type === 'error' || type === 'abort') {
+                    if (type === "error" || type === "abort") {
                         options.failure(e, filereader, file);
-                    } else if (type === 'loadend' && (e.target.readyState === 2 || filereader.readyState === 2)) {
+                    } else if (type === "loadend" && (e.target.readyState === 2 || filereader.readyState === 2)) {
                         options.success(e, filereader, file, e.target.result || filereader.result);
                     }
                 };
@@ -1247,12 +1247,12 @@
 
                         if (file.type.match(options.mimeType)) {
                             filereader = new FileReader();
-                            filereader.onloadstart = callback(options, filereader, file, 'loadstart');
-                            filereader.onprogress = callback(options, filereader, file, 'progress');
-                            filereader.onload = callback(options, filereader, file, 'load');
-                            filereader.onloadend = callback(options, filereader, file, 'loadend');
-                            filereader.onerror = callback(options, filereader, file, 'error');
-                            filereader.onabort = callback(options, filereader, file, 'abort');
+                            filereader.onloadstart = callback(options, filereader, file, "loadstart");
+                            filereader.onprogress = callback(options, filereader, file, "progress");
+                            filereader.onload = callback(options, filereader, file, "load");
+                            filereader.onloadend = callback(options, filereader, file, "loadend");
+                            filereader.onerror = callback(options, filereader, file, "error");
+                            filereader.onabort = callback(options, filereader, file, "abort");
                             filereader[options.readAs](file);
                         }
                     });
@@ -1263,11 +1263,11 @@
             options = isObject(options) ? options : {};
             options.element = isNode(options.element) ? options.element : null;
             options.readAs = isString(options.readAs) && typeMap.hasOwnProperty(options.readAs.toLowerCase()) ? typeMap[options.readAs.toLowerCase()] : typeMap.blob;
-            options.mimeType = isString(options.mimeType) ? options.mimeType : '.*';
+            options.mimeType = isString(options.mimeType) ? options.mimeType : ".*";
             options.success = isFunction(options.success) ? options.success : noop;
             options.failure = isFunction(options.failure) ? options.failure : noop;
-            if (options.element && options.element.nodeName === 'INPUT' && options.element.type === 'file') {
-                options.element.addEventListener('change', onFileSelect(options), false);
+            if (options.element && options.element.nodeName === "INPUT" && options.element.type === "file") {
+                options.element.addEventListener("change", onFileSelect(options), false);
             }
         };
     }()) : noop;

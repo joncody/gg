@@ -47,7 +47,7 @@ An ECMASCRIPT 5 compliant JavaScript utility library.
 ## Instance API
 Like the supplant method and jQuery.
 
-gobject = gg(_string_[, _object_])
+`var gobject = gg(_string_[, _object_]);`
 - gobject.get([_number_])
 - gobject.getRaw([_number_])
 - gobject.length()
