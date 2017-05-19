@@ -222,7 +222,7 @@
         var array = [];
 
         if (isBuffer(value)) {
-            array = new Uint8Array(value);
+            value = new Uint8Array(value);
         }
         if (isString(value) || isArray(value) || isArrayLike(value) || isTypedArray(value)) {
             array = arrSlice(value);
@@ -1194,7 +1194,8 @@
             "user-agent",
             "via"
         ];
-        var callback = function (options, xhr, type) {
+
+        function callback(options, xhr, type) {
             return function (e) {
                 if (isFunction(options[type])) {
                     options[type](e, xhr);
@@ -1213,7 +1214,7 @@
                     options.failure(e, xhr);
                 }
             };
-        };
+        }
 
         return function (options) {
             var xhr;
@@ -1317,7 +1318,8 @@
                 dataurl: "readAsDataURL",
                 text: "readAsText"
             };
-            var callback = function (options, filereader, file, type) {
+
+            function callback(options, filereader, file, type) {
                 return function (e) {
                     if (isFunction(options[type])) {
                         options[type](e, filereader, file);
@@ -1325,12 +1327,13 @@
                         options["on" + type](e, filereader, file);
                     }
                     if (type === "error" || type === "abort") {
-                        options.failure(e, filereader, file);
+                        options.failure(e, { filereader: filereader, file: file });
                     } else if (type === "loadend" && (e.target.readyState === 2 || filereader.readyState === 2)) {
-                        options.success(e, filereader, file, e.target.result || filereader.result);
+                        options.success(e, { filereader: filereader, file: file, result: e.target.result || filereader.result });
                     }
                 };
-            };
+            }
+
             var onFileSelect = function (options) {
                 return function (e) {
                     each(e.target.files || options.element.files, function (file) {
