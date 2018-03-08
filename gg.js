@@ -18,6 +18,8 @@
     "use strict";
 
     var listeners = {};
+    var keyboardListeners = [];
+    var mouseListeners = [];
     var ggId = (function () {
         var id = 0;
         var maxint = Math.pow(2, 53) - 1;
@@ -342,6 +344,18 @@
             }
         }
         return thisarg;
+    }
+
+    function copy(object) {
+        var c = {};
+
+        if (!isObject(object)) {
+            return;
+        }
+        Object.keys(object).forEach(function (key) {
+            c[key] = object[key];
+        });
+        return c;
     }
 
     function extend(object, add, overwrite) {
@@ -932,7 +946,6 @@
             return gg(nodes);
         };
 
-
         gobject.select = function (selector, object) {
             var nodes = [];
 
@@ -1092,6 +1105,7 @@
         }
         return function (options) {
             var handlers = {};
+            var listener;
 
             options = isObject(options)
                 ? options
@@ -1103,9 +1117,17 @@
                     handlers[keycode] = handler;
                 }
             });
-            gg(document.body).on("keydown", keyDown(options, handlers), false);
+            listener = keyDown(options, handlers);
+            keyboardListeners.push(listener);
+            gg(document.body).on("keydown", listener, false);
         };
     }());
+
+    function removeKeyboardHandlers() {
+        keyboardListeners.forEach(function (listener) {
+            gg(document.body).off("keydown", listener);
+        });
+    }
 
 // options = {
 //     keyCode: function
@@ -1125,6 +1147,7 @@
         }
         return function (options) {
             var handlers = {};
+            var listener;
 
             options = isObject(options)
                 ? options
@@ -1136,9 +1159,17 @@
                     handlers[keycode] = handler;
                 }
             });
-            gg(document.body).on("mousedown", mouseDown(options, handlers), false);
+            listener = mouseDown(options, handlers);
+            mouseListeners.push(listener);
+            gg(document.body).on("mousedown", listener, false);
         };
     }());
+
+    function removeMouseHandlers() {
+        mouseListeners.forEach(function (listener) {
+            gg(document.body).off("mousedown", listener);
+        });
+    }
 
 // options = {
 //     data: data,
@@ -1416,12 +1447,15 @@
     gg.supplant = supplant;
     gg.inherits = inherits;
     gg.each = each;
+    gg.copy = copy;
     gg.extend = extend;
     gg.getById = getById;
     gg.select = select;
     gg.selectAll = selectAll;
     gg.keyboardHandler = keyboardHandler;
+    gg.removeKeyboardHandlers = removeKeyboardHandlers;
     gg.mouseHandler = mouseHandler;
+    gg.removeMouseHandlers = removeMouseHandlers;
     gg.xhrReq = xhrReq;
     gg.readFiles = readFiles;
     gg.create = create;
