@@ -372,6 +372,43 @@
         return object;
     }
 
+    function equal(one, two) {
+        var onetype = typeOf(one);
+        var twotype = typeOf(two);
+        var onekeys;
+        var twokeys;
+        var result = true;
+
+        if (onetype !== twotype) {
+            result = false;
+        } else if (onetype === "array") {
+            if (one.length !== two.length) {
+                result = false;
+            } else {
+                one.forEach(function (val) {
+                    if (two.indexOf(val) === -1) {
+                        result = false;
+                    }
+                });
+            }
+        } else if (onetype === "object") {
+            onekeys = Object.keys(one);
+            twokeys = Object.keys(two);
+            if (onekeys.length !== twokeys.length) {
+                result = false;
+            } else {
+                onekeys.forEach(function (key) {
+                    if (one[key] !== two[key]) {
+                        result = false;
+                    }
+                });
+            }
+        } else if (one !== two) {
+            result = false;
+        }
+        return result;
+    }
+
     function getById(id, object) {
         id = supplant(id, object);
         return document.getElementById(id);
@@ -1449,6 +1486,7 @@
     gg.each = each;
     gg.copy = copy;
     gg.extend = extend;
+    gg.equal = equal;
     gg.getById = getById;
     gg.select = select;
     gg.selectAll = selectAll;
