@@ -409,6 +409,24 @@
         return result;
     }
 
+    function toInt(value, base) {
+        var int = global.parseInt(isString(value) ? value.replace(",", "") : value, isNumber(base) ? base : 10);
+
+        return global.isNaN(int) ? 0 : int;
+    }
+
+    function toFloat(value, digits) {
+        var float = global.parseFloat(isString(value) ? value.replace(",", "") : value);
+
+        if (global.isNaN(float)) {
+            float = 0;
+        }
+        if (isNumber(digits)) {
+            float = global.parseFloat(global.parseFloat(float).toFixed(digits));
+        }
+        return float;
+    }
+
     function getById(id, object) {
         id = supplant(id, object);
         return document.getElementById(id);
@@ -1487,6 +1505,8 @@
     gg.copy = copy;
     gg.extend = extend;
     gg.equal = equal;
+    gg.toInt = toInt;
+    gg.toFloat = toFloat;
     gg.getById = getById;
     gg.select = select;
     gg.selectAll = selectAll;
