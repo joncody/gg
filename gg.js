@@ -158,7 +158,7 @@
     }
 
     function isNumber(number) {
-        return typeOf(number) === "number" && !global.isNaN(number);
+        return typeOf(number) === "number" && !Number.isNaN(number);
     }
 
     function isString(string) {
@@ -218,6 +218,10 @@
 
     function isEmpty(object) {
         return isObject(object) && Object.keys(object).length === 0;
+    }
+
+    function isNaN(nan, noparse, base) {
+        return noparse ? Number.isNaN(nan) : Number.isNaN(global.parseInt(nan, isNumber(base) ? base : 10));
     }
 
     function toArray(value) {
@@ -412,13 +416,13 @@
     function toInt(value, base) {
         var int = global.parseInt(isString(value) ? value.replace(",", "") : value, isNumber(base) ? base : 10);
 
-        return global.isNaN(int) ? 0 : int;
+        return Number.isNaN(int) ? 0 : int;
     }
 
     function toFloat(value, digits) {
         var float = global.parseFloat(isString(value) ? value.replace(",", "") : value);
 
-        if (global.isNaN(float)) {
+        if (Number.isNaN(float)) {
             float = 0;
         }
         if (isNumber(digits)) {
@@ -1490,6 +1494,7 @@
     gg.isBuffer = isBuffer;
     gg.isNode = isNode;
     gg.isEmpty = isEmpty;
+    gg.isNaN = isNaN;
     gg.toArray = toArray;
     gg.toUint8 = toUint8;
     gg.toBuffer = toBuffer;
