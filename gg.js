@@ -426,7 +426,7 @@
             float = 0;
         }
         if (isNumber(digits)) {
-            float = global.parseFloat(global.parseFloat(float).toFixed(digits));
+            float = global.parseFloat(float).toFixed(digits);
         }
         return float;
     }
