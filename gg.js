@@ -350,15 +350,22 @@
         return thisarg;
     }
 
-    function copy(object) {
-        var c = {};
+    function copy(value) {
+        var c;
 
-        if (!isObject(object)) {
-            return;
+        if (isObject(value)) {
+            c = {};
+            Object.keys(value).forEach(function (key) {
+                c[key] = copy(value[key]);
+            });
+        } else if (isArray(value)) {
+            c = [];
+            value.forEach(function (v) {
+                c.push(copy(v));
+            });
+        } else {
+            c = value;
         }
-        Object.keys(object).forEach(function (key) {
-            c[key] = object[key];
-        });
         return c;
     }
 
@@ -369,7 +376,7 @@
         if (isObject(object) && isObject(add)) {
             each(add, function (value, key) {
                 if (overwrite || !object.hasOwnProperty(key)) {
-                    object[key] = value;
+                    object[key] = copy(value);
                 }
             });
         }
