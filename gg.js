@@ -157,6 +157,10 @@
         return typeOf(boolean) === "boolean";
     }
 
+    Number.isNaN = Number.isNaN || function (value) {
+        return value !== value;
+    };
+
     function isNumber(number) {
         return typeOf(number) === "number" && !Number.isNaN(number);
     }
