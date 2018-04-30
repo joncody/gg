@@ -23,13 +23,13 @@ An ECMASCRIPT 5 compliant JavaScript utility library.
 - gg.isEmpty(_object_)
 - gg.isNaN(_mixed_[, _boolean_][, _number_])
 - gg.toArray(_mixed_)
-- gg.getCodesFromString(_string_)
-- gg.getStringFromCodes(_array_)
 - gg.toUint8(_mixed_)
 - gg.toBuffer(_mixed_)
 - gg.inArray(_mixed_, _array_)
 - gg.toCamelCase(_string_)
 - gg.undoCamelCase(_string_)
+- gg.getCodesFromString(_string_)
+- gg.getStringFromCodes(_array_)
 - gg.uuid()
 - gg.supplant(_string_, _object_)
 - gg.inherits(_function_, _function_)
@@ -44,12 +44,10 @@ An ECMASCRIPT 5 compliant JavaScript utility library.
 - gg.selectAll(_string_)
 - gg.keyboardHandler(_object_)
 - gg.mouseHandler(_object_)
-- gg.xhrReq(_object_)
-- gg.readFiles(_object_)
 - gg.create(_string_)
 
 ## Instance API
-Like the supplant method and jQuery.
+Like the supplant method and with a selector.
 
 `var gobject = gg(_string_[, _object_]);`
 - gobject.get([_number_])
