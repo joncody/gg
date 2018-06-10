@@ -884,14 +884,14 @@
         }());
 
         gobject.prepend = function (item) {
-            var copy = store.length > 1;
+            var willcopy = store.length > 1;
 
             each(store, function (node) {
                 each(item, function (child) {
                     if (!isNode(child)) {
                         return;
                     }
-                    node.insertBefore(copy
+                    node.insertBefore(willcopy
                         ? cloneNodeDeeper(child)
                         : child, node.firstChild);
                 });
@@ -900,14 +900,14 @@
         };
 
         gobject.prependTo = function (item) {
-            var copy = toArray(item).length > 1;
+            var willcopy = toArray(item).length > 1;
 
             each(store, function (node) {
                 each(item, function (parent) {
                     if (!isNode(parent)) {
                         return;
                     }
-                    parent.insertBefore(copy
+                    parent.insertBefore(willcopy
                         ? cloneNodeDeeper(node)
                         : node, parent.firstChild);
                 });
@@ -916,14 +916,14 @@
         };
 
         gobject.append = function (item) {
-            var copy = store.length > 1;
+            var willcopy = store.length > 1;
 
             each(store, function (node) {
                 each(item, function (child) {
                     if (!isNode(child)) {
                         return;
                     }
-                    node.appendChild(copy
+                    node.appendChild(willcopy
                         ? cloneNodeDeeper(child)
                         : child);
                 });
@@ -932,14 +932,14 @@
         };
 
         gobject.appendTo = function (item) {
-            var copy = toArray(item).length > 1;
+            var willcopy = toArray(item).length > 1;
 
             each(store, function (node) {
                 each(item, function (parent) {
                     if (!isNode(parent)) {
                         return;
                     }
-                    parent.appendChild(copy
+                    parent.appendChild(willcopy
                         ? cloneNodeDeeper(node)
                         : node);
                 });
@@ -948,14 +948,14 @@
         };
 
         gobject.after = function (item) {
-            var copy = store.length > 1;
+            var willcopy = store.length > 1;
 
             each(store, function (node) {
                 each(item, function (sibling) {
                     if (!isNode(sibling)) {
                         return;
                     }
-                    node.parentNode.insertBefore(copy
+                    node.parentNode.insertBefore(willcopy
                         ? cloneNodeDeeper(sibling)
                         : sibling, node.nextSibling);
                 });
@@ -964,14 +964,14 @@
         };
 
         gobject.before = function (item) {
-            var copy = store.length > 1;
+            var willcopy = store.length > 1;
 
             each(store, function (node) {
                 each(item, function (sibling) {
                     if (!isNode(sibling)) {
                         return;
                     }
-                    node.parentNode.insertBefore(copy
+                    node.parentNode.insertBefore(willcopy
                         ? cloneNodeDeeper(sibling)
                         : sibling, node);
                 });
