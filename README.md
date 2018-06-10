@@ -51,9 +51,10 @@ An ECMASCRIPT 5 compliant JavaScript utility library.
 var gobject = gg(_string_[, _object_]);
 ```
 - **gobject.get**
-- **gobject.getRaw**
+- **gobject.raw**
 - **gobject.length**
 - **gobject.each**
+- **gobject.eachRaw**
 - **gobject.add**
 - **gobject.subtract**
 - **gobject.data**

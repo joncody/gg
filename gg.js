@@ -440,7 +440,7 @@
                 : float;
     }
 
-    function getById(id, object) {
+    function getbyid(id, object) {
         return document.getElementById(supplant(id, object));
     }
 
@@ -1264,7 +1264,7 @@
     gg.equal = equal;
     gg.toInt = toInt;
     gg.toFloat = toFloat;
-    gg.getById = getById;
+    gg.getbyid = getbyid;
     gg.select = select;
     gg.selectAll = selectAll;
     gg.keyboardHandler = keyboardHandler;
