@@ -209,7 +209,7 @@
     }
 
     function isBuffer(buffer) {
-        return !!global.ArrayBuffer && buffer instanceof ArrayBuffer;
+        return !isUndefined(global.ArrayBuffer) && buffer instanceof ArrayBuffer;
     }
 
     function isNode(node) {
@@ -1036,8 +1036,12 @@
         gobject.clone = function (deep, deeper) {
             var nodes = [];
 
-            deep = !!deep;
-            deeper = !!deeper;
+            deep = isBoolean(deep)
+                ? deep
+                : false;
+            deeper = isBoolean(deeper)
+                ? deeper
+                : false;
             each(store, function (node) {
                 nodes.push(deeper
                     ? cloneNodeDeeper(node)
@@ -1073,7 +1077,9 @@
             if (!isString(type) || !isFunction(func)) {
                 return gobject;
             }
-            bub = !!bub;
+            bub = isBoolean(bub)
+                ? bub
+                : false;
             funcid = isNumber(func.ggid)
                 ? func.ggid
                 : ggid();
