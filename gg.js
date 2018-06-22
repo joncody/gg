@@ -794,6 +794,7 @@
                     node.className = string.trim();
                 });
             }
+            return gobject;
         };
 
         gobject.addClass = function (string) {
