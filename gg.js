@@ -690,9 +690,6 @@
                         ? values[0]
                         : values;
             } else if (propname) {
-                value = isNumber(value)
-                    ? value + "px"
-                    : value;
                 each(store, function (node) {
                     node.style[propname] = value;
                 });
