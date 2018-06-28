@@ -1013,12 +1013,12 @@
                 each(store, function (node) {
                     node.style.transition = "all 200ms ease-in-out 0ms";
                     node.style.opacity = 1;
-                    global.setTimeout((function (n) {
+                    setImmediate((function (n) {
                         return function () {
                             n.style.opacity = 0;
                             global.setTimeout(n.parentNode.removeChild.bind(n.parentNode, n), 200);
                         };
-                    }(node)), 0);
+                    }(node)));
                 });
             } else {
                 each(store, function (node) {
@@ -1028,12 +1028,12 @@
                         }
                         child.style.transition = "all 200ms ease-in-out 0ms";
                         child.style.opacity = 1;
-                        global.setTimeout((function (n, c) {
+                        setImmediate((function (n, c) {
                             return function () {
                                 c.style.opacity = 0;
                                 global.setTimeout(n.removeChild.bind(n, c), 200);
                             };
-                        }(node, child)), 0);
+                        }(node, child)));
                     });
                 });
             }
