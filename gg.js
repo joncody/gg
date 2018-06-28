@@ -456,6 +456,19 @@
             : document.querySelectorAll(supplant(selector, object));
     }
 
+    function getStyle(node, pseudo) {
+        return global.getComputedStyle(node, isUndefined(pseudo)
+            ? false
+            : pseudo);
+    }
+
+    function setImmediate(fn) {
+        if (!isFunction(fn)) {
+            return;
+        }
+        return global.setTimeout(fn, 0);
+    }
+
     function gg(mselector, object) {
         var gobject = {
             gg: true
@@ -995,6 +1008,38 @@
             return gobject;
         };
 
+        gobject.fade = function (item) {
+            if (isUndefined(item)) {
+                each(store, function (node) {
+                    node.style.transition = "all 200ms ease-in-out 0ms";
+                    node.style.opacity = 1;
+                    global.setTimeout((function (n) {
+                        return function () {
+                            n.style.opacity = 0;
+                            global.setTimeout(n.parentNode.removeChild.bind(n.parentNode, n), 200);
+                        };
+                    }(node)), 0);
+                });
+            } else {
+                each(store, function (node) {
+                    each(item, function (child) {
+                        if (!isNode(child) || !node.contains(child)) {
+                            return;
+                        }
+                        child.style.transition = "all 200ms ease-in-out 0ms";
+                        child.style.opacity = 1;
+                        global.setTimeout((function (n, c) {
+                            return function () {
+                                c.style.opacity = 0;
+                                global.setTimeout(n.removeChild.bind(n, c), 200);
+                            };
+                        }(node, child)), 0);
+                    });
+                });
+            }
+            return gobject;
+        };
+
         gobject.parents = function () {
             var nodes = [];
 
@@ -1046,20 +1091,6 @@
                     : node.cloneNode(deep));
             });
             return gg(nodes);
-        };
-
-        gobject.hide = function () {
-            each(store, function (node) {
-                node.style.display = "none";
-            });
-            return gobject;
-        };
-
-        gobject.unhide = function () {
-            each(store, function (node) {
-                node.style.display = "";
-            });
-            return gobject;
         };
 
         gobject.create = function (tag) {
@@ -1271,6 +1302,8 @@
     gg.getbyid = getbyid;
     gg.select = select;
     gg.selectAll = selectAll;
+    gg.getStyle = getStyle;
+    gg.setImmediate = setImmediate;
     gg.keyboardHandler = keyboardHandler;
     gg.removeKeyboardHandlers = removeKeyboardHandlers;
     gg.mouseHandler = mouseHandler;

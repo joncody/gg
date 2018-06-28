@@ -42,6 +42,8 @@ An ECMASCRIPT 5 compliant JavaScript utility library.
 - **gg.getbyid**
 - **gg.select**
 - **gg.selectAll**
+- **gg.getStyle**
+- **gg.setImmediate**
 - **gg.keyboardHandler**
 - **gg.mouseHandler**
 - **gg.create**
@@ -84,14 +86,13 @@ var gobject = gg(_string_[, _object_]);
 - **gobject.after**
 - **gobject.before**
 - **gobject.remove**
+- **gobject.fade**
 - **gobject.parents**
 - **gobject.children**
 - **gobject.select**
 - **gobject.selectAll**
 - **gobject.clone**
 - **gobject.create**
-- **gobject.hide**
-- **gobject.show**
 - **gobject.on**
 - **gobject.off**
 - **gobject.once**
