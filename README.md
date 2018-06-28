@@ -25,7 +25,7 @@ An ECMASCRIPT 5 compliant JavaScript utility library.
 - **gg.toArray**
 - **gg.toUint8**
 - **gg.toBuffer**
-- **gg.inarray**
+- **gg.inArray**
 - **gg.toCamelCase**
 - **gg.undoCamelCase**
 - **gg.getCodesFromString**
