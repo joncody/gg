@@ -1101,16 +1101,6 @@
             return gg(nodes);
         };
 
-
-        gobject.parents = function () {
-            var nodes = [];
-
-            each(store, function (node) {
-                nodes.push(node.parentNode);
-            });
-            return gg(nodes);
-        };
-
         gobject.children = function () {
             var nodes = [];
 
