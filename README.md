@@ -87,6 +87,7 @@ var gobject = gg(_string_[, _object_]);
 - **gobject.before**
 - **gobject.remove**
 - **gobject.fade**
+- **gobject.fadeIn**
 - **gobject.roll**
 - **gobject.parents**
 - **gobject.children**

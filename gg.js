@@ -129,6 +129,8 @@
         "var",
         "video"
     ];
+    var keyboardHandler;
+    var mouseHandler;
 
     function typeOf(value) {
         var type = typeof value;
@@ -1008,15 +1010,20 @@
             return gobject;
         };
 
-        gobject.fade = function (item) {
-            if (isUndefined(item)) {
+        gobject.fade = function (item, fn) {
+            if (isUndefined(item) || isNull(item)) {
                 each(store, function (node) {
                     node.style.transition = "all 200ms ease-in-out 0ms";
                     node.style.opacity = 1;
                     setImmediate((function (n) {
                         return function () {
                             n.style.opacity = 0;
-                            global.setTimeout(n.parentNode.removeChild.bind(n.parentNode, n), 200);
+                            global.setTimeout(function () {
+                                n.parentNode.removeChild(n);
+                                if (isFunction(fn)) {
+                                    fn(gobject);
+                                }
+                            }, 200);
                         };
                     }(node)));
                 });
@@ -1031,7 +1038,12 @@
                         setImmediate((function (n, c) {
                             return function () {
                                 c.style.opacity = 0;
-                                global.setTimeout(n.removeChild.bind(n, c), 200);
+                                global.setTimeout(function () {
+                                    n.removeChild(c);
+                                    if (isFunction(fn)) {
+                                        fn(gobject);
+                                    }
+                                }, 200);
                             };
                         }(node, child)));
                     });
@@ -1040,8 +1052,37 @@
             return gobject;
         };
 
-        gobject.roll = function (item) {
-            if (isUndefined(item)) {
+        gobject.fadeIn = function (item, fn) {
+            var willcopy = store.length > 1;
+
+            each(store, function (node) {
+                each(item, function (child) {
+                    var clone;
+
+                    if (!isNode(child)) {
+                        return;
+                    }
+                    clone = willcopy
+                        ? cloneNodeDeeper(child)
+                        : child;
+                    clone.style.opacity = 0;
+                    clone.style.transition = "all 200ms ease-in-out 0ms";
+                    node.appendChild(clone);
+                    setImmediate((function (c, t, o) {
+                        return function () {
+                            c.style.opacity = 1;
+                            if (isFunction(fn)) {
+                                fn(gobject);
+                            }
+                        };
+                    }(clone)));
+                });
+            });
+            return gobject;
+        };
+
+        gobject.roll = function (item, fn) {
+            if (isUndefined(item) || isNull(item)) {
                 each(store, function (node) {
                     var style = getStyle(node, false);
 
@@ -1058,7 +1099,12 @@
                             n.style.borderWidth = "0";
                             n.style.marginTop = "0";
                             n.style.marginBottom = "0";
-                            global.setTimeout(n.parentNode.removeChild.bind(n.parentNode, n), 200);
+                            global.setTimeout(function () {
+                                n.parentNode.removeChild(n);
+                                if (isFunction(fn)) {
+                                    fn(gobject);
+                                }
+                            }, 200);
                         };
                     }(node)));
                 });
@@ -1083,7 +1129,12 @@
                                 c.style.borderWidth = "0";
                                 c.style.marginTop = "0";
                                 c.style.marginBottom = "0";
-                                global.setTimeout(n.removeChild.bind(n, c), 200);
+                                global.setTimeout(function () {
+                                    n.removeChild(c);
+                                    if (isFunction(fn)) {
+                                        fn(gobject);
+                                    }
+                                }, 200);
                             };
                         }(node, child)));
                     });
@@ -1236,7 +1287,7 @@
         return Object.freeze(gobject);
     }
 
-    var keyboardHandler = (function () {
+    keyboardHandler = (function () {
         function keyDown(options, handlers) {
             return function (e) {
                 var keycode = e.keyCode;
@@ -1273,7 +1324,7 @@
         });
     }
 
-    var mouseHandler = (function () {
+    mouseHandler = (function () {
         function mouseDown(options, handlers) {
             return function (e) {
                 var keycode = e.button;
