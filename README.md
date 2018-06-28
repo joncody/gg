@@ -87,6 +87,7 @@ var gobject = gg(_string_[, _object_]);
 - **gobject.before**
 - **gobject.remove**
 - **gobject.fade**
+- **gobject.slideUp**
 - **gobject.parents**
 - **gobject.children**
 - **gobject.select**

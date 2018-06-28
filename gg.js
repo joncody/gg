@@ -1040,6 +1040,60 @@
             return gobject;
         };
 
+        gobject.slideUp = function (item) {
+            if (isUndefined(item)) {
+                each(store, function (node) {
+                    var style = getStyle(node, false);
+
+                    node.style.transition = "all 200ms ease-in-out 0ms";
+                    node.style.height = style.height;
+                    node.style.padding = style.padding;
+                    node.style.borderWidth = style.borderWidth;
+                    setImmediate((function (n) {
+                        return function () {
+                            n.style.height = "0px";
+                            n.style.padding = "0px";
+                            n.style.borderWidth = "0px";
+                            global.setTimeout(n.parentNode.removeChild.bind(n.parentNode, n), 200);
+                        };
+                    }(node)));
+                });
+            } else {
+                each(store, function (node) {
+                    each(item, function (child) {
+                        var style = getStyle(child, false);
+
+                        if (!isNode(child) || !node.contains(child)) {
+                            return;
+                        }
+                        child.style.transition = "all 200ms ease-in-out 0ms";
+                        child.style.height = style.height;
+                        child.style.padding = style.padding;
+                        child.style.borderWidth = style.borderWidth;
+                        setImmediate((function (n, c) {
+                            return function () {
+                                c.style.height = "0px";
+                                c.style.padding = "0px";
+                                c.style.borderWidth = "0px";
+                                global.setTimeout(n.removeChild.bind(n, c), 200);
+                            };
+                        }(node, child)));
+                    });
+                });
+            }
+            return gobject;
+        };
+
+        gobject.parents = function () {
+            var nodes = [];
+
+            each(store, function (node) {
+                nodes.push(node.parentNode);
+            });
+            return gg(nodes);
+        };
+
+
         gobject.parents = function () {
             var nodes = [];
 
