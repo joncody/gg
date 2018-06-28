@@ -1040,7 +1040,7 @@
             return gobject;
         };
 
-        gobject.slideUp = function (item) {
+        gobject.roll = function (item) {
             if (isUndefined(item)) {
                 each(store, function (node) {
                     var style = getStyle(node, false);
@@ -1049,11 +1049,15 @@
                     node.style.height = style.height;
                     node.style.padding = style.padding;
                     node.style.borderWidth = style.borderWidth;
+                    node.style.marginTop = style.marginTop;
+                    node.style.marginBottom = style.marginBottom;
                     setImmediate((function (n) {
                         return function () {
-                            n.style.height = "0px";
-                            n.style.padding = "0px";
-                            n.style.borderWidth = "0px";
+                            n.style.height = "0";
+                            n.style.padding = "0";
+                            n.style.borderWidth = "0";
+                            n.style.marginTop = "0";
+                            n.style.marginBottom = "0";
                             global.setTimeout(n.parentNode.removeChild.bind(n.parentNode, n), 200);
                         };
                     }(node)));
@@ -1070,11 +1074,15 @@
                         child.style.height = style.height;
                         child.style.padding = style.padding;
                         child.style.borderWidth = style.borderWidth;
+                        child.style.marginTop = style.marginTop;
+                        child.style.marginBottom = style.marginBottom;
                         setImmediate((function (n, c) {
                             return function () {
-                                c.style.height = "0px";
-                                c.style.padding = "0px";
-                                c.style.borderWidth = "0px";
+                                c.style.height = "0";
+                                c.style.padding = "0";
+                                c.style.borderWidth = "0";
+                                c.style.marginTop = "0";
+                                c.style.marginBottom = "0";
                                 global.setTimeout(n.removeChild.bind(n, c), 200);
                             };
                         }(node, child)));
