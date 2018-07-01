@@ -995,7 +995,9 @@
         gobject.remove = function (item) {
             if (isUndefined(item)) {
                 each(store, function (node) {
-                    node.parentNode.removeChild(node);
+                    if (node.parentNode) {
+                        node.parentNode.removeChild(node);
+                    }
                 });
             } else {
                 each(store, function (node) {
@@ -1003,7 +1005,9 @@
                         if (!isNode(child) || !node.contains(child)) {
                             return;
                         }
-                        node.removeChild(child);
+                        if (child.parentNode) {
+                            node.removeChild(child);
+                        }
                     });
                 });
             }
@@ -1019,7 +1023,9 @@
                         return function () {
                             n.style.opacity = 0;
                             global.setTimeout(function () {
-                                n.parentNode.removeChild(n);
+                                if (n.parentNode) {
+                                    n.parentNode.removeChild(n);
+                                }
                                 if (isFunction(fn)) {
                                     fn(gobject);
                                 }
@@ -1039,7 +1045,9 @@
                             return function () {
                                 c.style.opacity = 0;
                                 global.setTimeout(function () {
-                                    n.removeChild(c);
+                                    if (c.parentNode) {
+                                        n.removeChild(c);
+                                    }
                                     if (isFunction(fn)) {
                                         fn(gobject);
                                     }
@@ -1100,7 +1108,9 @@
                             n.style.marginTop = "0";
                             n.style.marginBottom = "0";
                             global.setTimeout(function () {
-                                n.parentNode.removeChild(n);
+                                if (n.parentNode) {
+                                    n.parentNode.removeChild(n);
+                                }
                                 if (isFunction(fn)) {
                                     fn(gobject);
                                 }
@@ -1130,7 +1140,9 @@
                                 c.style.marginTop = "0";
                                 c.style.marginBottom = "0";
                                 global.setTimeout(function () {
-                                    n.removeChild(c);
+                                    if (c.parentNode) {
+                                        n.removeChild(c);
+                                    }
                                     if (isFunction(fn)) {
                                         fn(gobject);
                                     }
