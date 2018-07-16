@@ -464,7 +464,7 @@
 
     function getStyle(node, pseudo) {
         return global.getComputedStyle(node, isUndefined(pseudo)
-            ? false
+            ? null
             : pseudo);
     }
 
