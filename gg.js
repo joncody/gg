@@ -330,7 +330,7 @@
                 : value.raw());
         } else if (isString(value)) {
             uint8 = new Uint8Array(toCodesFromString(value));
-        } else if (isArray(value) || isArrayLike(value) || isTypedArray(value) || isBuffer(value)) {
+        } else if (isNumber(value) || isArray(value) || isArrayLike(value) || isTypedArray(value) || isBuffer(value)) {
             uint8 = new Uint8Array(value);
         } else {
             uint8 = new Uint8Array([value]);
