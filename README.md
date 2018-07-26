@@ -141,7 +141,7 @@ Name | Type | Description
 string | String | The value to be converted.
 <br/>
 `toCodesFromString(string)` _-> {array}_
-> Converts a string to an array of Unicodes. Its argument is first passed through `toArray`.
+> Converts a string to an array of Unicodes. Its argument is first passed to `toArray`.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -178,22 +178,49 @@ Name | Type | Description
 value | Any | The value to be converted.
 <br/>
 `toBuffer(value)` _-> {arraybuffer}_
-> Converts its argument to an arraybuffer. If its argument is a number, the returned arraybuffer has a length equal to it.
+> Converts its argument to an arraybuffer by passing it to `toUint8`. If its argument is a number, the returned arraybuffer has a length equal to it.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
 value | Any | The value to be converted.
 <br/>
 `toStringFromCodes(array)` _-> {string}_
-> Converts an array of Unicodes to a string. Its argument is first passed through `toArray`.
+> Converts an array of Unicodes to a string. Its argument is first passed to `toArray`.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
 array | Array | The value to be converted.
 <br/>
-- **gg.arrSlice**
-- **gg.betterview**
-- **gg.copy**
+`arrSlice(value)` _-> {array}_
+> Shorthand for Array.prototype.slice.call(value).
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | Any | The `this` value to call Array.prototype.slice() with.
+<br/>
+`betterview(buffer, offset, length)` _-> {better}_
+> An upgraded DataView.
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+buffer | Any | The value passed to `toBuffer` before storing; usually an array, arraybuffer, or string.
+offset | Number (optional) | The offset, in bytes, to the first byte in the specified buffer for the new view to reference. If not specified, the view of the buffer will start with the first byte.
+length | Number (optional) | The number of elements in the byte array. If unspecified, length of the view will match the buffer's length.
+<br/>
+`copy(value)` _-> {any}_
+> Copies its argument by value.
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | Any | The value to copy.
+<br/>
+`each(items, func, thisarg)` _-> {any}_
+> Loops through `items`, converting it to an array if necessary, passing each item and its index/key to `func`.  `func`'s this argument is set to `thisarg` or `items` if none was passed.  Essentially a `forEach` method with the capability to handle objects and their keys, as well as nodes.
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | Any | The value to copy.
+<br/>
 - **gg.each**
 - **gg.ease**
 - **gg.emitter**
