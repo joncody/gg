@@ -18,7 +18,7 @@ A JavaScript and DOM utility library.
 - **gg.isBuffer**
 - **gg.isEmpty**
 - **gg.isGG**
-- **gg.isNaN**
+- **gg.isNan**
 - **gg.isNode**
 - **gg.isTypedArray**
 - **gg.toArray**
@@ -30,12 +30,6 @@ A JavaScript and DOM utility library.
 - **gg.toUint8**
 - **gg.toBuffer**
 - **gg.toStringFromCodes**
-- **gg.getById**
-- **gg.getPosition**
-- **gg.getStyle**
-- **gg.setImmediate**
-- **gg.select**
-- **gg.selectAll**
 - **gg.arrSlice**
 - **gg.betterview**
 - **gg.copy**
@@ -49,6 +43,12 @@ A JavaScript and DOM utility library.
 - **gg.noop**
 - **gg.supplant**
 - **gg.uuid**
+- **gg.getById**
+- **gg.getPosition**
+- **gg.getStyle**
+- **gg.setImmediate**
+- **gg.select**
+- **gg.selectAll**
 - **gg.create**
 - **gg.scrollIntoView**
 - **gg.scrollToTop**
