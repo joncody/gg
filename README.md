@@ -56,6 +56,7 @@ A JavaScript and DOM utility library.
 - **gg.mouseHandler**
 - **gg.removeKeyboardHandlers**
 - **gg.removeMouseHandlers**
+- **gg.cdb**
 
 
 #### Instance
