@@ -413,11 +413,11 @@
         });
     }
 
-    function toInt(value, base) {
+    function toInt(value, radix) {
         var int = global.parseInt(isString(value)
             ? value.replace(",", "")
-            : value, isNumber(base)
-                ? base
+            : value, isNumber(radix)
+                ? radix
                 : 10);
 
         return Number.isNaN(int)
@@ -660,12 +660,12 @@
         if (isGG(items)) {
             items.eachRaw(func);
         } else if (isNode(items)) {
-            func.call(thisarg, items, 0, items);
+            func.call(thisarg, items, 0, thisarg);
         } else if (isArray(items) || isArrayLike(items) || isTypedArray(items) || isBuffer(items)) {
             toArray(items).forEach(func, thisarg);
         } else if (isObject(items)) {
             Object.keys(items).forEach(function (key) {
-                func.call(thisarg, items[key], key, items);
+                func.call(thisarg, items[key], key, thisarg);
             });
         }
         return thisarg;
