@@ -36,8 +36,10 @@ A JavaScript and DOM utility library.
 - **gg.select**
 - **gg.selectAll**
 - **gg.arrSlice**
+- **gg.betterview**
 - **gg.copy**
 - **gg.each**
+- **gg.emitter**
 - **gg.equal**
 - **gg.extend**
 - **gg.inherits**
