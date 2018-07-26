@@ -31,6 +31,7 @@ A JavaScript and DOM utility library.
 - **gg.toBuffer**
 - **gg.toStringFromCodes**
 - **gg.getById**
+- **gg.getPosition**
 - **gg.getStyle**
 - **gg.setImmediate**
 - **gg.select**
