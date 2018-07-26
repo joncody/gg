@@ -243,11 +243,13 @@ value | Any | The value to copy.
 <br/>
 
 `each(items, func, thisarg)` _-> {any}_
-> Loops through `items`, converting it to an array if necessary, passing each item and its index/key to `func`.  `func`'s this argument is set to `thisarg` or `items` if none was passed.  Essentially a `forEach` method with the capability to handle objects and their keys, as well as nodes.
+> Essentially a `forEach` method with the capability to handle objects and their keys, as well as nodes. It returns `thisarg`.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-value | Any | The value to copy.
+items | GG Object, Node, NodeArray, Array, ArrayLike, TypedArray, Buffer, Object | The value to iterate over.
+func | Function | The callback.
+thisarg | Any | The `this` value within the callback.
 <br/>
 
 - **gg.each**
