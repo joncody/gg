@@ -39,6 +39,7 @@ A JavaScript and DOM utility library.
 - **gg.betterview**
 - **gg.copy**
 - **gg.each**
+- **gg.ease**
 - **gg.emitter**
 - **gg.equal**
 - **gg.extend**
@@ -48,6 +49,8 @@ A JavaScript and DOM utility library.
 - **gg.supplant**
 - **gg.uuid**
 - **gg.create**
+- **gg.scrollIntoView**
+- **gg.scrollToTop**
 - **gg.keyboardHandler**
 - **gg.mouseHandler**
 - **gg.removeKeyboardHandlers**
