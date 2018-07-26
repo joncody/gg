@@ -33,6 +33,16 @@
     var listeners = {};
     var mouseHandler;
     var mouseListeners = [];
+    var numbersandbytes = {
+        "Int8": 1,
+        "Uint8": 1,
+        "Int16": 2,
+        "Uint16": 2,
+        "Int32": 4,
+        "Uint32": 4,
+        "Float32": 4,
+        "Float64": 8
+    };
     var taglist = [
         "a",
         "abbr",
@@ -133,6 +143,25 @@
     ];
 
     // FIX
+    if (ArrayBuffer.prototype.slice === undefined) {
+        ArrayBuffer.prototype.slice = function (start, end) {
+            var that = new Uint8Array(this);
+            var result;
+            var resultarray;
+            var i;
+
+            if (end === undefined) {
+                end = that.length;
+            }
+            result = new ArrayBuffer(end - start);
+            resultarray = new Uint8Array(result);
+            for (i = 0; i < resultarray.length; i += 1) {
+                resultarray[i] = that[i + start];
+            }
+            return result;
+        };
+    }
+
     Number.isNaN = Number.isNaN || function (value) {
         return value !== value;
     };
@@ -359,6 +388,169 @@
         return Array.prototype.slice.call(value);
     }
 
+    function betterview(buffer, offset, length) {
+        var better = {};
+        var store = {};
+
+        store.buffer = toBuffer(buffer);
+        store.view = new DataView(store.buffer, offset || 0, length || store.buffer.byteLength);
+        store.offset = 0;
+
+        function checkBounds(offset, len) {
+            if (typeof offset !== "number") {
+                return console.log("offset is not a number");
+            }
+            if (offset < 0) {
+                return console.log("offset is negative");
+            }
+            if (typeof len !== "number") {
+                return console.log("len is not a number");
+            }
+            if (len < 0) {
+                return console.log("len is negative");
+            }
+            if (offset + len > store.view.byteLength) {
+                return console.log("bounds exceeded");
+            }
+        }
+
+        function tell() {
+            return store.offset;
+        }
+
+        function seek(value) {
+            checkBounds(value, 0);
+            store.offset = value;
+            return better;
+        }
+
+        function skip(value) {
+            checkBounds(store.offset + value, 0);
+            store.offset += value;
+            return better;
+        }
+
+        function slice(start, end) {
+            return store.view.buffer.slice(start, end);
+        }
+
+        function getBytes(len, offset) {
+            offset = offset === undefined
+                ? store.offset
+                : offset;
+            len = len === undefined
+                ? store.view.byteLength - offset
+                : len;
+            checkBounds(offset, len);
+            store.offset = offset + len;
+            return toUint8(store.view.buffer.slice(offset, offset + len));
+        }
+
+        function setBytes(offset, bytes) {
+            var convertedbytes = toUint8(bytes);
+            var len = convertedbytes.byteLength || convertedbytes.length || 0;
+
+            offset = offset === undefined
+                ? store.offset
+                : offset;
+            checkBounds(offset, len);
+            store.offset = offset + len;
+            toUint8(store.view.buffer).set(convertedbytes, offset);
+            return better;
+        }
+
+        function writeBytes(bytes) {
+            var convertedbytes = toUint8(bytes);
+            var len = convertedbytes.byteLength || convertedbytes.length || 0;
+
+            checkBounds(store.offset, len);
+            toUint8(store.view.buffer).set(convertedbytes, store.offset);
+            store.offset = store.offset + len;
+            return better;
+        }
+
+        function getString(len, offset) {
+            return toStringFromCodes(getBytes(len, offset));
+        }
+
+        function setString(offset, string) {
+            return setBytes(offset, toCodesFromString(string));
+        }
+
+        function writeString(string) {
+            return writeBytes(toCodesFromString(string));
+        }
+
+        function getChar(offset) {
+            return getString(1, offset);
+        }
+
+        function setChar(offset, character) {
+            return setString(offset, character);
+        }
+
+        function writeChar(character) {
+            return writeString(character);
+        }
+
+        function getNumber(type, bytes) {
+            return function (offset) {
+                offset = offset === undefined
+                    ? store.offset
+                    : offset;
+                checkBounds(offset, bytes);
+                store.offset = offset + bytes;
+                return store.view["get" + type](offset);
+            };
+        }
+
+        function setNumber(type, bytes) {
+            return function (offset, value) {
+                offset = offset === undefined
+                    ? store.offset
+                    : offset;
+                checkBounds(offset, bytes);
+                store.offset = offset + bytes;
+                store.view["set" + type](offset, value);
+                return better;
+            };
+        }
+
+        function writeNumber(type, bytes) {
+            return function (value) {
+                checkBounds(store.offset, bytes);
+                store.view["set" + type](store.offset, value);
+                store.offset = store.offset + bytes;
+                return better;
+            };
+        }
+
+        better.betterview = true;
+        better.tell = tell;
+        better.seek = seek;
+        better.skip = skip;
+        better.slice = slice;
+        better.getBytes = getBytes;
+        better.setBytes = setBytes;
+        better.writeBytes = writeBytes;
+        better.getString = getString;
+        better.setString = setString;
+        better.writeString = writeString;
+        better.getChar = getChar;
+        better.setChar = setChar;
+        better.writeChar = writeChar;
+
+        Object.keys(numbersandbytes).forEach(function (type) {
+            var bytes = numbersandbytes[type];
+
+            better["get" + type] = getNumber(type, bytes);
+            better["set" + type] = setNumber(type, bytes);
+            better["write" + type] = writeNumber(type, bytes);
+        });
+
+        return Object.freeze(better);
+    }
+
     function copy(value) {
         var c;
 
@@ -397,6 +589,128 @@
             });
         }
         return thisarg;
+    }
+
+    function emitter(object) {
+        object = (object && typeof object === "object")
+            ? object
+            : {};
+        object.emitter = true;
+        object.events = {};
+
+        object.addListener = function addListener(type, listener) {
+            var list = object.events[type];
+
+            if (typeof listener === "function") {
+                if (object.events.newListener) {
+                    object.emit("newListener", type, typeof listener.listener === "function"
+                        ? listener.listener
+                        : listener);
+                }
+                if (!list) {
+                    object.events[type] = [listener];
+                } else {
+                    object.events[type].push(listener);
+                }
+            }
+            return object;
+        };
+        object.on = object.addListener;
+
+        object.once = function once(type, listener) {
+            function onetime() {
+                object.removeListener(type, onetime);
+                listener.apply(object);
+            }
+            if (typeof listener === "function") {
+                onetime.listener = listener;
+                object.on(type, onetime);
+            }
+            return object;
+        };
+
+        object.removeListener = function removeListener(type, listener) {
+            var list = object.events[type];
+            var position = -1;
+
+            if (typeof listener === "function" && list) {
+                list.some(function (value, index) {
+                    if (value === listener || (value.listener && value.listener === listener)) {
+                        position = index;
+                        return true;
+                    }
+                });
+                if (position >= 0) {
+                    if (list.length === 1) {
+                        delete object.events[type];
+                    } else {
+                        list.splice(position, 1);
+                    }
+                    if (object.events.removeListener) {
+                        object.emit("removeListener", type, listener);
+                    }
+                }
+            }
+            return object;
+        };
+        object.off = object.removeListener;
+
+        object.removeAllListeners = function removeAllListeners(type) {
+            var list;
+
+            if (!object.events.removeListener) {
+                if (!type) {
+                    object.events = {};
+                } else {
+                    delete object.events[type];
+                }
+            } else if (!type) {
+                Object.keys(object.events).forEach(function (key) {
+                    if (key !== "removeListener") {
+                        object.removeAllListeners(key);
+                    }
+                });
+                object.removeAllListeners("removeListener");
+                object.events = {};
+            } else {
+                list = object.events[type];
+                list.forEach(function (item) {
+                    object.removeListener(type, item);
+                });
+                delete object.events[type];
+            }
+            return object;
+        };
+
+        object.listeners = function listeners(type) {
+            var list = [];
+
+            if (typeof type === "string" && object.events[type]) {
+                list = object.events[type];
+            } else {
+                Object.keys(object.events).forEach(function (key) {
+                    list.push(object.events[key]);
+                });
+            }
+            return list;
+        };
+
+        object.emit = function emit(type) {
+            var list = object.events[type];
+            var bool = false;
+            var args;
+
+            if (list) {
+                args = Array.prototype.slice.call(arguments).slice(1);
+                list.forEach(function (value) {
+                    value.apply(object, args);
+                });
+                bool = true;
+            }
+            return bool;
+        };
+
+        return object;
     }
 
     function equal(one, two) {
@@ -1198,6 +1512,7 @@
         return Object.freeze(gobject);
     }
 
+    // UI
     keyboardHandler = (function () {
         function keyDown(options, handlers) {
             return function (e) {
@@ -1297,14 +1612,16 @@
     gg.toUint8 = toUint8;
     gg.toBuffer = toBuffer;
     gg.toStringFromCodes = toStringFromCodes;
-    gg.getStyle = getStyle;
     gg.getById = getById;
+    gg.getStyle = getStyle;
     gg.setImmediate = setImmediate;
     gg.select = select;
     gg.selectAll = selectAll;
     gg.arrSlice = arrSlice;
+    gg.betterview = betterview;
     gg.copy = copy;
     gg.each = each;
+    gg.emitter = emitter;
     gg.equal = equal;
     gg.extend = extend;
     gg.inherits = inherits;
