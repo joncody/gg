@@ -1,7 +1,7 @@
 gg
 ==
 
-An ECMASCRIPT 5 compliant JavaScript utility library.
+A JavaScript and DOM utility library.
 
 ## API
 #### Global
