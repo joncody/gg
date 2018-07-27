@@ -183,7 +183,7 @@ value | String | The value to be converted.
 <br/>
 
 ##### toFloat(value, decimals) _-> {Number|String}_
-> Converts a value to a floating point number with an optional number of decimals. Automatically removes commas and returns 0 if its result is NaN.
+> Converts a value to a floating point number with an optional number of decimals. Removes commas before conversion and returns 0 if its result is NaN.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -200,7 +200,7 @@ value | String | The value to be converted.
 <br/>
 
 ##### toInt(value, radix) _-> {Number}_
-> Converts a value to an integer using the specified radix. Automatically removes commas and returns 0 if its result is NaN.
+> Converts a value to an integer using the specified radix. Removes commas before conversion and returns 0 if its result is NaN.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -383,7 +383,7 @@ node | Node | The node to execute the query from.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-tag | String | The name of the element to create.
+tag | String | The name of the node to create.
 <br/>
 
 - **gg.scrollIntoView**
