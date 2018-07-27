@@ -880,10 +880,6 @@
     }
 
     // GET
-    function getById(id, supplanter) {
-        return document.getElementById(supplant(id, supplanter));
-    }
-
     function getPosition(node) {
         var pos = {
             x: 0,
@@ -923,6 +919,10 @@
     }
 
     // QUERY
+    function getById(id, supplanter) {
+        return document.getElementById(supplant(id, supplanter));
+    }
+
     function select(selector, supplanter, node) {
         return isNode(node)
             ? node.querySelector(supplant(selector, supplanter))
@@ -997,7 +997,6 @@
 
         animation = global.requestAnimationFrame(step);
     }
-
 
     // GG
     function gg(mselector, supplanter) {
