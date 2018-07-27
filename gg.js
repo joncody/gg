@@ -266,10 +266,6 @@
         };
     }
 
-    function arrSlice(value, begin, end) {
-        return Array.prototype.slice.call(value, begin, end);
-    }
-
     Number.isNaN = Number.isNaN || function (value) {
         return value !== value;
     };
@@ -283,6 +279,11 @@
             type = "null";
         }
         return type;
+    }
+
+    // SHORTHAND
+    function arrSlice(value, begin, end) {
+        return Array.prototype.slice.call(value, begin, end);
     }
 
     // IS
@@ -318,7 +319,6 @@
         return typeOf(value) === "undefined";
     }
 
-    // IS - SPECIAL
     function isArrayLike(value) {
         return isObject(value) && !isUndefined(value.length) && Object.keys(value).every(function (key) {
             return key === "length" || isNumber(global.parseInt(key, 10));
@@ -459,7 +459,7 @@
         return value;
     }
 
-    // MISC
+    // MISCELLANEOUS
     function betterview(value, offset, length) {
         var numbersandbytes = {
             "Int8": 1,
@@ -912,7 +912,7 @@
             : pseudo);
     }
 
-    // SET
+    // TIMEOUT
     function setImmediate(executable) {
         var args = arrSlice(arguments, 1);
 
@@ -922,7 +922,7 @@
         return global.setTimeout(executable, 0, args);
     }
 
-    // SELECT
+    // QUERY
     function select(selector, supplanter, node) {
         return isNode(node)
             ? node.querySelector(supplant(selector, supplanter))
@@ -934,6 +934,70 @@
             ? node.querySelectorAll(supplant(selector, supplanter))
             : document.querySelectorAll(supplant(selector, supplanter));
     }
+
+    // SCROLL
+    function scrollIntoView(node, easingExec) {
+        var el = isGG(node)
+            ? node.raw(0)
+            : node;
+        var executable = !isFunction(easingExec)
+            ? ease.easeInOutSine
+            : easingExec
+        var relativeTo = document.body;
+        var animation;
+        var max = relativeTo.scrollHeight - global.innerHeight;
+        var current = 0;
+        var start = relativeTo.scrollTop;
+        var end = relativeTo.scrollTop + getPosition(el).y > max
+            ? max
+            : relativeTo.scrollTop + getPosition(el).y;
+        var framerate = 60 / 1000;
+        var duration = 1200;
+
+        function step() {
+            var newval;
+
+            if (current >= framerate * duration) {
+                return global.cancelAnimationFrame(animation);
+            }
+            current += 1;
+            newval = executable(current, start, end - start, framerate * duration);
+            relativeTo.scrollTop = newval;
+            animation = global.requestAnimationFrame(step);
+        }
+
+        animation = global.requestAnimationFrame(step);
+    }
+
+    function scrollToTop(node, easingExec) {
+        var el = isGG(node)
+            ? node.raw(0)
+            : node;
+        var executable = !isFunction(easingExec)
+            ? ease.easeInOutSine
+            : easingExec
+        var animation;
+        var current = 0;
+        var start = el.scrollTop;
+        var end = 0;
+        var framerate = 60 / 1000;
+        var duration = 1200;
+
+        function step() {
+            var newval;
+
+            if (current >= framerate * duration) {
+                return global.cancelAnimationFrame(animation);
+            }
+            current += 1;
+            newval = executable(current, start, end - start, framerate * duration);
+            el.scrollTop = newval;
+            animation = global.requestAnimationFrame(step);
+        }
+
+        animation = global.requestAnimationFrame(step);
+    }
+
 
     // GG
     function gg(mselector, supplanter) {
@@ -1652,64 +1716,14 @@
         return Object.freeze(gobject);
     }
 
-    // MISC - DOM
+    // CREATE
     function create(tag) {
         return inArray(taglist, tag)
             ? gg(document.createElement(tag))
             : null;
     }
 
-    function scrollIntoView(node) {
-        var relativeTo = document.body;
-        var animation;
-        var max = relativeTo.scrollHeight - global.innerHeight;
-        var current = 0;
-        var start = relativeTo.scrollTop;
-        var end = relativeTo.scrollTop + getPosition(node).y > max
-            ? max
-            : relativeTo.scrollTop + getPosition(node).y;
-        var framerate = 60 / 1000;
-        var duration = 1200;
-
-        function step() {
-            var newval;
-
-            if (current >= framerate * duration) {
-                return global.cancelAnimationFrame(animation);
-            }
-            current += 1;
-            newval = ease.easeInOutSine(current, start, end - start, framerate * duration);
-            relativeTo.scrollTop = newval;
-            animation = global.requestAnimationFrame(step);
-        }
-
-        animation = global.requestAnimationFrame(step);
-    }
-
-    function scrollToTop(node) {
-        var animation;
-        var current = 0;
-        var start = node.scrollTop;
-        var end = 0;
-        var framerate = 60 / 1000;
-        var duration = 1200;
-
-        function step() {
-            var newval;
-
-            if (current >= framerate * duration) {
-                return global.cancelAnimationFrame(animation);
-            }
-            current += 1;
-            newval = ease.easeInOutSine(current, start, end - start, framerate * duration);
-            node.scrollTop = newval;
-            animation = global.requestAnimationFrame(step);
-        }
-
-        animation = global.requestAnimationFrame(step);
-    }
-
-    // UI
+    // DEVICES
     keyboardHandler = (function () {
         function keyDown(options, handlers) {
             return function (e) {
@@ -1900,8 +1914,8 @@
         cdb = null;
     }
 
-    gg.arrSlice = arrSlice;
     gg.typeOf = typeOf;
+    gg.arrSlice = arrSlice;
     gg.isArray = isArray;
     gg.isBoolean = isBoolean;
     gg.isFunction = isFunction;
@@ -1929,7 +1943,6 @@
     gg.betterview = betterview;
     gg.copy = copy;
     gg.each = each;
-    gg.ease = ease;
     gg.emitter = emitter;
     gg.equal = equal;
     gg.extend = extend;
@@ -1938,19 +1951,20 @@
     gg.noop = noop;
     gg.supplant = supplant;
     gg.uuid = uuid;
-    gg.getById = getById;
     gg.getPosition = getPosition;
     gg.getStyle = getStyle;
     gg.setImmediate = setImmediate;
+    gg.getById = getById;
     gg.select = select;
     gg.selectAll = selectAll;
-    gg.create = create;
     gg.scrollIntoView = scrollIntoView;
     gg.scrollToTop = scrollToTop;
+    gg.create = create;
     gg.keyboardHandler = keyboardHandler;
     gg.mouseHandler = mouseHandler;
     gg.removeKeyboardHandlers = removeKeyboardHandlers;
     gg.removeMouseHandlers = removeMouseHandlers;
+    gg.ease = ease;
     gg.cdb = Object.freeze(cdb);
 
     global.gg = Object.freeze(gg);

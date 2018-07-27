@@ -20,6 +20,14 @@ Name | Type | Description
 selector | String, Node, ArrayLike, GObject | The value containing a string, selector expression, a Node, an Array-like, or a gobject.
 supplanter | Object (optional) | The value to supplant into the selector.
 #### Methods
+##### typeOf(value) _-> {String}_
+> Determines the type of its argument.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | Any | The value to be tested.
+<br/>
+
 ##### arrSlice(value, start, end) _-> {Array}_
 > Shorthand for Array.prototype.slice.call.
 ###### Parameters
@@ -28,14 +36,6 @@ Name | Type | Description
 value | Any | The "this" value for [Array.prototype.slice](https://www.w3schools.com/jsref/jsref_slice_array.asp).
 start | Number (optional) | An integer that specifies where to start the selection (The first element has an index of 0). Use negative numbers to select from the end of an array. If omitted, it acts like 0.
 end | Number (optional) | An integer that specifies where to end the selection. If omitted, all elements from the start position and to the end of the array will be selected. Use negative numbers to select from the end of an array.
-<br/>
-
-##### typeOf(value) _-> {String}_
-> Determines the type of its argument.
-###### Parameters
-Name | Type | Description
----- | ---- | -----------
-value | Any | The value to be tested.
 <br/>
 
 ##### isArray(value) _-> {Boolean}_
@@ -324,15 +324,6 @@ supplanter | Object | The supplanting value.
 
 <br/>
 
-##### getById(id, supplanter) _-> {Node}_
-> Combines [supplant](#supplantstring-object---booleanstring) and [document.getElementById](https://www.w3schools.com/jsref/met_document_getelementbyid.asp), in that order.
-###### Parameters
-Name | Type | Description
----- | ---- | -----------
-id | String | The value to scan.
-supplanter | Object | The supplanting value.
-<br/>
-
 ##### getPosition(node) _-> {Object}_
 > Gets its arguments absolute x and y coordinates.
 ###### Parameters
@@ -356,6 +347,15 @@ pseudo | String (optional; default: null) | The pseudo-element to get.
 Name | Type | Description
 ---- | ---- | -----------
 executable | Function | The function that will be run.
+<br/>
+
+##### getById(id, supplanter) _-> {Node}_
+> Combines [supplant](#supplantstring-object---booleanstring) and [document.getElementById](https://www.w3schools.com/jsref/met_document_getelementbyid.asp), in that order.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+id | String | The value to scan.
+supplanter | Object | The supplanting value.
 <br/>
 
 ##### select(selector, supplanter, node) _-> {Node}_
