@@ -4,7 +4,7 @@ gg
 A JavaScript and DOM utility library.
 
 # API
-Nodes and Elements are incorrectly referred to synonymously at the moment.
+Nodes and Elements are incorrectly referred to synonymously at the moment. This particular documentation is currently being worked on.
 ## gg(selector, supplantee)
 Return a collection of matched elements found in the DOM.
 ## Factory
