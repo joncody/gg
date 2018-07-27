@@ -14,6 +14,14 @@ Name | Type | Description
 selector | String, Node, NodeArray, GG Object | A string containing a selector expression, a DOM element, an array of DOM elements, or a gg factory object.
 supplantee | Object (optional) | The object to supplant into the selector.
 #### Methods
+`arrSlice(value)` _-> {array}_
+> Shorthand for Array.prototype.slice.call(`value`).
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | Any | The value to pass to Array.prototype.slice.call().
+<br/>
+
 `typeOf(value)` _-> {string}_
 > Determines the type of its argument.
 ##### Parameters
@@ -142,8 +150,8 @@ Name | Type | Description
 array | Any | The value to be tested
 <br/>
 
-`toArray(value)` _-> {boolean}_
-> Converts its argument to an array or typed array.
+`toArray(value)` _-> {array}_
+> Converts its argument to an array.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -159,7 +167,7 @@ string | String | The value to be converted.
 <br/>
 
 `toCodesFromString(string)` _-> {array}_
-> Converts a string to an array of Unicodes. Its argument is first passed to `toArray`.
+> Converts a string to an array of Unicodes. Its argument is first passed through `toArray`.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -167,7 +175,7 @@ string | String | The value to be converted.
 <br/>
 
 `toFloat(value, digits)` _-> {number|string}_
-> Converts a value to a floating point number with an optional number of decimals. Automatically removes commas and returns 0 if the result is NaN.
+> Converts a value to a floating point number with an optional number of decimals. Automatically removes commas and returns 0 if its result is NaN.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -184,7 +192,7 @@ string | String | The value to be converted.
 <br/>
 
 `toInt(value, radix)` _-> {number}_
-> Converts a value to an integer using the specified radix (defaults to 10). Automatically removes commas and returns 0 if the result is NaN.
+> Converts a value to an integer using the specified radix (defaults to 10). Automatically removes commas and returns 0 if its result is NaN.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -193,7 +201,7 @@ radix | Number (optional) | The radix to use.
 <br/>
 
 `toUint8(value)` _-> {uint8array}_
-> Converts its argument to an uint8array. If its argument is a number, the returned uint8array has a length equal to it.
+> Converts its argument to an uint8array. If its argument is a number, it returns an uint8array with an equal length.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -201,7 +209,7 @@ value | Any | The value to be converted.
 <br/>
 
 `toBuffer(value)` _-> {arraybuffer}_
-> Converts its argument to an arraybuffer by passing it to `toUint8`. If its argument is a number, the returned arraybuffer has a length equal to it.
+> Converts its argument to an arraybuffer by passing it through `toUint8` and getting its buffer property. If its argument is a number, it returns an arraybuffer with an equal length.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -209,19 +217,11 @@ value | Any | The value to be converted.
 <br/>
 
 `toStringFromCodes(array)` _-> {string}_
-> Converts an array of Unicodes to a string. Its argument is first passed to `toArray`.
+> Converts an array of Unicodes to a string. Its argument is first passed through `toArray`.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
 array | Array | The value to be converted.
-<br/>
-
-`arrSlice(value)` _-> {array}_
-> Shorthand for Array.prototype.slice.call(value).
-##### Parameters
-Name | Type | Description
----- | ---- | -----------
-value | Any | The `this` value to call Array.prototype.slice() with.
 <br/>
 
 `betterview(buffer, offset, length)` _-> {better}_
@@ -229,7 +229,7 @@ value | Any | The `this` value to call Array.prototype.slice() with.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-buffer | Any | The value passed to `toBuffer` before storing; usually an array, arraybuffer, or string.
+buffer | Any | The value passed through `toBuffer` before storing; usually any array, arraybuffer, or string.
 offset | Number (optional) | The offset, in bytes, to the first byte in the specified buffer for the new view to reference. If not specified, the view of the buffer will start with the first byte.
 length | Number (optional) | The number of elements in the byte array. If unspecified, length of the view will match the buffer's length.
 <br/>
@@ -252,7 +252,6 @@ func | Function | The callback.
 thisarg | Any | The `this` value within the callback.
 <br/>
 
-- **gg.each**
 - **gg.ease**
 - **gg.emitter**
 - **gg.equal**
