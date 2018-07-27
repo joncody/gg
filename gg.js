@@ -853,15 +853,15 @@
         return;
     }
 
-    function supplant(value, supplantee) {
+    function supplant(value, supplanter) {
         function replaceExpression(expression, key) {
-            var val = supplantee[key];
+            var val = supplanter[key];
 
             return !isUndefined(val)
                 ? val
                 : expression;
         }
-        return (isString(value) && isObject(supplantee))
+        return (isString(value) && isObject(supplanter))
             ? value.replace(/\{([^{}]*)\}/g, replaceExpression)
             : value;
     }
@@ -880,8 +880,8 @@
     }
 
     // GET
-    function getById(id, supplantee) {
-        return document.getElementById(supplant(id, supplantee));
+    function getById(id, supplanter) {
+        return document.getElementById(supplant(id, supplanter));
     }
 
     function getPosition(node) {
@@ -923,20 +923,20 @@
     }
 
     // SELECT
-    function select(selector, supplantee, node) {
+    function select(selector, supplanter, node) {
         return isNode(node)
-            ? node.querySelector(supplant(selector, supplantee))
-            : document.querySelector(supplant(selector, supplantee));
+            ? node.querySelector(supplant(selector, supplanter))
+            : document.querySelector(supplant(selector, supplanter));
     }
 
-    function selectAll(selector, supplantee, node) {
+    function selectAll(selector, supplanter, node) {
         return isNode(node)
-            ? node.querySelectorAll(supplant(selector, supplantee))
-            : document.querySelectorAll(supplant(selector, supplantee));
+            ? node.querySelectorAll(supplant(selector, supplanter))
+            : document.querySelectorAll(supplant(selector, supplanter));
     }
 
     // GG
-    function gg(mselector, supplantee) {
+    function gg(mselector, supplanter) {
         var gobject = {
             gg: true
         };
@@ -986,7 +986,7 @@
         }
 
         if (isString(mselector)) {
-            mselector = selectAll(mselector, supplantee);
+            mselector = selectAll(mselector, supplanter);
         }
 
         each(mselector, function (node) {
@@ -1580,20 +1580,20 @@
             return gobject;
         };
 
-        gobject.select = function (selector, supplantee) {
+        gobject.select = function (selector, supplanter) {
             var nodes = [];
 
             each(store, function (node) {
-                nodes = nodes.concat(toArray(select(selector, supplantee, node)));
+                nodes = nodes.concat(toArray(select(selector, supplanter, node)));
             });
             return gg(nodes);
         };
 
-        gobject.selectAll = function (selector, supplantee) {
+        gobject.selectAll = function (selector, supplanter) {
             var nodes = [];
 
             each(store, function (node) {
-                nodes = nodes.concat(toArray(selectAll(selector, supplantee, node)));
+                nodes = nodes.concat(toArray(selectAll(selector, supplanter, node)));
             });
             return gg(nodes);
         };

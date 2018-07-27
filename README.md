@@ -10,15 +10,15 @@ For the sake of time and brevity:
 - gg factory objects = gobject
 - contents of iterables = item, element
 
-## gg(selector, supplantee)
+## gg(selector, supplanter)
 Return a collection of matched nodes found in the DOM.
 ## Factory
-##### gg(selector, supplantee)
+##### gg(selector, supplanter)
 #### Parameters:
 Name | Type | Description
 ---- | ---- | -----------
 selector | String, Node, ArrayLike, GObject | The value containing a string, selector expression, a Node, an Array-like, or a gobject.
-supplantee | Object (optional) | The value to supplant into the selector.
+supplanter | Object (optional) | The value to supplant into the selector.
 #### Methods
 ##### arrSlice(value, start, end) _-> {Array}_
 > Shorthand for Array.prototype.slice.call.
@@ -310,13 +310,13 @@ value | Any | The value to look for.
 
 <br/>
 
-##### supplant(value, supplantee) _-> {Boolean|String}_
+##### supplant(value, supplanter) _-> {Boolean|String}_
 > Does variable substitution on its first argument. It scans through its first argument looking for expressions enclosed in { } braces. If an expression is found, use it as a key on its second argument, and if the key has a string value or number value, it is substituted for the bracket expression and it repeats.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
 value | String | The value to scan.
-supplantee | Object | The supplanting value.
+supplanter | Object | The supplanting value.
 <br/>
 
 ##### uuid() _-> {String}_
@@ -324,13 +324,13 @@ supplantee | Object | The supplanting value.
 
 <br/>
 
-##### getById(id, supplantee) _-> {Node}_
+##### getById(id, supplanter) _-> {Node}_
 > Combines [supplant](#supplantstring-object---booleanstring) and [document.getElementById](https://www.w3schools.com/jsref/met_document_getelementbyid.asp), in that order.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
 id | String | The value to scan.
-supplantee | Object | The supplanting value.
+supplanter | Object | The supplanting value.
 <br/>
 
 ##### getPosition(node) _-> {Object}_
@@ -358,23 +358,23 @@ Name | Type | Description
 executable | Function | The function that will be run.
 <br/>
 
-##### select(selector, supplantee, node) _-> {Node}_
+##### select(selector, supplanter, node) _-> {Node}_
 > Combines [document.querySelector](https://www.w3schools.com/jsref/met_document_queryselector.asp) and [supplant](#supplantstring-object---booleanstring), in that order, where document is replaced by the optional third argument if provided.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
 selector | String | The value to scan.
-supplantee | Object | The supplanting value.
+supplanter | Object | The supplanting value.
 node | Node | The node to execute the query from.
 <br/>
 
-##### selectAll(selector, supplantee, node) _-> {ArrayLike}_
+##### selectAll(selector, supplanter, node) _-> {ArrayLike}_
 > Combines [document.querySelectorAll](https://www.w3schools.com/jsref/met_document_queryselectorall.asp) and [supplant](#supplantstring-object---booleanstring), in that order, where document is replaced by the optional third argument if provided.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
 selector | String | The value to scan.
-supplantee | Object | The supplanting value.
+supplanter | Object | The supplanting value.
 node | Node | The node to execute the query from.
 <br/>
 
