@@ -19,7 +19,7 @@ supplantee | Object (optional) | The object to supplant into the selector.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-value | Any | The "this" value for Array.prototype.slice.
+value | Any | The "this" value for [Array.prototype.slice](https://www.w3schools.com/jsref/jsref_slice_array.asp).
 start | Number (Optional) | An integer that specifies where to start the selection (The first element has an index of 0). Use negative numbers to select from the end of an array. If omitted, it acts like "0".
 end | Number (Optional) | An integer that specifies where to end the selection. If omitted, all elements from the start position and to the end of the array will be selected. Use negative numbers to select from the end of an array.
 <br/>
@@ -319,7 +319,7 @@ object | Object | The supplanting value.
 <br/>
 
 ##### getById(id, object) _-> {Node}_
-> Combines [supplant](#supplantstring-object---booleanstring) and document.getElementById, in that order.
+> Combines [supplant](#supplantstring-object---booleanstring) and [document.getElementById](https://www.w3schools.com/jsref/met_document_getelementbyid.asp), in that order.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -336,7 +336,7 @@ el | Node | The DOM element to get the position of.
 <br/>
 
 ##### getStyle(node, pseudo) _-> {Object}_
-> Shorthand for window.getComputedStyle().
+> Shorthand for [window.getComputedStyle](https://www.w3schools.com/jsref/jsref_getcomputedstyle.asp).
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -345,7 +345,7 @@ pseudo | String (Optional; Default: null) | The pseudo-element to get.
 <br/>
 
 ##### setImmediate(fn) _-> {Object}_
-> Shorthand for window.setTimeout() with "0" wait time.
+> Shorthand for [window.setTimeout](https://www.w3schools.com/jsref/met_win_settimeout.asp) with "0" wait time.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -353,7 +353,7 @@ fn | Function | The function that will be executed.
 <br/>
 
 ##### select(selector, object, node) _-> {Node}_
-> Combines document.querySelector and supplant, in that order, where document is replaced by the optional third argument if provided.
+> Combines [document.querySelector](https://www.w3schools.com/jsref/met_document_queryselector.asp) and [supplant](#supplantstring-object---booleanstring), in that order, where document is replaced by the optional third argument if provided.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -363,7 +363,7 @@ node | Node | The top level element to execute the query from.
 <br/>
 
 ##### selectAll(selector, object, node) _-> {NodeList}_
-> Combines document.querySelectorAll and supplant, in that order, where document is replaced by the optional third argument if provided.
+> Combines [document.querySelectorAll](https://www.w3schools.com/jsref/met_document_queryselectorall.asp) and [supplant](#supplantstring-object---booleanstring), in that order, where document is replaced by the optional third argument if provided.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
