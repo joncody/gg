@@ -169,7 +169,7 @@ string | String | The value to be converted.
 <br/>
 
 ##### toCodesFromString(string) _-> {array}_
-> Converts a string to an array of Unicodes. Its argument is first passed through `toArray`.
+> Converts a string to an array of Unicodes. Its argument is first passed through [toArray](#toarrayvalue---array).
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -211,7 +211,7 @@ value | Any | The value to be converted.
 <br/>
 
 ##### toBuffer(value) _-> {arraybuffer}_
-> Converts its argument to an arraybuffer by passing it through `toUint8` and getting its buffer property. If its argument is a number, it returns an arraybuffer with an equal length.
+> Converts its argument to an arraybuffer by passing it through [toUint8](#touint8value---uint8array) and getting its buffer property. If its argument is a number, it returns an arraybuffer with an equal length.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -219,7 +219,7 @@ value | Any | The value to be converted.
 <br/>
 
 ##### toStringFromCodes(array) _-> {string}_
-> Converts an array of Unicodes to a string. Its argument is first passed through `toArray`.
+> Converts an array of Unicodes to a string. Its argument is first passed through [toArray](#toarrayvalue---array).
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -231,7 +231,7 @@ array | Array | The value to be converted.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-buffer | Any | The value passed through `toBuffer` before storing.
+buffer | Any | The value passed through [toBuffer](#tobuffervalue---arraybuffer) before storing.
 offset | Number (optional) | The offset, in bytes, to the first byte in the specified buffer for the new view to reference. If not specified, the view of the buffer will start with the first byte.
 length | Number (optional) | The number of elements in the byte array. If unspecified, length of the view will match the buffer's length.
 <br/>
@@ -319,7 +319,7 @@ object | Object | The supplanting value.
 <br/>
 
 ##### getById(id, object) _-> {node}_
-> Combines `supplant` and document.getElementById, in that order.
+> Combines [supplant](#supplantstring-object---booleanstring) and document.getElementById, in that order.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
