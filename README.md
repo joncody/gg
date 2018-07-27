@@ -217,7 +217,7 @@ value | Any | The value to be converted.
 <br/>
 
 ##### toBuffer(value) _-> {ArrayBuffer}_
-> Converts its argument to an ArrayBuffer by passing it through [toUint8](#touint8value---uint8array) and getting its buffer property. If its argument is a number, it returns an ArrayBuffer with an equal length.
+> Converts its argument to an arraybuffer by passing it through [toUint8](#touint8value---uint8array) and getting its buffer property. If its argument is a number, it returns an arraybuffer with an equal length.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -261,11 +261,11 @@ thisarg | Any (optional) | The value to be passed to the function to be used as 
 <br/>
 
 ##### emitter(value) _-> {Object}_
-> A client side port of Node.js' events.js.  Allows and enables an object to listen for and emit custom events.
+> A client side port of Node.js' events.js.  Allows, enables, and returns an emitter object - one able to listen for and emit custom events.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-value | Object | The object to turn into an emitter.
+value | Object (optional) | The object to turn into an emitter.
 <br/>
 
 ##### equal(one, two) _-> {Boolean}_
