@@ -11,15 +11,17 @@ Return a collection of matched elements found in the DOM.
 #### Parameters:
 Name | Type | Description
 ---- | ---- | -----------
-selector | String, Node, NodeArray, GG Object | A string containing a selector expression, a DOM element, an array of DOM elements, or a gg factory object.
+selector | String, Node, NodeList, GG Object | A string containing a selector expression, a DOM element, an array of DOM elements, or a gg factory object.
 supplantee | Object (optional) | The object to supplant into the selector.
 #### Methods
-`arrSlice(value)` _-> {array}_
-> Shorthand for Array.prototype.slice.call(`value`).
+`arrSlice(value, start, end)` _-> {array}_
+> Shorthand for Array.prototype.slice.call.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-value | Any | The value to pass to Array.prototype.slice.call().
+value | Any | The "this" value for Array.prototype.slice.
+start | Number (Optional) | An integer that specifies where to start the selection (The first element has an index of 0). Use negative numbers to select from the end of an array. If omitted, it acts like "0".
+end | Number (Optional) | An integer that specifies where to end the selection. If omitted, all elements from the start position and to the end of the array will be selected. Use negative numbers to select from the end of an array.
 <br/>
 
 `typeOf(value)` _-> {string}_
@@ -229,7 +231,7 @@ array | Array | The value to be converted.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-buffer | Any | The value passed through `toBuffer` before storing; usually any array, arraybuffer, or string.
+buffer | Any | The value passed through `toBuffer` before storing.
 offset | Number (optional) | The offset, in bytes, to the first byte in the specified buffer for the new view to reference. If not specified, the view of the buffer will start with the first byte.
 length | Number (optional) | The number of elements in the byte array. If unspecified, length of the view will match the buffer's length.
 <br/>
@@ -243,30 +245,133 @@ value | Any | The value to copy.
 <br/>
 
 `each(items, func, thisarg)` _-> {any}_
-> Essentially a `forEach` method with the capability to handle objects and their keys, as well as nodes. It returns `thisarg`.
+> Calls a provided function once for each element in a set of elements, in order. It returns the assigned "this" value.
 ##### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-items | GG Object, Node, NodeArray, Array, ArrayLike, TypedArray, Buffer, Object | The value to iterate over.
-func | Function | The callback.
-thisarg | Any | The `this` value within the callback.
+items | GG Object, Node, NodeList, Array, ArrayLike, TypedArray, Buffer, Object | The value to iterate over.
+func | Function | The function to be run for each element within the set.
+thisarg | Any (Optional) | The value to be passed to the function to be used as its "this" value. If empty, the iterated set of elements will be assigned to it.
 <br/>
 
-- **gg.ease**
-- **gg.emitter**
-- **gg.equal**
-- **gg.extend**
-- **gg.inherits**
-- **gg.inArray**
-- **gg.noop**
-- **gg.supplant**
-- **gg.uuid**
-- **gg.getById**
-- **gg.getPosition**
-- **gg.getStyle**
-- **gg.setImmediate**
-- **gg.select**
-- **gg.selectAll**
+`emitter(object)` _-> {object}_
+> A client side port of Node.js' events.js.  Allows and enables an object to listen for and emit custom events.
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+object | Object | The object to turn into an emitter.
+<br/>
+
+`equal(one, two)` _-> {boolean}_
+> Determines if its two arguments are equal by value.
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+one | Any | A value to compare.
+two | Any | A value to compare.
+<br/>
+
+`extend(object, add, overwrite)` _-> {object}_
+> Extends its first argument with its second.
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+object | Object | The value to extend.
+add | Object | The extending value.
+overwrite | Boolean (Optional; Default: true) | The value indicating if values with matching keys will be overwritten.
+<br/>
+
+`inherits(ctor, superCtor)` _-> {function}_
+> Its first argument prototypically inherits from its second.
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+ctor | Function | The inheriting value.
+superCtor | Function | The inherited value.
+<br/>
+
+`inArray(array, value)` _-> {boolean}_
+> Checks if its second argument is contained within its first.
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+array | Array | The value to scan through.
+value | Any | The value to index.
+<br/>
+
+`noop()`
+> An empty function.
+
+<br/>
+
+`supplant(string, object)` _-> {boolean|string}_
+> Does variable substitution on its first argument. It scans through its first argument looking for expressions enclosed in { } braces. If an expression is found, use it as a key on its second argument, and if the key has a string value or number value, it is substituted for the bracket expression and it repeats.
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+string | String | The value to scan.
+object | Object | The supplanting value.
+<br/>
+
+`uuid()` _-> {string}_
+> Generates a universally unique identifier.
+
+<br/>
+
+`getById(id, object)` _-> {node}_
+> Combines `supplant` and document.getElementById, in that order.
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+id | String | The value to scan.
+object | Object | The supplanting value.
+<br/>
+
+`getPosition(el)` _-> {object}_
+> Gets its arguments absolute x and y coordinates.
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+el | Node | The DOM element to get the position of.
+<br/>
+
+`getStyle(node, pseudo)` _-> {object}_
+> Shorthand for window.getComputedStyle().
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+node | Node | The DOM element to get the computed style of.
+pseudo | String (Optional; Default: null) | The pseudo-element to get.
+<br/>
+
+`setImmediate(fn)` _-> {object}_
+> Shorthand for window.setTimeout() with "0" wait time.
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+fn | Function | The function that will be executed.
+<br/>
+
+`select(selector, object, node)` _-> {node}_
+> Combines document.querySelector and supplant, in that order, where document is replaced by the optional third argument if provided.
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+selector | String | The value to scan.
+object | Object | The supplanting value.
+node | Node | The top level element to execute the query from.
+<br/>
+
+`selectAll(selector, object, node)` _-> {nodelist}_
+> Combines document.querySelectorAll and supplant, in that order, where document is replaced by the optional third argument if provided.
+##### Parameters
+Name | Type | Description
+---- | ---- | -----------
+selector | String | The value to scan.
+object | Object | The supplanting value.
+node | Node | The top level element to execute the query from.
+<br/>
+
 - **gg.create**
 - **gg.scrollIntoView**
 - **gg.scrollToTop**
@@ -274,6 +379,7 @@ thisarg | Any | The `this` value within the callback.
 - **gg.mouseHandler**
 - **gg.removeKeyboardHandlers**
 - **gg.removeMouseHandlers**
+- **gg.ease**
 - **gg.cdb**
 
 
