@@ -233,7 +233,7 @@ value | Array | The value to be converted.
 <br/>
 
 ##### betterview(value, offset, length) _-> {Better}_
-> An upgraded DataView.
+> An upgraded [DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView).
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
