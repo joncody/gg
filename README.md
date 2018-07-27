@@ -4,6 +4,7 @@ gg
 A JavaScript and DOM utility library.
 
 # API
+Nodes and Elements are incorrectly referred to synonymously at the moment.
 ## gg(selector, supplantee)
 Return a collection of matched elements found in the DOM.
 ## Factory
@@ -20,8 +21,8 @@ supplantee | Object (optional) | The object to supplant into the selector.
 Name | Type | Description
 ---- | ---- | -----------
 value | Any | The "this" value for [Array.prototype.slice](https://www.w3schools.com/jsref/jsref_slice_array.asp).
-start | Number (Optional) | An integer that specifies where to start the selection (The first element has an index of 0). Use negative numbers to select from the end of an array. If omitted, it acts like "0".
-end | Number (Optional) | An integer that specifies where to end the selection. If omitted, all elements from the start position and to the end of the array will be selected. Use negative numbers to select from the end of an array.
+start | Number (optional) | An integer that specifies where to start the selection (The first element has an index of 0). Use negative numbers to select from the end of an array. If omitted, it acts like "0".
+end | Number (optional) | An integer that specifies where to end the selection. If omitted, all elements from the start position and to the end of the array will be selected. Use negative numbers to select from the end of an array.
 <br/>
 
 ##### typeOf(value) _-> {String}_
@@ -105,7 +106,7 @@ object | Any | The value to be tested.
 <br/>
 
 ##### isBuffer(buffer) _-> {Boolean}_
-> Determines if its argument is an arraybuffer.
+> Determines if its argument is an ArrayBuffer.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -121,7 +122,7 @@ object | Any | The value to be tested.
 <br/>
 
 ##### isGG(object) _-> {Boolean}_
-> Determines if its argument is a gg object.
+> Determines if its argument is a gg factory object.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -145,7 +146,7 @@ node | Any | The value to be tested
 <br/>
 
 ##### isTypedArray(array) _-> {Boolean}_
-> Determines if its argument is a typed array.
+> Determines if its argument is a TypedArray.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -186,7 +187,7 @@ digits | Number (optional) | The number of decimals.
 <br/>
 
 ##### toHyphenated(string) _-> {Boolean|String}_
-> Converts a hyphenated string to camel case. Returns false if its argument is not a string.
+> Converts a camel case string to a hyphenated one. Returns false if its argument is not a string.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -194,16 +195,16 @@ string | String | The value to be converted.
 <br/>
 
 ##### toInt(value, radix) _-> {Number}_
-> Converts a value to an integer using the specified radix (defaults to 10). Automatically removes commas and returns 0 if its result is NaN.
+> Converts a value to an integer using the specified radix. Automatically removes commas and returns 0 if its result is NaN.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
 value | String, Number | The value to be converted.
-radix | Number (optional) | The radix to use.
+radix | Number (optional, default: 10) | The radix to use.
 <br/>
 
 ##### toUint8(value) _-> {Uint8Array}_
-> Converts its argument to an uint8array. If its argument is a number, it returns an uint8array with an equal length.
+> Converts its argument to an Uint8Array. If its argument is a number, it returns an Uint8Array with an equal length.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -211,7 +212,7 @@ value | Any | The value to be converted.
 <br/>
 
 ##### toBuffer(value) _-> {ArrayBuffer}_
-> Converts its argument to an arraybuffer by passing it through [toUint8](#touint8value---uint8array) and getting its buffer property. If its argument is a number, it returns an arraybuffer with an equal length.
+> Converts its argument to an ArrayBuffer by passing it through [toUint8](#touint8value---uint8array) and getting its buffer property. If its argument is a number, it returns an ArrayBuffer with an equal length.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -245,13 +246,13 @@ value | Any | The value to copy.
 <br/>
 
 ##### each(items, func, thisarg) _-> {Any}_
-> Calls a provided function once for each element in a set of elements, in order. It returns the assigned "this" value.
+> Calls a provided function once for each item in a set of items, in order. It returns the assigned "this" value.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
 items | GG Object, Node, NodeList, Array, ArrayLike, TypedArray, Buffer, Object | The value to iterate over.
-func | Function | The function to be run for each element within the set.
-thisarg | Any (Optional) | The value to be passed to the function to be used as its "this" value. If empty, the iterated set of elements will be assigned to it.
+func | Function | The function to be run for each item within the set.
+thisarg | Any (optional) | The value to be passed to the function to be used as its "this" value. If empty, the iterated set of items will be assigned to it.
 <br/>
 
 ##### emitter(object) _-> {Object}_
@@ -278,7 +279,7 @@ Name | Type | Description
 ---- | ---- | -----------
 object | Object | The value to extend.
 add | Object | The extending value.
-overwrite | Boolean (Optional; Default: true) | The value indicating if values with matching keys will be overwritten.
+overwrite | Boolean (optional; default: true) | The value indicating if values with matching keys will be overwritten.
 <br/>
 
 ##### inherits(ctor, superCtor) _-> {Function}_
@@ -341,7 +342,7 @@ el | Node | The DOM element to get the position of.
 Name | Type | Description
 ---- | ---- | -----------
 node | Node | The DOM element to get the computed style of.
-pseudo | String (Optional; Default: null) | The pseudo-element to get.
+pseudo | String (optional; default: null) | The pseudo-element to get.
 <br/>
 
 ##### setImmediate(fn) _-> {Object}_
