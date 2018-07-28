@@ -969,6 +969,35 @@
         animation = global.requestAnimationFrame(step);
     }
 
+    function scrollToTop(node, easingExec) {
+        var el = isGG(node)
+            ? node.raw(0)
+            : node;
+        var executable = !isFunction(easingExec)
+            ? ease.easeInOutSine
+            : easingExec
+        var animation;
+        var current = 0;
+        var start = el.scrollTop;
+        var end = 0;
+        var framerate = 60 / 1000;
+        var duration = 1200;
+
+        function step() {
+            var newval;
+
+            if (current >= framerate * duration) {
+                return global.cancelAnimationFrame(animation);
+            }
+            current += 1;
+            newval = executable(current, start, end - start, framerate * duration);
+            el.scrollTop = newval;
+            animation = global.requestAnimationFrame(step);
+        }
+
+        animation = global.requestAnimationFrame(step);
+    }
+
     // GG
     function gg(mselector, supplanter) {
         var gobject = {
@@ -1928,6 +1957,7 @@
     gg.select = select;
     gg.selectAll = selectAll;
     gg.scrollIntoView = scrollIntoView;
+    gg.scrollToTop = scrollToTop;
     gg.create = create;
     gg.keyboardHandler = keyboardHandler;
     gg.mouseHandler = mouseHandler;
