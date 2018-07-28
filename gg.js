@@ -1724,6 +1724,14 @@
 
     // DEVICES
     keyboardHandler = (function () {
+        var common = {
+            "enter": 13,
+            "left": 37,
+            "up": 38,
+            "right": 39,
+            "down": 40
+        };
+
         function keyDown(options, handlers) {
             return function (e) {
                 var keycode = e.keyCode;
@@ -1742,7 +1750,9 @@
 
             options = extend({}, options);
             each(options, function (handler, key) {
-                var keycode = global.parseInt(key, 10);
+                var keycode = isString(key) && common.hasOwnProperty(key)
+                    ? common[key]
+                    : global.parseInt(key, 10);
 
                 if (isFunction(handler) && isNumber(keycode)) {
                     handlers[keycode] = handler;
@@ -1755,15 +1765,21 @@
     }());
 
     mouseHandler = (function () {
+        var common = {
+            "left": 0,
+            "middle": 1,
+            "right": 2
+        };
+
         function mouseDown(options, handlers) {
             return function (e) {
-                var keycode = e.button;
+                var buttoncode = e.button;
 
                 if (options.preventDefault) {
                     e.preventDefault();
                 }
-                if (isNumber(keycode) && handlers.hasOwnProperty(keycode)) {
-                    handlers[keycode](e);
+                if (isNumber(buttoncode) && handlers.hasOwnProperty(buttoncode)) {
+                    handlers[buttoncode](e);
                 }
             };
         }
@@ -1772,11 +1788,13 @@
             var listener;
 
             options = extend({}, options);
-            each(options, function (handler, key) {
-                var keycode = global.parseInt(key, 10);
+            each(options, function (handler, button) {
+                var buttoncode = isString(button) && common.hasOwnProperty(button)
+                    ? common[button]
+                    : global.parseInt(button, 10);
 
-                if (isFunction(handler) && isNumber(keycode)) {
-                    handlers[keycode] = handler;
+                if (isFunction(handler) && isNumber(buttoncode)) {
+                    handlers[buttoncode] = handler;
                 }
             });
             listener = mouseDown(options, handlers);

@@ -404,14 +404,75 @@ Name | Type | Description
 tag | String | The name of the node to create.
 <br/>
 
-- **gg.keyboardHandler**
-- **gg.mouseHandler**
-- **gg.removeKeyboardHandlers**
-- **gg.removeMouseHandlers**
-- **gg.ease**
-- **gg.cdb**
+##### keyboardListener(options)
+> Listens for keyboard key down events.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+options | Object | Each options key is a keyCode (Number, String) of the keyboard key to listen for when pressed down. Optionally, five strings are recognized as keys: "enter", "leftarrow", "uparrow", "downarrow", and "rightarrow". Each options value is a function to run when its corresponding key is pressed down.
+<br/>
 
+##### mouseListener(options)
+> Listens for mouse key down events.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+options | Object | Each options key is a button code (Number, String) of the mouse button to listen for when pressed down. Optionally, three strings are recognized as keys: "left", "middle", and "right". Each options value is a function to run when its corresponding button is pressed down.
+<br/>
 
+##### removeKeyboardListeners()
+> Removes all keyboard listeners.
+<br/>
+
+##### removeMouseListeners()
+> Removes all mouse listeners.
+<br/>
+
+<br/>
+#### Attributes
+##### ease
+> A collection of easing functions that return the current value.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+t | Number | The current time.
+b | Number | The initial value.
+c | Number | The change in value.
+d | Number | The total duration.
+###### Properties
+- linearTween
+- easeInQuad
+- easeOutQuad
+- easeInOutQuad
+- easeInCubic
+- easeOutCubic
+- easeInOutCubic
+- easeInQuart
+- easeOutQuart
+- easeInOutQuart
+- easeInQuint
+- easeOutQuint
+- easeInOutQuint
+- easeInSine
+- easeOutSine
+- easeInOutSine
+- easeInExpo
+- easeOutExpo
+- easeInOutExpo
+- easeInCirc
+- easeOutCirc
+- easeInOutCirc
+
+<br/>
+##### cdb
+> An emitter that is a small, SQL-like interface to indexedDB.
+###### Methods
+Name | Parameters | Description
+---- | ---------- | -----------
+open | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>String</td><td>The name of the database to open.</td></tr><tr><td>version (optional, default: 1)</td><td>Number</td><td>The version of the database.</td></tr></tbody></table> | Opens a new database.
+delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>String</td><td>The name of the database to delete.</td></tr></tbody></table> | Deletes a database.
+
+<br/>
 #### Instance
 ```javascript
 var gobject = gg(_string_[, _object_]);
