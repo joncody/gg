@@ -384,7 +384,7 @@ node | Node | The node to execute the query from.
 Name | Type | Description
 ---- | ---- | -----------
 node | Node | The node to scroll into view.
-easingExec | Function | The easing function to use when scrolling the page.
+easingExec | Function (optional, default: ease.easeInOutSine) | The easing function to use when scrolling the page.
 <br/>
 
 ##### scrollToTop(node, easingExec)
@@ -393,7 +393,7 @@ easingExec | Function | The easing function to use when scrolling the page.
 Name | Type | Description
 ---- | ---- | -----------
 node | Node | The node to scroll to the top of.
-easingExec | Function | The easing function to use when scrolling.
+easingExec | Function (optional, default: ease.easeInOutSine) | The easing function to use when scrolling.
 <br/>
 
 ##### create(tag) _-> {GObject|Null}_
