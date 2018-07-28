@@ -426,8 +426,8 @@ options | Object | Each options key is a button code (Number, String) of the mou
 
 ##### removeMouseListeners()
 > Removes all mouse listeners.
-
 <br/>
+
 #### Attributes
 ##### ease
 > A collection of easing functions that return the current value.
@@ -461,8 +461,8 @@ d | Number | The total duration.
 - easeInCirc
 - easeOutCirc
 - easeInOutCirc
-
 <br/>
+
 ##### cdb
 > An emitter that is a small, SQL-like interface to indexedDB.
 ###### Methods
@@ -470,8 +470,8 @@ Name | Parameters | Description
 ---- | ---------- | -----------
 open | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>String</td><td>The name of the database to open.</td></tr><tr><td>version (optional, default: 1)</td><td>Number</td><td>The version of the database.</td></tr></tbody></table> | Opens a new database.
 delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>String</td><td>The name of the database to delete.</td></tr></tbody></table> | Deletes a database.
-
 <br/>
+
 #### Instance
 ```javascript
 var gobject = gg(_string_[, _object_]);
