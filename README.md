@@ -3,8 +3,6 @@ gg
 
 A JavaScript and DOM utility library.
 
-**\*The code runs flawlessly from my experience; documentation in progress and has been completed within Jiten (時点); priority Watashi (私).**
-
 # API
 For the sake of time and brevity:
 - DOM Elements, Nodes = Node
