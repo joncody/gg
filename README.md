@@ -3,7 +3,7 @@ gg
 
 A JavaScript and DOM utility library.
 
-**the code works flawlessly (I think); documentation in progress and has been completed within Jiten 時点; priorities**
+**the code runs flawlessly from my experience; documentation in progress and has been completed within Jiten 時点; priorities**
 
 # API
 For the sake of time and brevity:
