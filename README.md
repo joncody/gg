@@ -430,7 +430,7 @@ options | Object | Each options key is a button code (Number, String) of the mou
 
 #### Attributes
 ##### ease
-> A collection of easing functions that return the current value.
+> A collection of easing functions that return a current value based on four parameters.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
