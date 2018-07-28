@@ -3,6 +3,8 @@ gg
 
 A JavaScript and DOM utility library.
 
+**the code works flawlessly (I think); documentation in progress and has been completed within Jiten 時点; priorities**
+
 # API
 For the sake of time and brevity:
 - DOM Elements, Nodes = Node
@@ -10,11 +12,15 @@ For the sake of time and brevity:
 - gg factory objects = gobject
 - contents of iterables = item, element
 
+# Table Of Contents
+- [gg](#ggselector-supplanter)
+- [gg.typeOf](#typeofvalue---string)
+
 ## gg(selector, supplanter)
 Return a collection of matched nodes found in the DOM.
 ## Factory
 ##### gg(selector, supplanter)
-#### Parameters:
+#### Parameters
 Name | Type | Description
 ---- | ---- | -----------
 selector | String, Node, ArrayLike, GObject | The value containing a string, selector expression, a Node, an Array-like, or a gobject.
@@ -472,10 +478,9 @@ open | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></th
 delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>String</td><td>The name of the database to delete.</td></tr></tbody></table> | Deletes a database.
 <br/>
 
-#### Instance
-```javascript
-var gobject = gg(_string_[, _object_]);
-```
+## gobject
+A gg factory object.
+
 - **gobject.add**
 - **gobject.addClass**
 - **gobject.after**
