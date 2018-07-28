@@ -142,10 +142,10 @@
         };
     }());
     var indexedDB = global.indexedDB || global.mozIndexedDB || global.webkitIndexedDB || global.msIndexedDB;
-    var keyboardHandler;
+    var keyboardListener;
     var keyboardListeners = [];
     var listeners = {};
-    var mouseHandler;
+    var mouseListener;
     var mouseListeners = [];
     var taglist = [
         "a",
@@ -1723,7 +1723,7 @@
     }
 
     // DEVICES
-    keyboardHandler = (function () {
+    keyboardListener = (function () {
         var common = {
             "enter": 13,
             "left": 37,
@@ -1764,7 +1764,7 @@
         };
     }());
 
-    mouseHandler = (function () {
+    mouseListener = (function () {
         var common = {
             "left": 0,
             "middle": 1,
@@ -1803,13 +1803,13 @@
         };
     }());
 
-    function removeKeyboardHandlers() {
+    function removeKeyboardListeners() {
         keyboardListeners.forEach(function (listener) {
             gg(document.body).off("keydown", listener);
         });
     }
 
-    function removeMouseHandlers() {
+    function removeMouseListeners() {
         mouseListeners.forEach(function (listener) {
             gg(document.body).off("mousedown", listener);
         });
@@ -1977,10 +1977,10 @@
     gg.scrollIntoView = scrollIntoView;
     gg.scrollToTop = scrollToTop;
     gg.create = create;
-    gg.keyboardHandler = keyboardHandler;
-    gg.mouseHandler = mouseHandler;
-    gg.removeKeyboardHandlers = removeKeyboardHandlers;
-    gg.removeMouseHandlers = removeMouseHandlers;
+    gg.keyboardListener = keyboardListener;
+    gg.mouseListener = mouseListener;
+    gg.removeKeyboardListeners = removeKeyboardListeners;
+    gg.removeMouseListeners = removeMouseListeners;
     gg.ease = ease;
     gg.cdb = Object.freeze(cdb);
 
