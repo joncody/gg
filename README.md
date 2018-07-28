@@ -426,7 +426,6 @@ options | Object | Each options key is a button code (Number, String) of the mou
 
 ##### removeMouseListeners()
 > Removes all mouse listeners.
-<br/>
 
 <br/>
 #### Attributes
