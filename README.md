@@ -7,7 +7,7 @@ A JavaScript and DOM utility library.
 For the sake of time and brevity:
 - DOM Elements, Nodes = Node
 - DOM NodeLists, HTMLCollections, Array-like objects =  ArrayLike, Array-like
-- gg factory objects = gobject
+- gg factory objects = GObject
 - contents of iterables = item, element
 
 # Table Of Contents
@@ -310,7 +310,7 @@ value | Any | The value to copy.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-items | GObject, Array, ArrayLike, TypedArray, Buffer, Object | The value to iterate over.
+items | GObject, Array, ArrayLike, TypedArray, Buffer, Object, Node | The value to iterate over.
 executable | Function | The function to be run for each element within the set.
 thisarg | Any (optional) | The value to be passed to the function to be used as its "this" value. If empty, the iterated set of elements will be assigned to it.
 <br/>
@@ -530,10 +530,38 @@ delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></
 ## gobject
 A gg factory object.
 
-- **gobject.add**
-- **gobject.addClass**
-- **gobject.after**
-- **gobject.append**
+##### gobject.add(value) _-> {GObject}_
+> Adds nodes to the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | GObject, Array, ArrayLike, Node | The node(s) to add.
+<br/>
+
+##### gobject.addClass(value) _-> {GObject}_
+> Adds a class to all nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | String | The class to add.
+<br/>
+
+##### gobject.after(value) _-> {GObject}_
+> Places node(s) after each node contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | GObject, Array, ArrayLike, Node | The node(s) to place after.
+<br/>
+
+##### gobject.append(value) _-> {GObject}_
+> Appends node(s) to each node contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | GObject, Array, ArrayLike, Node | The node(s) to append.
+<br/>
+
 - **gobject.appendTo**
 - **gobject.attr**
 - **gobject.before**
