@@ -376,7 +376,7 @@
                 : value.raw();
         } else if (isNumber(value) || isBuffer(value)) {
             list = arrSlice(new Uint8Array(value));
-        } else if (isString(value) || isArray(value) || isArrayLike(value) || isTypedArray(value) || isBuffer(value)) {
+        } else if (isString(value) || isArray(value) || isArrayLike(value) || isTypedArray(value)) {
             list = arrSlice(value);
         } else {
             list = [value];
@@ -586,23 +586,23 @@
             };
         }
 
-        function setNumber(type, value) {
+        function setNumber(type, bytes) {
             return function (offset, value) {
                 offset = offset === undefined
                     ? store.offset
                     : offset;
-                checkBounds(offset, value);
-                store.offset = offset + value;
+                checkBounds(offset, bytes);
+                store.offset = offset + bytes;
                 store.view["set" + type](offset, value);
                 return better;
             };
         }
 
-        function writeNumber(type, value) {
+        function writeNumber(type, bytes) {
             return function (value) {
-                checkBounds(store.offset, value);
+                checkBounds(store.offset, bytes);
                 store.view["set" + type](store.offset, value);
-                store.offset = store.offset + value;
+                store.offset = store.offset + bytes;
                 return better;
             };
         }
