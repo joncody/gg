@@ -64,6 +64,45 @@ For the sake of time and brevity:
 - [gg.removeMouseListeners](#removemouselisteners)
 - [gg.ease](#ease)
 - [gg.cdb](#cdb)
+- [gobject.add](#gobjectaddvalue---gobject)
+- [gobject.addClass](#gobjectaddclassvalue---gobject)
+- [gobject.after](#gobjectaftervalue---gobject)
+- [gobject.append](#gobjectappendvalue---gobject)
+- [gobject.appendTo](#gobjectappendtovalue---gobject)
+- [gobject.attr](#gobjectattrname-value---gobjectstringarrayobject)
+- [gobject.before](#gobjectbeforevalue---gobject)
+- [gobject.children](#gobjectchildren---gobject)
+- [gobject.classes](#gobjectclassesvalue---gobjectstringarray)
+- [gobject.clone](#gobjectclonedeep-deeper---gobject)
+- [gobject.create](#gobjectcreatetag---gobject)
+- [gobject.data](#gobjectdataname-value---gobjectstringarrayobject)
+- [gobject.each](#gobjecteachexecutable---gobject)
+- [gobject.eachRaw](#gobjecteachrawexecutable---gobject)
+- [gobject.get](#gobjectgetindex---gobject)
+- [gobject.hasClass](#gobjecthasclassvalue---booleanarray)
+- [gobject.html](#gobjecthtmlvalue---gobjectstringarray)
+- [gobject.insert](#gobjectinsertpos-value---gobject)
+- [gobject.length](#gobjectlength---number)
+- [gobject.off](#gobjectofftype-executable-bub---gobject)
+- [gobject.on](#gobjectontype-executable-bub-arg---gobject)
+- [gobject.once](#gobjectoncetype-executable-bub-arg---gobject)
+- [gobject.parents](#gobjectparents---gobject)
+- [gobject.prepend](#gobjectprependvalue---gobject)
+- [gobject.prependTo](#gobjectprependtovalue---gobject)
+- [gobject.prop/css/style](#gobjectpropcssstylename-value---gobjectstringarrayobject)
+- [gobject.raw](#gobjectrawindex---nodearray)
+- [gobject.remove](#gobjectremovevalue---gobject)
+- [gobject.remAttr](#gobjectremattrname---gobject)
+- [gobject.remClass](#gobjectremclassvalue---gobject)
+- [gobject.remData](#gobjectremdataname---gobject)
+- [gobject.remHtml](#gobjectremhtml---gobject)
+- [gobject.remProp/remCss/remStyle](#gobjectrempropremcssremstylename---gobject)
+- [gobject.remText](#gobjectremtext---gobject)
+- [gobject.select](#gobjectselectselector-supplanter---gobject)
+- [gobject.selectAll](#gobjectselectallselector-supplanter---gobject)
+- [gobject.subtract](#gobjectsubtractindex---gobject)
+- [gobject.text](#gobjecttextvalue---gobjectstringarray)
+- [gobject.togClass](#gobjecttogclassvalue---gobject)
 
 ## gg(selector, supplanter)
 Return a collection of matched nodes found in the DOM.
@@ -787,7 +826,7 @@ name | String, Object, Array | The data attribute name.
 
 <br/>
 
-##### gobject.remProp(name) _-> {GObject}_
+##### gobject.remProp/remCss/remStyle(name) _-> {GObject}_
 > Removes properties from the nodes contained within the gobject.
 ###### Parameters
 Name | Type | Description
