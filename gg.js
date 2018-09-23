@@ -1089,11 +1089,11 @@
             return gobject;
         };
 
-        gobject.after = function (item) {
+        gobject.after = function (value) {
             var willcopy = store.length > 1;
 
             each(store, function (node) {
-                each(item, function (sibling) {
+                each(value, function (sibling) {
                     if (!isNode(sibling)) {
                         return;
                     }
@@ -1105,11 +1105,11 @@
             return gobject;
         };
 
-        gobject.append = function (item) {
+        gobject.append = function (value) {
             var willcopy = store.length > 1;
 
             each(store, function (node) {
-                each(item, function (child) {
+                each(value, function (child) {
                     if (!isNode(child)) {
                         return;
                     }
@@ -1121,11 +1121,11 @@
             return gobject;
         };
 
-        gobject.appendTo = function (item) {
-            var willcopy = toArray(item).length > 1;
+        gobject.appendTo = function (value) {
+            var willcopy = toArray(value).length > 1;
 
             each(store, function (node) {
-                each(item, function (parent) {
+                each(value, function (parent) {
                     if (!isNode(parent)) {
                         return;
                     }
@@ -1170,11 +1170,11 @@
                 : values;
         };
 
-        gobject.before = function (item) {
+        gobject.before = function (value) {
             var willcopy = store.length > 1;
 
             each(store, function (node) {
-                each(item, function (sibling) {
+                each(value, function (sibling) {
                     if (!isNode(sibling)) {
                         return;
                     }
@@ -1343,15 +1343,15 @@
         gobject.insert = (function () {
             var positions = ["beforebegin", "afterbegin", "beforeend", "afterend"];
 
-            return function (pos, item) {
-                if (!isString(item)) {
+            return function (pos, value) {
+                if (!isString(value)) {
                     return gobject;
                 }
                 if (!inArray(positions, pos)) {
                     pos = "beforeend";
                 }
                 each(store, function (node) {
-                    node.insertAdjacentHTML(pos, item);
+                    node.insertAdjacentHTML(pos, value);
                 });
                 return gobject;
             };
@@ -1452,11 +1452,11 @@
             return gg(nodes);
         };
 
-        gobject.prepend = function (item) {
+        gobject.prepend = function (value) {
             var willcopy = store.length > 1;
 
             each(store, function (node) {
-                each(item, function (child) {
+                each(value, function (child) {
                     if (!isNode(child)) {
                         return;
                     }
@@ -1468,11 +1468,11 @@
             return gobject;
         };
 
-        gobject.prependTo = function (item) {
-            var willcopy = toArray(item).length > 1;
+        gobject.prependTo = function (value) {
+            var willcopy = toArray(value).length > 1;
 
             each(store, function (node) {
-                each(item, function (parent) {
+                each(value, function (parent) {
                     if (!isNode(parent)) {
                         return;
                     }
@@ -1528,8 +1528,8 @@
                 : store;
         };
 
-        gobject.remove = function (item) {
-            if (isUndefined(item)) {
+        gobject.remove = function (value) {
+            if (isUndefined(value)) {
                 each(store, function (node) {
                     if (node.parentNode) {
                         node.parentNode.removeChild(node);
@@ -1537,7 +1537,7 @@
                 });
             } else {
                 each(store, function (node) {
-                    each(item, function (child) {
+                    each(value, function (child) {
                         if (!isNode(child) || !node.contains(child)) {
                             return;
                         }

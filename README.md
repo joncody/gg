@@ -535,7 +535,7 @@ A gg factory object.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-value | GObject, Array, ArrayLike, Node | The node(s) to add.
+value | GObject, Array, ArrayLike, Node | The nodes to add.
 <br/>
 
 ##### gobject.addClass(value) _-> {GObject}_
@@ -547,53 +547,297 @@ value | String | The class to add.
 <br/>
 
 ##### gobject.after(value) _-> {GObject}_
-> Places node(s) after each node contained within the gobject.
+> Places nodes after each node contained within the gobject.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-value | GObject, Array, ArrayLike, Node | The node(s) to place after.
+value | GObject, Array, ArrayLike, Node | The nodes to place after.
 <br/>
 
 ##### gobject.append(value) _-> {GObject}_
-> Appends node(s) to each node contained within the gobject.
+> Appends nodes to each node contained within the gobject.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-value | GObject, Array, ArrayLike, Node | The node(s) to append.
+value | GObject, Array, ArrayLike, Node | The nodes to append.
 <br/>
 
-- **gobject.appendTo**
-- **gobject.attr**
-- **gobject.before**
-- **gobject.children**
-- **gobject.classes**
-- **gobject.clone**
-- **gobject.create**
-- **gobject.data**
-- **gobject.each**
-- **gobject.eachRaw**
-- **gobject.get**
-- **gobject.hasClass**
-- **gobject.html**
-- **gobject.insert**
-- **gobject.length**
-- **gobject.off**
-- **gobject.on**
-- **gobject.once**
-- **gobject.parents**
-- **gobject.prepend**
-- **gobject.prependTo**
-- **gobject.prop/css/style**
-- **gobject.raw**
-- **gobject.remove**
-- **gobject.remAttr**
-- **gobject.remClass**
-- **gobject.remData**
-- **gobject.remHtml**
-- **gobject.remProp/remCss/remStyle**
-- **gobject.remText**
-- **gobject.select**
-- **gobject.selectAll**
-- **gobject.subtract**
-- **gobject.text**
-- **gobject.togClass**
+##### gobject.appendTo(value) _-> {GObject}_
+> Appends the nodes contained within the gobject to its argument.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | GObject, Array, ArrayLike, Node | The nodes to append to.
+<br/>
+
+##### gobject.attr(name, value) _-> {GObject|String|Array|Object}_
+> Sets or gets an attribute on the nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+name | String, Object, Array | The attribute name.
+value | String (optional) | The attribute value.
+<br/>
+
+##### gobject.before(value) _-> {GObject}_
+> Places nodes before each node contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | GObject, Array, ArrayLike, Node | The nodes to place before.
+<br/>
+
+##### gobject.children() _-> {GObject}_
+> Gets the children of the nodes contained within the gobject.
+
+<br/>
+
+##### gobject.classes(value) _-> {GObject|String|Array}_
+> Sets or gets the className attribute on the nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | String (optional) | The className value.
+<br/>
+
+##### gobject.clone(deep, deeper) _-> {GObject}_
+> Clones the nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+deep | Boolean (optional, default: false) | Specifies whether all descendants of each node should be cloned.
+deeper | Boolean (optional, default: false) | Specifies whether all event handlers of each node should be cloned.
+<br/>
+
+##### gobject.create(tag) _-> {GObject}_
+> Creates a new node and appends it to the original gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+tag | String | The type of node to be created.
+<br/>
+
+##### gobject.data(name, value) _-> {GObject|String|Array|Object}_
+> Sets or gets a data attribute on the nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+name | String, Object, Array | The attribute name.
+value | String (optional) | The attribute value.
+<br/>
+
+##### gobject.each(executable) _-> {GObject}_
+> Iterates over the nodes contained within the gobject. Every node is wrapped in its own gobject instance before being passed to the executable.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+executable | Function | The function to pass each node to.
+<br/>
+
+##### gobject.eachRaw(executable) _-> {GObject}_
+> Iterates over the nodes contained within the gobject. Every node is passed to the executable in its raw form.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+executable | Function | The function to pass each node to.
+<br/>
+
+##### gobject.get(index) _-> {GObject}_
+> Gets the specified node from within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+index | Number (optional) | The node position within the gobject.
+<br/>
+
+##### gobject.hasClass(value) _-> {Boolean|Array}_
+> Determines whether the nodes contained within the gobject have a specified class.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | String | The class to check for.
+<br/>
+
+##### gobject.html(value) _-> {GObject|String|Array}_
+> Sets or gets the innerHTML attribute on the nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | String (optional) | The innerHTML value.
+<br/>
+
+##### gobject.insert(pos, value) _-> {GObject}_
+> Inserts raw HTML at the specified position relative to each node contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+pos | String | The position to place the raw HTML.
+value | String | The raw HTML.
+<br/>
+
+##### gobject.length() _-> {Number}_
+> Gets the number of nodes contained within the gobject.
+
+<br/>
+
+##### gobject.off(type, executable, bub) _-> {GObject}_
+> Removes event handlers from the nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+type | String | The name of the event.
+executable | Function (optional) | The specific handler to remove.
+bub | Boolean (optional, default: false) | Determines event bubbling.
+<br/>
+
+##### gobject.on(type, executable, bub, arg) _-> {GObject}_
+> Adds event handlers to the nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+type | String | The name of the event.
+executable | Function | The handler to add.
+bub | Boolean (optional, default: false) | Determines event bubbling.
+arg | Any (optional) | The argument to pass to the handler upon execution.
+<br/>
+
+##### gobject.once(type, executable, bub, arg) _-> {GObject}_
+> Adds event handlers to the nodes contained within the gobject. The handler is removed after execution.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+type | String | The name of the event.
+executable | Function | The handler to add.
+bub | Boolean (optional, default: false) | Determines event bubbling.
+arg | Any (optional) | The argument to pass to the handler upon execution.
+<br/>
+
+##### gobject.parents() _-> {GObject}_
+> Gets the parents of the nodes contained within the gobject.
+
+<br/>
+
+##### gobject.prepend(value) _-> {GObject}_
+> Prepends nodes to each node contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | GObject, Array, ArrayLike, Node | The nodes to prepend.
+<br/>
+
+##### gobject.prependTo(value) _-> {GObject}_
+> Prepends the nodes contained within the gobject to its argument.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | GObject, Array, ArrayLike, Node | The nodes to prepend to.
+<br/>
+
+##### gobject.prop/css/style(name, value) _-> {GObject|String|Array|Object}_
+> Sets or gets properties on the nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+name | String, Object, Array | The property name.
+value | String (optional) | The property value.
+<br/>
+
+##### gobject.raw(index) _-> {Node|Array}_
+> Gets the raw value of specified node from within the gobject
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+index | Number (optional) | The node position within the gobject.
+<br/>
+
+##### gobject.remove(value) _-> {GObject}_
+> Removes the nodes contained within the gobject or just their specified children.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | GObject, Array, ArrayLike, Node (optional) | The children to remove.
+<br/>
+
+##### gobject.remAttr(name) _-> {GObject}_
+> Removes attributes from the nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+name | String, Object, Array | The attribute name.
+<br/>
+
+##### gobject.remClass(value) _-> {GObject}_
+> Removes classes from the nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | String | The class to remove.
+<br/>
+
+##### gobject.remData(name) _-> {GObject}_
+> Removes data attributes from the nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+name | String, Object, Array | The data attribute name.
+<br/>
+
+##### gobject.remHtml() _-> {GObject}_
+> Removes the innerHTML from the nodes contained within the gobject.
+
+<br/>
+
+##### gobject.remProp(name) _-> {GObject}_
+> Removes properties from the nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+name | String, Object, Array | The property name.
+<br/>
+
+##### gobject.remText() _-> {GObject}_
+> Removes the textContent from the nodes contained within the gobject.
+
+<br/>
+
+##### gobject.select(selector, supplanter) _-> {GObject}_
+> Runs querySelector on the nodes contained within a gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+selector | String | The value to scan.
+supplanter | Object | The supplanting value.
+<br/>
+
+##### gobject.selectAll(selector, supplanter) _-> {GObject}_
+> Runs querySelectorAll on the nodes contained within a gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+selector | String | The value to scan.
+supplanter | Object | The supplanting value.
+<br/>
+
+##### gobject.subtract(index) _-> {GObject}_
+> Removes nodes from the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+index | Number | The node position within the gobject.
+<br/>
+
+##### gobject.text(value) _-> {GObject|String|Array}_
+> Sets or gets the textContent attribute on the nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | String (optional) | The textContent value.
+<br/>
+
+##### gobject.togClass(value) _-> {GObject}_
+> Toggles a class on the nodes contained within the gobject.
+###### Parameters
+Name | Type | Description
+---- | ---- | -----------
+value | String | The class to toggle.
+<br/>
