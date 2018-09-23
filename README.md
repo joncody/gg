@@ -109,7 +109,7 @@ For the sake of time and brevity:
 Return a collection of matched nodes found in the DOM.
 ## Factory
 ##### gg(selector, supplanter) _-> {GObject}_
-#### Parameters
+###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
 selector | String, Node, ArrayLike, GObject | The value containing a string, selector expression, a Node, an Array-like, or a gobject.
