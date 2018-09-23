@@ -451,12 +451,12 @@
     }
 
     function toStringFromCodes(value) {
-        var value = "";
+        var string = "";
 
         toArray(value).forEach(function (char) {
-            value += String.fromCharCode(char);
+            string += String.fromCharCode(char);
         });
-        return value;
+        return string;
     }
 
     // MISCELLANEOUS
