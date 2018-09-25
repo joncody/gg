@@ -112,6 +112,8 @@ Name | Type | Description
 ---- | ---- | -----------
 selector | String, Node, ArrayLike, GObject | The value containing a string, selector expression, a Node, an Array-like, or a gobject.
 supplanter | Object (optional) | The value to supplant into the selector.
+<br/>
+
 #### Methods
 ##### typeOf(value) _-> {String}_
 > Determines the type of its argument.
@@ -515,10 +517,12 @@ options | Object | Each options key is a button code (Number, String) of the mou
 
 ##### removeKeyboardListeners()
 > Removes all keyboard listeners.
+
 <br/>
 
 ##### removeMouseListeners()
 > Removes all mouse listeners.
+
 <br/>
 
 #### Attributes
@@ -554,6 +558,7 @@ d | Number | The total duration.
 - easeInCirc
 - easeOutCirc
 - easeInOutCirc
+
 <br/>
 
 ##### cdb
