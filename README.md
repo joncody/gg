@@ -112,7 +112,6 @@ Name | Type | Description
 ---- | ---- | -----------
 selector | String, Node, ArrayLike, GObject | The value containing a string, selector expression, a Node, an Array-like, or a gobject.
 supplanter | Object (optional) | The value to supplant into the selector.
-<br/>
 
 #### Methods
 ##### typeOf(value) _-> {String}_
