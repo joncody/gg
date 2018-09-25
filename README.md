@@ -554,7 +554,6 @@ d | Number | The total duration.
 - easeInCirc
 - easeOutCirc
 - easeInOutCirc
-<br/>
 
 ##### cdb
 > An emitter that is a small, SQL-like interface to indexedDB.
