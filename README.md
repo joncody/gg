@@ -10,7 +10,7 @@ For the sake of time and brevity:
 - gg factory objects = GObject
 - contents of iterables = item, element
 
-# Table Of Contents
+## Table Of Contents
 - [gg](#ggselector-supplanter---gobject)
   - [typeOf](#typeofvalue---string)
   - [arrSlice](#arrslicevalue-start-end---array)
@@ -105,7 +105,6 @@ For the sake of time and brevity:
   - [text](#textvalue---gobjectstringarray)
   - [togClass](#togclassvalue---gobject)
 
-## Browser API
 ### gg(selector, supplanter) _-> {GObject}_
 > Return a collection of matched nodes found in the DOM.
 ###### Parameters
