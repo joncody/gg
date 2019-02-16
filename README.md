@@ -503,7 +503,7 @@ tag | String | The name of the node to create.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-options | Object | Each options key is a keyCode (Number, String) of the keyboard key to listen for when pressed down with one exception - "preventDefault": (Boolean). Optionally, five strings are recognized as keys: "enter", "leftarrow", "uparrow", "downarrow", and "rightarrow". Each options value is a function to run when its corresponding key is pressed down.
+options | Object | Each options key is a keyCode (Number, String) of the keyboard key to listen for when pressed down with one exception - "preventDefault": (Boolean). Optionally, five strings are recognized as keys: "enter", "leftarrow", "uparrow", "downarrow", and "rightarrow". Each value is a function to run when its corresponding key is pressed down.
 <br/>
 
 ##### mouseListener(options)
@@ -511,7 +511,7 @@ options | Object | Each options key is a keyCode (Number, String) of the keyboar
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-options | Object | Each options key is a button code (Number, String) of the mouse button to listen for when pressed down with one exception - "preventDefault": (Boolean). Optionally, three strings are recognized as keys: "left", "middle", and "right". Each options value is a function to run when its corresponding button is pressed down.
+options | Object | Each options key is a button code (Number, String) of the mouse button to listen for when pressed down with one exception - "preventDefault": (Boolean). Optionally, three strings are recognized as keys: "left", "middle", and "right". Each value is a function to run when its corresponding button is pressed down.
 <br/>
 
 ##### removeKeyboardListeners()
@@ -534,7 +534,7 @@ t | Number | The current time.
 b | Number | The initial value.
 c | Number | The change in value.
 d | Number | The total duration.
-###### Properties
+###### Methods
 - linearTween
 - easeInQuad
 - easeOutQuad
