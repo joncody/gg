@@ -1861,8 +1861,8 @@
         return Object.freeze({
             database: function () {
                 return db;
-            },
-            create: function (table, schema, options) {
+            },         
+            create: function (table, options, schema) {
                 var tableobj = db.createObjectStore(table, options);
 
                 if (!schema) {
