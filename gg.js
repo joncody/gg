@@ -1829,6 +1829,9 @@
             select: function (table, key) {
                 return db.transaction([table], "readonly").objectStore(table).get(key);
             },
+            selectIndex: function (table, index, key) {
+                return db.transaction([table], "readonly").objectStore(table).index(index).get(key);
+            },
             selectAll: function (table, query, count) {
                 return db.transaction([table], "readonly").objectStore(table).getAll(query, count);
             },
