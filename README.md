@@ -573,37 +573,37 @@ Name | Type | Description
 ---- | ---- | -----------
 open | Event, CDBRequest | Fired when a new database is successfully opened.
 delete-db | Event | Fired when a database is successfully deleted.
-delete-table | String | Fired when an object store is successfully deleted.
+delete-table | String | Fired when an [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore) is successfully deleted.
 error | Event | Fired when an error occurs.
 <br/>
 
 ##### CDBDatabase
-> A wrapper around an IDBDatabase object.
+> A wrapper around an [IDBDatabase](https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase) object.
 ###### Methods
 Name | Parameters | Description
 ---- | ---- | -----------
-database | | Returns the unwrapped IDBDatabase object.
-create | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the object store.</td></tr><tr><td>options</td><td>Object (optional)</td><td>Set the keyPath and/or autoIncrement features.</td></tr><tr><td>schema</td><td>Object (optional)</td><td>The index name, keyPath, and unique, multiEntry, locale features for each.</td></tr></tbody></table> | Creates a new object store.
-delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the object store.</td></tr></tbody></table> | Deletes an object store.
+database | | Returns the unwrapped [IDBDatabase](https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase) object.
+create | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).</td></tr><tr><td>options</td><td>Object (optional)</td><td>Set the keyPath and/or autoIncrement features.</td></tr><tr><td>schema</td><td>Object (optional)</td><td>The index name, keyPath, and unique, multiEntry, locale features for each.</td></tr></tbody></table> | Creates a new [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).
+delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).</td></tr></tbody></table> | Deletes an [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).
 <br/>
 
 
 ##### CDBRequest
-> A wrapper around an IDBRequest object.
+> A wrapper around an [IDBRequest](https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest) object.
 ###### Methods
 Name | Parameters | Description
 ---- | ---- | -----------
-request | | Returns the unwrapped IDBDatabase object.
-database | | Returns the unwrapped IDBDatabase object.
-select | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the object store.</td></tr><tr><td>key</td><td>String</td><td>The key name.</td></tr></tbody></table> | Gets a value with a given key name at a specified object store.
-selectAll | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the object store.</td></tr><tr><td>query</td><td>key or IDBKeyRange (optional, default: all)</td><td>The key or key range to be queried.</td></tr><tr><td>count</td><td>Number (optional)</td><td>The number of values to return if more than one is found (optional, default: > 0 < 2^32-1)</td></tr></tbody></table> | Gets appropriate number of values within the given key range or with a given key at a specified object store.
-selectAllKeys | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table> | 
-selectIndex | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table> | 
-delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table> | 
-insert | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table> | 
-update | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table> | 
-clear | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table> | 
-count | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table> | 
+request | | Returns the unwrapped [IDBDatabase](https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase) object.
+database | | Returns the unwrapped [IDBDatabase](https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase) object.
+select | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).</td></tr><tr><td>key</td><td>String</td><td>The key name.</td></tr></tbody></table> | Gets a value with a given key name at a specified [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).
+selectAll | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).</td></tr><tr><td>query</td><td>key or [IDBKeyRange](https://developer.mozilla.org/en-US/docs/Web/API/IDBKeyRange) (optional, default: all)</td><td>The key or key range to be queried.</td></tr><tr><td>count</td><td>Number (optional)</td><td>The number of values to return if more than one is found (optional, default: > 0 < 2^32-1)</td></tr></tbody></table> | Gets appropriate number of values within the given key range or with a given key at a specified [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).
+selectAllKeys | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).</td></tr><tr><td>query</td><td>Value resolving to an [IDBKeyRange](https://developer.mozilla.org/en-US/docs/Web/API/IDBKeyRange) (optional, default: all)</td><td>The key or key range to be queried.</td></tr><tr><td>count</td><td>Number (optional)</td><td>The number of values to return if more than one is found (optional, default: > 0 < 2^32-1)</td></tr></tbody></table>  | Gets all keys for all objects in the [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).
+selectIndex | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).</td></tr><tr><td>index</td><td>String</td><td>The index name.</td><td>key</td><td>String</td><td>The key name.</td></tr></tbody></table> | Gets a value with a given index and key name at a specified [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).
+delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td>The name of the [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).</td></tr><tr><td>key</td><td>key name or [IDBKeyRange](https://developer.mozilla.org/en-US/docs/Web/API/IDBKeyRange)</td><td>The key or key range to match.</td></tr></tbody></table> | Deletes all matched records from a given [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore) and key or keyRange.
+insert | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).</td></tr><tr><td>value</td><td>Any</td><td>The new value.</td></tr><tr><td>key</td><td>String</td><td>The key name.</td></tr></tbody></table> | Inserts a value with a given key name in a given [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).
+update | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).</td></tr><tr><td>value</td><td>Any</td><td>The new value.</td></tr><tr><td>key</td><td>String</td><td>The key name.</td></tr></tbody></table> | Updates a value with a given key name in a given [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).
+clear | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore) name.</td></tr></tbody></table> | Removes all records and records in indexes from a given [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).
+count | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).</td></tr><tr><td>query</td><td>key or [IDBKeyRange](https://developer.mozilla.org/en-US/docs/Web/API/IDBKeyRange) (optional, default: all)</td><td>The key or key range to be queried.</td></tr> | Gets the total number of matched records from a given [object store](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore).
 <br/>
 
 
