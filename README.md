@@ -593,7 +593,17 @@ delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></
 ###### Methods
 Name | Parameters | Description
 ---- | ---- | -----------
-
+request | | Returns the unwrapped IDBDatabase object.
+database | | Returns the unwrapped IDBDatabase object.
+select | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the object store.</td></tr><tr><td>key</td><td>String</td><td>The key name.</td></tr></tbody></table> | Gets a value with a given key name at a specified object store.
+selectAll | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the object store.</td></tr><tr><td>query</td><td>key or IDBKeyRange (optional, default: all)</td><td>The key or key range to be queried.</td></tr><tr><td>count</td><td>Number (optional)</td><td>The number of values to return if more than one is found (optional, default: > 0 < 2^32-1)</td></tr></tbody></table> | Gets appropriate number of values within the given key range or with a given key at a specified object store.
+selectAllKeys | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table> | 
+selectIndex | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table> | 
+delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table> | 
+insert | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table> | 
+update | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table> | 
+clear | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table> | 
+count | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table> | 
 <br/>
 
 
