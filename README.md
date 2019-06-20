@@ -580,7 +580,7 @@ error | Event | Fired when an error occurs.
 ##### CDBDatabase
 > A wrapper around an IDBDatabase object.
 ###### Methods
-Name | Paramaters | Description
+Name | Parameters | Description
 ---- | ---- | -----------
 database | | Returns the unwrapped IDBDatabase object.
 create | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the object store.</td></tr><tr><td>options</td><td>Object (optional)</td><td>Set the keyPath and/or autoIncrement features.</td></tr><tr><td>schema</td><td>Object (optional)</td><td>The index name, keyPath, and unique, multiEntry, locale features for each.</td></tr></tbody></table> | Creates a new object store.
