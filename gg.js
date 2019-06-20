@@ -1839,14 +1839,14 @@
                 return db.transaction([table], "readwrite").objectStore(table).delete(key);
             },
             insert: function (table, value, key) {
-                return db.transaction([table], "readwrite").objectStore(table).add(value, key === undefined
-                    ? null
-                    : key);
+                return key === undefined
+                    ? db.transaction([table], "readwrite").objectStore(table).add(value)
+                    : db.transaction([table], "readwrite").objectStore(table).add(value, key);
             },
             update: function (table, value, key) {
-                return db.transaction([table], "readwrite").objectStore(table).put(value, key === undefined
-                    ? null
-                    : key);
+                return key === undefined
+                    ? db.transaction([table], "readwrite").objectStore(table).put(value)
+                    : db.transaction([table], "readwrite").objectStore(table).put(value, key);
             },
             clear: function (table) {
                 return db.transaction([table], "readwrite").objectStore(table).clear();
@@ -1861,7 +1861,7 @@
         return Object.freeze({
             database: function () {
                 return db;
-            },         
+            },
             create: function (table, options, schema) {
                 var tableobj = db.createObjectStore(table, options);
 
