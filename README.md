@@ -591,7 +591,7 @@ delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></
 ##### CDBRequest
 > A wrapper around an IDBRequest object.
 ###### Methods
-Name | Type | Description
+Name | Parameters | Description
 ---- | ---- | -----------
 
 <br/>
