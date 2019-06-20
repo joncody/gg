@@ -561,12 +561,23 @@ d | Number | The total duration.
 <br/>
 
 ##### cdb
+#### cdb
 > An emitter that is a small, SQL-like interface to indexedDB.
-###### Methods
+##### Methods
 Name | Parameters | Description
 ---- | ---------- | -----------
 open | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>String</td><td>The name of the database to open.</td></tr><tr><td>version (optional, default: 1)</td><td>Number</td><td>The version of the database.</td></tr></tbody></table> | Opens a new database.
 delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>String</td><td>The name of the database to delete.</td></tr></tbody></table> | Deletes a database.
+<br/>
+
+##### Events
+Name | Type | Description
+---- | ---- | -----------
+open | Event, cdbRequest | Fired when a new database is successfully opened.
+delete-db | Event | Fired when a database is successfully deleted.
+delete-table | String | Fired when an object store is successfully deleted.
+error | Event | Fired when an error occurs.
+
 <br/>
 
 ### gobject

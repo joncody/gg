@@ -1829,14 +1829,14 @@
             select: function (table, key) {
                 return db.transaction([table], "readonly").objectStore(table).get(key);
             },
-            selectIndex: function (table, index, key) {
-                return db.transaction([table], "readonly").objectStore(table).index(index).get(key);
-            },
             selectAll: function (table, query, count) {
                 return db.transaction([table], "readonly").objectStore(table).getAll(query, count);
             },
             selectAllKeys: function (table, query, count) {
                 return db.transaction([table], "readonly").objectStore(table).getAllKeys(query, count);
+            },
+            selectIndex: function (table, index, key) {
+                return db.transaction([table], "readonly").objectStore(table).index(index).get(key);
             },
             delete: function (table, key) {
                 return db.transaction([table], "readwrite").objectStore(table).delete(key);
@@ -1898,7 +1898,6 @@
 
             db.onerror = dbError;
             executable(e, cdbDatabase(db));
-            cdb.emit("upgrade", e, db);
         };
     }
 
