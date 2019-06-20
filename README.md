@@ -578,7 +578,7 @@ error | Event | Fired when an error occurs.
 <br/>
 
 ##### CDBDatabase
-A wrapper around an IDBDatabase object.
+> A wrapper around an IDBDatabase object.
 ###### Methods
 Name | Paramaters | Description
 ---- | ---- | -----------
@@ -589,7 +589,7 @@ delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></
 
 
 ##### CDBRequest
-A wrapper around an IDBRequest object.
+> A wrapper around an IDBRequest object.
 ###### Methods
 Name | Type | Description
 ---- | ---- | -----------
