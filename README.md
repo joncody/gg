@@ -565,19 +565,38 @@ d | Number | The total duration.
 ###### Methods
 Name | Parameters | Description
 ---- | ---------- | -----------
-open | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>String</td><td>The name of the database to open.</td></tr><tr><td>version (optional, default: 1)</td><td>Number</td><td>The version of the database.</td></tr></tbody></table> | Opens a new database.
+open | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>String</td><td>The name of the database to open.</td></tr><tr><td>version (optional, default: 1)</td><td>Number</td><td>The version of the database.</td></tr><tr><td>executable</td><td>Function(Event, CDBDatabase)</td><td>Is assigned to onupgradeneeded.</td></tr></tbody></table> | Opens a new database.
 delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>String</td><td>The name of the database to delete.</td></tr></tbody></table> | Deletes a database.
 <br/>
 
 ###### Events
 Name | Type | Description
 ---- | ---- | -----------
-open | Event, cdbRequest | Fired when a new database is successfully opened.
+open | Event, CDBRequest | Fired when a new database is successfully opened.
 delete-db | Event | Fired when a database is successfully deleted.
 delete-table | String | Fired when an object store is successfully deleted.
 error | Event | Fired when an error occurs.
+<br/>
+
+##### CDBDatabase
+A wrapper around an IDBDatabase object.
+###### Methods
+Name | Paramaters | Description
+---- | ---- | -----------
+database | | Returns the unwrapped IDBDatabase object.
+create | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the object store.</td></tr><tr><td>options</td><td>Object (optional)</td><td>Set the keyPath and/or autoIncrement features.</td></tr><tr><td>schema</td><td>Object</td><td>The keys to indexe along with their options.</td></tr></tbody></table> | Creates a new object store.
+delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>table</td><td>String</td><td>The name of the object store.</td></tr></tbody></table> | Deletes an object store.
+<br/>
+
+
+##### CDBRequest
+A wrapper around an IDBRequest object.
+###### Methods
+Name | Type | Description
+---- | ---- | -----------
 
 <br/>
+
 
 ### gobject
 > A gg factory object.
