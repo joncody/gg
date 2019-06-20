@@ -567,7 +567,6 @@ Name | Parameters | Description
 ---- | ---------- | -----------
 open | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>String</td><td>The name of the database to open.</td></tr><tr><td>version (optional, default: 1)</td><td>Number</td><td>The version of the database.</td></tr><tr><td>executable</td><td>Function(Event, CDBDatabase)</td><td>Is assigned to onupgradeneeded.</td></tr></tbody></table> | Opens a new database.
 delete | <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>String</td><td>The name of the database to delete.</td></tr></tbody></table> | Deletes a database.
-<br/>
 
 ###### Events
 Name | Type | Description
