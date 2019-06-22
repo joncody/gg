@@ -453,7 +453,7 @@ supplanter | Object | The supplanting value.
 <br/>
 
 ##### select(selector, supplanter, node) _-> {Node}_
-> Combines [document.querySelector](https://www.w3schools.com/jsref/met_document_queryselector.asp) and [supplant](#supplantstring-object---booleanstring), in that order, where document is replaced by the optional third argument if provided.
+> Combines [document.querySelector](https://www.w3schools.com/jsref/met_document_queryselector.asp) and supplant, in that order, where document is replaced by the optional third argument if provided.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
@@ -463,7 +463,7 @@ node | Node | The node to execute the query from.
 <br/>
 
 ##### selectAll(selector, supplanter, node) _-> {ArrayLike}_
-> Combines [document.querySelectorAll](https://www.w3schools.com/jsref/met_document_queryselectorall.asp) and [supplant](#supplantstring-object---booleanstring), in that order, where document is replaced by the optional third argument if provided.
+> Combines [document.querySelectorAll](https://www.w3schools.com/jsref/met_document_queryselectorall.asp) and supplant, in that order, where document is replaced by the optional third argument if provided.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
