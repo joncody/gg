@@ -1002,6 +1002,7 @@
             if (isNode(node)) {
                 nodeid = global.parseInt(node.getAttribute("data-gg-id"), 10);
                 clone = node.cloneNode();
+                clone.textContent = node.textContent;
                 each(node.children, function (child) {
                     clone.appendChild(cloneNodeDeeper(child));
                 });
