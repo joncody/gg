@@ -1,6 +1,6 @@
 "use strict";
 
-const ease = Object.freeze({
+export default Object.freeze({
     linearTween: function (t, b, c, d) {
         return c * t / d + b;
     },
@@ -112,5 +112,3 @@ const ease = Object.freeze({
         return c / 2 * (Math.sqrt(1 - t * t) + 1) + b;
     }
 });
-
-export default ease;

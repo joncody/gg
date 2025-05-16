@@ -38,10 +38,6 @@ export default function betterview(value, offset, length) {
         }
     }
 
-    function length() {
-        return store.view.byteLength;
-    }
-
     function rewind() {
         store.offset = 0;
         return better;
@@ -173,13 +169,12 @@ export default function betterview(value, offset, length) {
         betterview: true,
         view: store.view,
         buffer: store.buffer,
-        length,
+        length: () => store.view.byteLength,
         rewind,
         eof,
         tell,
         seek,
         skip,
-        slice,
         getBytes,
         setBytes,
         writeBytes,
