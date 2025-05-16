@@ -963,13 +963,12 @@ function removeMouseListeners() {
     });
 }
 
-gg.keyboardListener = keyboardListener;
-gg.mouseListener = mouseListener;
-gg.removeKeyboardListeners = removeKeyboardListeners;
-gg.removeMouseListeners = removeMouseListeners;
-
 export default Object.freeze(utils.extend(gg, {
     create,
+    keyboardListener,
+    mouseListener,
+    removeKeyboardListeners,
+    removeMouseListeners,
     ease,
     utils,
     emitter,
