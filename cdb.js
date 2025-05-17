@@ -1,5 +1,3 @@
-"use strict";
-
 import emitter from "./emitter.js";
 import utils from "./utils.js";
 

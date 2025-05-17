@@ -1,5 +1,3 @@
-"use strict";
-
 export default Object.freeze({
     linearTween: function (t, b, c, d) {
         return c * t / d + b;

@@ -1,5 +1,3 @@
-"use strict";
-
 if (ArrayBuffer.prototype.slice === undefined) {
     ArrayBuffer.prototype.slice = function (start, end) {
         let that = new Uint8Array(this);
