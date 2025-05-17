@@ -1,3 +1,5 @@
+"use strict";
+
 import ease from "./ease.js";
 import utils from "./utils.js";
 import emitter from "./emitter.js";
