@@ -1,3 +1,5 @@
+"use strict";
+
 import utils from "./utils.js";
 
 export default function betterview(value, offset, length) {

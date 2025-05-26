@@ -1,3 +1,5 @@
+"use strict";
+
 export default function emitter(value) {
     const em = (value && typeof value === "object")
         ? value
