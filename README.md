@@ -27,11 +27,7 @@
 
 ## 📥 Installation
 
-```bash
-npm install gg
-```
-
-Or include directly in HTML:
+Include directly in HTML:
 
 ```html
 <script src="gg.min.js"></script>
