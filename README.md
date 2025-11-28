@@ -30,7 +30,7 @@
 Include directly in HTML:
 
 ```html
-<script src="gg.min.js"></script>
+<script type="module" src="gg.js"></script>
 ```
 
 ---

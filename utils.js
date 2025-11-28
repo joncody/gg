@@ -1,3 +1,5 @@
+import ease from "./ease.js";
+
 "use strict";
 
 if (ArrayBuffer.prototype.slice === undefined) {
