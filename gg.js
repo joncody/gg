@@ -46,7 +46,9 @@ const taglist = [
     "colgroup",
     "dd",
     "del",
+    "details",
     "dfn",
+    "dialog",
     "div",
     "dl",
     "dt",
@@ -76,6 +78,7 @@ const taglist = [
     "legend",
     "li",
     "link",
+    "main",
     "map",
     "mark",
     "meta",
@@ -87,6 +90,8 @@ const taglist = [
     "option",
     "p",
     "param",
+    "path",
+    "picture",
     "pre",
     "progress",
     "q",
@@ -104,10 +109,13 @@ const taglist = [
     "strong",
     "style",
     "sub",
+    "summary",
     "sup",
+    "svg",
     "table",
     "tbody",
     "td",
+    "template",
     "textarea",
     "tfoot",
     "th",
@@ -119,8 +127,46 @@ const taglist = [
     "u",
     "ul",
     "var",
-    "video"
+    "video",
+    "wbr"
 ];
+
+function cloneNodeDeeper(node) {
+    let nodeid;
+    let cloneid;
+    let clone;
+
+    if (utils.isGG(node) && node.length() === 1) {
+        node = node.raw();
+    }
+    if (utils.isNode(node)) {
+        nodeid = global.parseInt(node.getAttribute("data-gg-id"), 10);
+        clone = node.cloneNode();
+        clone.textContent = node.textContent;
+        utils.each(node.children, function (child) {
+            clone.appendChild(cloneNodeDeeper(child));
+        });
+    }
+    if (!utils.isNumber(nodeid) || !listeners.hasOwnProperty(nodeid)) {
+        return clone;
+    }
+    cloneid = ggid();
+    clone.setAttribute("data-gg-id", cloneid);
+    listeners[cloneid] = {};
+    utils.each(listeners[nodeid], function (list, type) {
+        listeners[cloneid][type] = {};
+        utils.each(list, function (params, execid) {
+            const executable = params[0];
+            const bub = params[2];
+            const arg = params[3];
+            const closedExecutable = closure(executable, clone, arg);
+
+            listeners[cloneid][type][execid] = [executable, closedExecutable, bub, arg];
+            clone.addEventListener(type, closedExecutable, bub);
+        });
+    });
+    return clone;
+}
 
 // GG
 function gg(mselector, supplanter) {
@@ -133,43 +179,6 @@ function gg(mselector, supplanter) {
         return function (e) {
             return executable.call(null, e, gg(node), arg);
         };
-    }
-
-    function cloneNodeDeeper(node) {
-        let nodeid;
-        let cloneid;
-        let clone;
-
-        if (utils.isGG(node) && node.length() === 1) {
-            node = node.raw();
-        }
-        if (utils.isNode(node)) {
-            nodeid = global.parseInt(node.getAttribute("data-gg-id"), 10);
-            clone = node.cloneNode();
-            clone.textContent = node.textContent;
-            utils.each(node.children, function (child) {
-                clone.appendChild(cloneNodeDeeper(child));
-            });
-        }
-        if (!utils.isNumber(nodeid) || !listeners.hasOwnProperty(nodeid)) {
-            return clone;
-        }
-        cloneid = ggid();
-        clone.setAttribute("data-gg-id", cloneid);
-        listeners[cloneid] = {};
-        utils.each(listeners[nodeid], function (list, type) {
-            listeners[cloneid][type] = {};
-            utils.each(list, function (params, execid) {
-                const executable = params[0];
-                const bub = params[2];
-                const arg = params[3];
-                const closedExecutable = closure(executable, clone, arg);
-
-                listeners[cloneid][type][execid] = [executable, closedExecutable, bub, arg];
-                clone.addEventListener(type, closedExecutable, bub);
-            });
-        });
-        return clone;
     }
 
     if (utils.isGG(mselector)) {
@@ -526,6 +535,12 @@ function gg(mselector, supplanter) {
             } else if (utils.isNumber(execid) && listeners[nodeid][type].hasOwnProperty(execid)) {
                 node.removeEventListener(type, listeners[nodeid][type][execid][1], bub);
                 delete listeners[nodeid][type][execid];
+                if (Object.keys(listeners[nodeid][type]).length === 0) {
+                    delete listeners[nodeid][type];
+                }
+            }
+            if (Object.keys(listeners[nodeid]).length === 0) {
+                delete listeners[nodeid];
             }
         });
         return gobject;
@@ -680,6 +695,10 @@ function gg(mselector, supplanter) {
     gobject.remove = function (value) {
         if (utils.isUndefined(value)) {
             utils.each(store, function (node) {
+                const id = node.getAttribute("data-gg-id");
+                if (id && listeners.hasOwnProperty(id)) {
+                    delete listeners[id];
+                }
                 if (node.parentNode) {
                     node.parentNode.removeChild(node);
                 }
@@ -689,6 +708,10 @@ function gg(mselector, supplanter) {
                 utils.each(value, function (child) {
                     if (!utils.isNode(child) || !node.contains(child)) {
                         return;
+                    }
+                    const id = child.getAttribute("data-gg-id");
+                    if (id && listeners.hasOwnProperty(id)) {
+                        delete listeners[id];
                     }
                     if (child.parentNode) {
                         node.removeChild(child);
