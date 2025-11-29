@@ -1,205 +1,160 @@
-# gg.js
+# `gg.js` – The "Good Game" Framework
 
-`gg.js` is a lightweight, chainable, utility-first JavaScript library for DOM manipulation and interaction. It offers a simplified jQuery-like API with modern enhancements, event handling, and useful utilities baked in.
+A lightweight, chainable DOM manipulation library and utility suite.
 
----
-
-## 📦 Summary
-
-`gg.js` aims to streamline common DOM manipulation tasks such as element selection, insertion, event handling, styling, and traversal. Built with modern JavaScript in mind, it supports chainable methods, automatic event listener tracking, and a minimal dependency surface. The library is ideal for small projects or custom frontend frameworks where full jQuery is unnecessary.
+**gg.js** provides a jQuery-like syntax for selecting, traversing, and manipulating DOM elements. It also bundles the entire ecosystem of utilities (`utils`, `emitter`, `betterview`, `cdb`) into a single, cohesive namespace, making it a complete toolkit for modern web applications.
 
 ---
 
-## ✨ Features
+## ✅ Features
 
-- Lightweight and modular
-- jQuery-like chainable API
-- DOM selection and traversal
-- Attribute and property manipulation
-- Event handling with `.on()`, `.off()`, `.once()`
-- Class and style manipulation
-- HTML and text content utilities
-- Custom data attribute helpers
-- Keyboard and mouse event abstraction
-- Cloning with deep event listener preservation
+- 🎯 **DOM Selection:** Robust selection via CSS selectors or raw nodes.
+- ⛓️ **Chainable API:** Fluent interface for CSS, attributes, events, and manipulation.
+- ⚡ **Event Handling:** Simplified `on`/`off`/`once` with automatic scope binding.
+- 🎹 **Device Listeners:** built-in keyboard and mouse input managers.
+- 📦 **Ecosystem Bundle:** Includes `utils`, `emitter`, `betterview`, and `cdb` built-in.
+- ❄️ **Immutable & Safe:** Returns frozen objects to prevent accidental modification.
+- 📦 **Zero dependencies**, modern ES module.
 
 ---
 
-## 📥 Installation
+## 📦 Installation
 
-Include directly in HTML:
+Copy `gg.js` (and its dependencies: `utils.js`, `emitter.js`, `betterview.js`, `cdb.js`) into your project.
 
-```html
-<script type="module" src="gg.js"></script>
+Import as a module:
+
+```js
+import gg from './gg.js';
 ```
 
 ---
 
-## 🚀 Quick Start
+## 🧠 Quick Examples
+
+### 1. DOM Manipulation
 
 ```js
-import gg from 'gg';
+import gg from "./gg.js";
 
-// Create and append a div
-gg.create('div')
-  .addClass('my-box')
-  .text('Hello, gg!')
+// Select elements
+const box = gg("#box");
+
+// Chain methods
+box.addClass("active")
+   .css({ color: "red", fontSize: "20px" })
+   .text("Hello World!")
+   .on("click", () => console.log("Clicked!"));
+   
+// Create new elements
+gg.create("div")
+  .addClass("overlay")
   .appendTo(document.body);
+```
 
-// Handle events
-gg('.my-box').on('click', (e, el) => {
-  el.toggleClass('active');
+### 2. Input Handling
+
+```js
+// Listen for specific keys
+gg.keyboardListener({
+    "enter": () => console.log("Form submitted"),
+    "esc":   () => console.log("Modal closed"),
+    "up":    () => movePlayer("up")
+});
+
+// Listen for mouse buttons
+gg.mouseListener({
+    "left":  (e) => console.log("Primary click at", e.clientX, e.clientY),
+    "right": (e) => console.log("Context menu requested")
 });
 ```
 
 ---
 
-## 📘 API Documentation
+## 📚 API Reference
 
-### Core Function: `gg(selector[, context])`
+### 🟢 Initialization
 
-Selects DOM nodes.
+| Function | Description |
+|----------|-------------|
+| `gg(selector, [supplanter])` | Selects elements. Accepts CSS string, Node, NodeList, or existing `gg` object. Supports templating via `supplanter`. |
+| `gg.create(tagName)` | Creates a new DOM element wrapped in a `gg` object. |
+
+---
+
+### 🎨 CSS & Attributes
+
+| Function | Description |
+|----------|-------------|
+| `addClass(class)` | Adds one or more classes. |
+| `remClass(class)` | Removes one or more classes. |
+| `togClass(class)` | Toggles classes. |
+| `hasClass(class)` | Returns `true` if element has the class. |
+| `css(prop, [val])` | Get or set inline styles. Accepts object for multiple styles. Alias: `style`, `prop`. |
+| `attr(name, [val])` | Get or set HTML attributes. |
+| `remAttr(name)` | Remove attributes. |
+| `data(name, [val])` | Get or set `data-*` attributes (automatically hyphenated). |
+
+---
+
+### 🌲 Manipulation & Traversal
+
+| Function | Description |
+|----------|-------------|
+| `html([html])` | Get or set inner HTML. |
+| `text([text])` | Get or set text content. |
+| `append(content)` | Append content to the end of element(s). |
+| `prepend(content)` | Prepend content to the start of element(s). |
+| `after(content)` | Insert content after the element. |
+| `before(content)` | Insert content before the element. |
+| `remove()` | Remove element from DOM. |
+| `empty()` | Remove all child nodes. Alias: `remHtml`, `remText`. |
+| `children()` | Get children as a `gg` object. |
+| `parents()` | Get parent nodes as a `gg` object. |
+| `select(selector)` | Find descendant elements (querySelector). |
+| `selectAll(selector)` | Find descendant elements (querySelectorAll). |
+
+---
+
+### ⚡ Events
+
+| Function | Description |
+|----------|-------------|
+| `on(type, fn, [capture], [arg])` | Add event listener. |
+| `off(type, [fn], [capture])` | Remove event listener. If `fn` omitted, removes all listeners of that type. |
+| `once(type, fn, [capture], [arg])` | Add one-time listener. |
+
+---
+
+### 🎹 Global Input Listeners
+
+These are static methods on the `gg` object.
+
+| Function | Description |
+|----------|-------------|
+| `gg.keyboardListener(map)` | Registers global keydown handlers. Map keys: `"enter"`, `"left"`, `"up"`, `"right"`, `"down"`, or keycodes. |
+| `gg.mouseListener(map)` | Registers global mousedown handlers. Map keys: `"left"`, `"middle"`, `"right"`. |
+| `gg.removeKeyboardListeners()` | Removes all registered global keyboard listeners. |
+| `gg.removeMouseListeners()` | Removes all registered global mouse listeners. |
+
+---
+
+## 🧰 Bundled Ecosystem
+
+`gg.js` exports your entire library suite as static properties:
+
+*   **`gg.utils`**: The utility library (type checking, object copying, etc).
+*   **`gg.emitter`**: The event emitter factory.
+*   **`gg.betterview`**: The advanced DataView wrapper.
+*   **`gg.cdb`**: The IndexedDB wrapper.
 
 ```js
-gg('.my-class');
-gg(document.querySelectorAll('div'));
+// Access utils directly through gg
+if (gg.utils.isString("test")) { ... }
+
+// Use the database
+gg.cdb.open("MyDatabase");
 ```
-
----
-
-### Element Creation
-
-- `gg.create(tagName)` — Creates a new DOM element.
-
----
-
-### Class Manipulation
-
-- `.addClass(name)`
-- `.hasClass(name)`
-- `.togClass(name)`
-- `.remClass(name)`
-- `.classes([value])`
-
----
-
-### Attributes
-
-- `.attr(name)`
-- `.attr(name, value)`
-- `.attr({ name: value })`
-- `.remAttr(name)`
-
----
-
-### Properties & Styles
-
-- `.prop(name)`
-- `.prop(name, value)`
-- `.prop({ name: value })`
-- `.css(...)`, `.style(...)` — Aliases
-- `.remProp(name)`
-- `.remCss(name)` / `.remStyle(name)` — Aliases
-
----
-
-### HTML & Text
-
-- `.html()` / `.html(value)`
-- `.text()` / `.text(value)`
-- `.remHtml()` / `.remText()`
-
----
-
-### Data Attributes
-
-- `.data(name)` / `.data(name, value)`
-- `.data({ name: value })`
-- `.remData(name)`
-
----
-
-### DOM Manipulation
-
-- `.append(element)`
-- `.prepend(element)`
-- `.after(element)`
-- `.before(element)`
-- `.appendTo(parent)`
-- `.prependTo(parent)`
-- `.remove([child])`
-- `.clone(deep, deeper)` — Optional deep clone + event listeners
-- `.create(tag)` — Create new child
-
----
-
-### Traversal
-
-- `.children()` — Get children
-- `.parents()` — Get parents
-- `.select(selector)` — Query within each node
-- `.selectAll(selector)` — Query all within each node
-- `.get(index)` — Get a single wrapped element
-- `.raw([index])` — Get raw DOM node
-
----
-
-### Events
-
-- `.on(type, handler[, useCapture, arg])`
-- `.off(type[, handler, useCapture])`
-- `.once(type, handler[, useCapture, arg])`
-
-Handlers receive: `(event, ggElement, arg)`
-
----
-
-### Iteration
-
-- `.each(fn)` — Wrapped elements
-- `.eachRaw(fn)` — Raw DOM elements
-
----
-
-### Utility Methods
-
-- `.length()` — Number of elements
-- `.subtract(index)` — Remove from internal collection
-
----
-
-### Device Listeners
-
-- `gg.keyboardListener({ key: fn, ... })`
-  - Example keys: `"enter"`, `"left"`, `13`
-- `gg.mouseListener({ left: fn, right: fn })`
-
-To remove listeners:
-
-```js
-gg.removeKeyboardListeners();
-gg.removeMouseListeners();
-```
-
----
-
-## 📚 Utilities
-
-Accessed via `gg.utils`:
-
-- `isString`, `isNumber`, `isBoolean`, `isObject`, `isFunction`, `isUndefined`
-- `each`, `inArray`, `toArray`, `extend`, `toCamelCase`, `toHyphenated`
-- `select`, `selectAll`
-
----
-
-## 🧱 Modules Included
-
-- `utils.js`: Core helpers
-- `ease.js`: Easing functions
-- `emitter.js`: Pub/sub event emitter
-- `betterview.js`: Viewport management
-- `cdb.js`: In-memory component data store
 
 ---
 
