@@ -5,7 +5,7 @@ import emitter from "./emitter.js";
 import betterview from "./betterview.js";
 import cdb from "./cdb.js";
 
-const global = globalThis || window || this;
+const global = typeof globalThis !== "undefined" ? globalThis : (typeof window !== "undefined" ? window : this);
 
 const ggid = (function () {
     let id = 0;
